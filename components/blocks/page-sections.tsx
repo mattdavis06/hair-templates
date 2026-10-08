@@ -1,5 +1,5 @@
 import { sectionRegistry } from "@/components/blocks/registry"
-import type { SectionProps } from "@/components/blocks/types"
+import type { SectionWithOptions } from "@/components/blocks/types"
 import { sectionKey, type Page } from "@/content/schema"
 import type { Brand } from "@/lib/brands"
 import type { ComponentType } from "react"
@@ -7,12 +7,21 @@ import type { ComponentType } from "react"
 /** Renders a page's sections in the order and variants its brand config lists. */
 export function PageSections({ brand, page }: { brand: Brand; page: Page }) {
   return page.sections.map((section) => {
-    const variants: Record<
+    // TypeScript can't see that `section.type` picks both the registry entry
+    // and the props type, so the pairing is checked by the registry's type instead.
+    const variants = sectionRegistry[section.type] as Record<
       string,
-      ComponentType<SectionProps>
-    > = sectionRegistry[section.type]
+      ComponentType<SectionWithOptions<typeof section.type>>
+    >
     const Section = variants[section.variant]
 
-    return <Section key={sectionKey(section)} brand={brand} id={section.id} />
+    return (
+      <Section
+        key={sectionKey(section)}
+        brand={brand}
+        section={section}
+        id={section.id}
+      />
+    )
   })
 }

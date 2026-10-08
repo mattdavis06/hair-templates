@@ -1,12 +1,18 @@
-import type { SectionProps } from "@/components/blocks/types"
+import type { SectionWithOptions } from "@/components/blocks/types"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { formatDuration, formatPrice } from "@/lib/format"
+import { formatDuration } from "@/lib/format"
+import { pickCategories, servicePriceLabel } from "@/lib/services"
 
 /** Price list grouped by category, two columns on wide screens. */
-export function ServicesList({ brand, id }: SectionProps) {
+export function ServicesList({
+  brand,
+  section,
+  id,
+}: SectionWithOptions<"services">) {
   const { services, booking } = brand.content
   if (!services) return null
+  const categories = pickCategories(services, section.categories)
 
   return (
     <section
@@ -21,7 +27,7 @@ export function ServicesList({ brand, id }: SectionProps) {
       </div>
 
       <div className="grid gap-x-16 gap-y-12 md:grid-cols-2">
-        {services.categories.map((category) => (
+        {categories.map((category) => (
           <div key={category.name} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <h3 className="text-3xl">{category.name}</h3>
@@ -54,7 +60,7 @@ export function ServicesList({ brand, id }: SectionProps) {
                     </p>
                   </div>
                   <p className="font-heading text-2xl whitespace-nowrap tabular-nums">
-                    {formatPrice(service.price, service.from)}
+                    {servicePriceLabel(service)}
                   </p>
                 </li>
               ))}

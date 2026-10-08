@@ -27,42 +27,117 @@
   },
   "monogram": "CR",
   "nav": [
-    {
-      "label": "Home",
-      "href": "/"
-    },
-    {
-      "label": "Book",
-      "href": "/book"
-    }
+    { "label": "Services", "href": "/services" },
+    { "label": "Colour", "href": "/colour" },
+    { "label": "Team", "href": "/team" },
+    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Book", "href": "/book" }
   ],
   "pages": [
     {
       "slug": "",
       "title": "Home",
       "sections": [
+        { "type": "hero", "variant": "split" },
+        { "type": "offer", "variant": "banner", "id": "offer" },
+        { "type": "highlights", "variant": "cards", "id": "what-we-do" },
+        { "type": "before-after", "variant": "slider", "id": "before-after" },
+        { "type": "reviews", "variant": "carousel", "id": "reviews" },
+        { "type": "booking", "variant": "cta" },
+        { "type": "newsletter", "variant": "banner", "id": "newsletter" }
+      ]
+    },
+    {
+      "slug": "services",
+      "title": "Services",
+      "seo": {
+        "title": "Services & prices",
+        "description": "Cuts, curly cuts, blow-dries and bond-repair treatments in Clifton, priced by stylist level. Appointments only."
+      },
+      "sections": [
+        { "type": "page-header", "variant": "simple", "name": "services" },
         {
-          "type": "hero",
-          "variant": "centered"
+          "type": "services",
+          "variant": "matrix",
+          "id": "prices",
+          "categories": ["Cutting & styling", "Treatments"]
         },
+        { "type": "policies", "variant": "list", "id": "policies" },
+        { "type": "booking", "variant": "cta" }
+      ]
+    },
+    {
+      "slug": "colour",
+      "title": "Colour",
+      "seo": {
+        "title": "Colour, balayage & colour correction",
+        "description": "Balayage, lived-in blondes, vivids and colour correction in Clifton, Bristol. Free consultation and patch test, plus 20% off your first colour."
+      },
+      "sections": [
+        { "type": "page-header", "variant": "simple", "name": "colour" },
+        { "type": "notice", "variant": "banner", "id": "patch-test" },
         {
-          "type": "newsletter",
-          "variant": "banner"
+          "type": "services",
+          "variant": "matrix",
+          "id": "prices",
+          "categories": ["Colour", "Lightening", "Correction & vivids"]
+        },
+        { "type": "before-after", "variant": "slider", "id": "before-after" },
+        {
+          "type": "enquiry",
+          "variant": "split",
+          "id": "consultation",
+          "form": "consultation"
         }
+      ]
+    },
+    {
+      "slug": "team",
+      "title": "Team",
+      "seo": {
+        "title": "Meet the team",
+        "description": "The colourists and stylists at The Colour Room in Clifton: creative directors, senior stylists and stylists, and what each specialises in."
+      },
+      "sections": [
+        { "type": "page-header", "variant": "simple", "name": "team" },
+        { "type": "team", "variant": "profiles", "id": "team" },
+        { "type": "booking", "variant": "cta" }
+      ]
+    },
+    {
+      "slug": "gallery",
+      "title": "Gallery",
+      "seo": {
+        "title": "Gallery",
+        "description": "Recent colour, cutting and styling from The Colour Room in Clifton, Bristol."
+      },
+      "sections": [
+        { "type": "page-header", "variant": "simple", "name": "gallery" },
+        { "type": "gallery", "variant": "masonry", "id": "gallery" },
+        { "type": "booking", "variant": "cta" }
       ]
     },
     {
       "slug": "book",
       "title": "Book",
       "seo": {
-        "title": "Book",
-        "description": "Book an appointment or send The Colour Room a message about colour, cutting or a consultation."
+        "title": "Book, gift vouchers & enquiries",
+        "description": "Book an appointment online, buy a gift voucher, or ask about bridal and event hair at The Colour Room in Clifton."
       },
       "sections": [
+        { "type": "page-header", "variant": "simple", "name": "book" },
+        { "type": "booking", "variant": "cta", "id": "book" },
+        { "type": "vouchers", "variant": "cards", "id": "vouchers" },
         {
-          "type": "contact",
-          "variant": "split"
-        }
+          "type": "enquiry",
+          "variant": "split",
+          "id": "events",
+          "form": "events"
+        },
+        { "type": "faqs", "variant": "accordion", "id": "faqs" },
+        { "type": "policies", "variant": "list", "id": "policies" },
+        { "type": "visit", "variant": "map", "id": "visit" },
+        { "type": "contact", "variant": "form", "id": "contact" }
       ]
     }
   ]
