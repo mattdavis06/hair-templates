@@ -10,7 +10,7 @@ import {
   type Page,
   type Site,
 } from "@/content/schema"
-import { BRAND_IDS, isBrandId, type BrandId } from "./ids"
+import { BRAND_IDS, brandHref, isBrandId, type BrandId } from "./ids"
 
 export * from "./ids"
 
@@ -52,4 +52,14 @@ export function getPage(brand: Brand, slug: string): Page {
 
 export function pagePath(page: Page): string {
   return page.slug ? `/${page.slug}` : "/"
+}
+
+export type NavLink = { label: string; href: string }
+
+/** The brand's header and footer links, with the brand kept in each URL. */
+export function navLinks(brand: Brand): NavLink[] {
+  return brand.site.nav.map(({ label, href }) => ({
+    label,
+    href: brandHref(brand.id, href),
+  }))
 }

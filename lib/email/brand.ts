@@ -1,6 +1,6 @@
-import type { Content, DayHours, FontKey } from "@/content/schema"
+import type { Content, FontKey } from "@/content/schema"
 import { brandHref, getBrand, type Brand, type BrandId } from "@/lib/brands"
-import { formatDayHours } from "@/lib/opening-hours"
+import { groupOpeningHours } from "@/lib/opening-hours"
 import { mix, mostReadable } from "@/lib/palette"
 import { siteUrl } from "@/lib/site"
 
@@ -143,24 +143,6 @@ function resolveEmailBaseUrl(): string {
 
 const emailBaseUrl = resolveEmailBaseUrl()
 
-const shortDay = (day: string) => day.slice(0, 3)
-
-/** Collapses runs of identical hours: "Mon–Wed 9am – 6pm". */
-function groupHours(days: DayHours[]): EmailBrand["hours"] {
-  const groups: { first: string; last: string; hours: string }[] = []
-  for (const day of days) {
-    const hours = formatDayHours(day)
-    const previous = groups.at(-1)
-    if (previous?.hours === hours) previous.last = day.day
-    else groups.push({ first: day.day, last: day.day, hours })
-  }
-  return groups.map(({ first, last, hours }) => ({
-    days:
-      first === last ? shortDay(first) : `${shortDay(first)}–${shortDay(last)}`,
-    hours,
-  }))
-}
-
 export function toEmailBrand(brand: Brand): EmailBrand {
   const { content } = brand
   const { street, city, postcode } = content.address
@@ -176,7 +158,7 @@ export function toEmailBrand(brand: Brand): EmailBrand {
     address: [street, `${city} ${postcode}`],
     phone: content.phone,
     email: content.email,
-    hours: groupHours(content.openingHours),
+    hours: groupOpeningHours(content.openingHours),
     socials: content.socials,
     copy: content.emails,
   }

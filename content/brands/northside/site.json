@@ -26,6 +26,16 @@
     "destructive": "#f07a62"
   },
   "monogram": "N",
+  "nav": [
+    {
+      "label": "Visit us",
+      "href": "/#contact"
+    },
+    {
+      "label": "Newsletter",
+      "href": "/#newsletter"
+    }
+  ],
   "pages": [
     {
       "slug": "",
@@ -42,7 +52,8 @@
         },
         {
           "type": "newsletter",
-          "variant": "banner"
+          "variant": "banner",
+          "id": "newsletter"
         }
       ]
     }

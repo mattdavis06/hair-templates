@@ -26,6 +26,16 @@
     "destructive": "#b42318"
   },
   "monogram": "CR",
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Book",
+      "href": "/book"
+    }
+  ],
   "pages": [
     {
       "slug": "",
