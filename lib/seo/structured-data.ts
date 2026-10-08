@@ -1,6 +1,21 @@
-import type { Content } from "@/content/schema"
+import type { Content, Service } from "@/content/schema"
 import type { Brand } from "@/lib/brands"
+import { priceBounds } from "@/lib/services"
 import { absoluteUrl, brandUrl } from "@/lib/site"
+
+/** A fixed price, or a range when it starts "from" or varies by stylist level. */
+function serviceOfferPrice(service: Service) {
+  const { min, max } = priceBounds(service)
+  if (!service.from && min === max) return { price: min, priceCurrency: "GBP" }
+  return {
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: min,
+      ...(max > min && { maxPrice: max }),
+      priceCurrency: "GBP",
+    },
+  }
+}
 
 /** schema.org description of the business, rendered once per page as JSON-LD. */
 export function businessJsonLd({ id, content }: Brand) {
@@ -52,15 +67,7 @@ export function businessJsonLd({ id, content }: Brand) {
                 description: service.description,
               }),
             },
-            ...(service.from
-              ? {
-                  priceSpecification: {
-                    "@type": "PriceSpecification",
-                    minPrice: service.price,
-                    priceCurrency: "GBP",
-                  },
-                }
-              : { price: service.price, priceCurrency: "GBP" }),
+            ...serviceOfferPrice(service),
           })),
         })),
       },

@@ -1,8 +1,14 @@
 "use server"
 
 import { checkBotId } from "botid/server"
+import { ENQUIRY_KINDS, type EnquiryKind } from "@/content/schema"
 import { findBrand, type Brand } from "@/lib/brands"
-import { deliverContact, deliverNewsletter } from "@/lib/email/deliver"
+import {
+  deliverContact,
+  deliverEnquiry,
+  deliverNewsletter,
+} from "@/lib/email/deliver"
+import { ENQUIRY_FIELD, enquiryFields, enquirySchema } from "./enquiries"
 import {
   BRAND_FIELD,
   CONTACT_FIELDS,
@@ -61,6 +67,37 @@ export async function submitContact(
     return { status: "invalid", fieldErrors: result.fieldErrors }
   }
   return deliver(formData, result.data, deliverContact)
+}
+
+const isEnquiryKind = (value: unknown): value is EnquiryKind =>
+  ENQUIRY_KINDS.includes(value as EnquiryKind)
+
+export async function submitEnquiry(
+  _prev: FormState<string>,
+  formData: FormData
+): Promise<FormState<string>> {
+  if (isLikelySpam(formData)) return { status: "success" }
+
+  const brand = findBrand(formData.get(BRAND_FIELD))
+  const kind = formData.get(ENQUIRY_FIELD)
+  if (!brand || !isEnquiryKind(kind) || !brand.content.enquiries?.[kind]) {
+    return { status: "failed" }
+  }
+
+  const fields = enquiryFields(kind, brand.content)
+  const result = validate(
+    enquirySchema(fields),
+    readFields(
+      formData,
+      fields.map((field) => field.name)
+    )
+  )
+  if (!result.success) {
+    return { status: "invalid", fieldErrors: result.fieldErrors }
+  }
+  return deliver(formData, result.data, (target, values) =>
+    deliverEnquiry(target, kind, fields, values)
+  )
 }
 
 export async function submitNewsletter(

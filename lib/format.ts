@@ -8,8 +8,9 @@ const poundsAndPence = new Intl.NumberFormat("en-GB", {
   currency: "GBP",
 })
 
-/** "£24", "£24.50", or "from £30". */
+/** "£24", "£24.50", "from £30", or "Free". */
 export function formatPrice(price: number, from = false): string {
+  if (price === 0 && !from) return "Free"
   const amount = (
     Number.isInteger(price) ? wholePounds : poundsAndPence
   ).format(price)

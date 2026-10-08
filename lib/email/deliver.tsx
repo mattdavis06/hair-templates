@@ -1,11 +1,19 @@
 import type { ReactElement } from "react"
 import { render } from "react-email"
 import { Resend } from "resend"
+import type { EnquiryKind } from "@/content/schema"
 import type { Brand } from "@/lib/brands"
 import { toEmailBrand } from "@/lib/email/brand"
 import { ContactConfirmation } from "@/lib/email/templates/contact-confirmation"
 import { ContactNotification } from "@/lib/email/templates/contact-notification"
+import { EnquiryConfirmation } from "@/lib/email/templates/enquiry-confirmation"
+import { EnquiryNotification } from "@/lib/email/templates/enquiry-notification"
 import { NewsletterWelcome } from "@/lib/email/templates/newsletter-welcome"
+import {
+  enquiryRows,
+  type EnquiryField,
+  type EnquiryValues,
+} from "@/lib/forms/enquiries"
 import type { ContactInput, NewsletterInput } from "@/lib/forms/schemas"
 
 /**
@@ -29,7 +37,11 @@ const config = readConfig()
 type Config = NonNullable<typeof config>
 
 type Message = {
-  kind: "contact-confirmation" | "contact-notification" | "newsletter-welcome"
+  kind:
+    | "contact-confirmation"
+    | "contact-notification"
+    | "newsletter-welcome"
+    | `${EnquiryKind}-${"confirmation" | "notification"}`
   to: string
   subject: string
   replyTo?: string
@@ -100,6 +112,64 @@ export async function deliverContact(brand: Brand, input: ContactInput) {
   // The visitor's own receipt decides success; a missed shop copy is only logged.
   if (notified.status === "rejected") {
     console.error("[forms] contact notification failed", notified.reason)
+  }
+  if (confirmed.status === "rejected") throw confirmed.reason
+}
+
+export async function deliverEnquiry(
+  brand: Brand,
+  kind: EnquiryKind,
+  fields: EnquiryField[],
+  values: EnquiryValues
+) {
+  const name = values.name ?? ""
+  const email = values.email ?? ""
+  if (!config) return logDemo(`${brand.id} ${kind} enquiry from ${email}`)
+
+  const copy = brand.content.enquiries?.[kind]
+  if (!copy) throw new Error(`No "${kind}" enquiry copy for ${brand.id}`)
+
+  const emailBrand = toEmailBrand(brand)
+  const rows = enquiryRows(fields, values)
+  const confirmation = send(config, brand, {
+    kind: `${kind}-confirmation`,
+    to: email,
+    subject: copy.email.subject,
+    replyTo: config.inbox,
+    email: (
+      <EnquiryConfirmation
+        brand={emailBrand}
+        form={copy.title}
+        copy={copy.email}
+        name={name}
+        rows={rows}
+      />
+    ),
+  })
+  const notification = config.inbox
+    ? send(config, brand, {
+        kind: `${kind}-notification`,
+        to: config.inbox,
+        subject: `${copy.title}: ${singleLine(name)} · ${emailBrand.name}`,
+        replyTo: email,
+        email: (
+          <EnquiryNotification
+            brand={emailBrand}
+            form={copy.title}
+            name={name}
+            email={email}
+            rows={rows}
+          />
+        ),
+      })
+    : null
+
+  const [confirmed, notified] = await Promise.allSettled([
+    confirmation,
+    notification,
+  ])
+  if (notified.status === "rejected") {
+    console.error(`[forms] ${kind} notification failed`, notified.reason)
   }
   if (confirmed.status === "rejected") throw confirmed.reason
 }

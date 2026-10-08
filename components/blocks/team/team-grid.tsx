@@ -1,5 +1,5 @@
+import { MemberPortrait } from "@/components/blocks/team/member-portrait"
 import type { SectionProps } from "@/components/blocks/types"
-import { BrandImage } from "@/components/site/brand-image"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -23,12 +23,10 @@ export function TeamGrid({ brand, id }: SectionProps) {
       <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {team.members.map((member) => (
           <li key={member.name} className="flex flex-col gap-5">
-            <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-muted">
-              <BrandImage
-                image={member.image}
-                sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
-              />
-            </div>
+            <MemberPortrait
+              member={member}
+              sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
+            />
             <div className="flex flex-col gap-2">
               <h3 className="text-3xl">{member.name}</h3>
               <p className="text-sm font-medium text-highlight">

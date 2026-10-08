@@ -14,39 +14,13 @@
     "country": "GB"
   },
   "openingHours": [
-    {
-      "day": "Monday",
-      "closed": true
-    },
-    {
-      "day": "Tuesday",
-      "open": "09:00",
-      "close": "18:00"
-    },
-    {
-      "day": "Wednesday",
-      "open": "09:00",
-      "close": "18:00"
-    },
-    {
-      "day": "Thursday",
-      "open": "10:00",
-      "close": "20:00"
-    },
-    {
-      "day": "Friday",
-      "open": "09:00",
-      "close": "19:00"
-    },
-    {
-      "day": "Saturday",
-      "open": "09:00",
-      "close": "17:00"
-    },
-    {
-      "day": "Sunday",
-      "closed": true
-    }
+    { "day": "Monday", "closed": true },
+    { "day": "Tuesday", "open": "09:00", "close": "18:00" },
+    { "day": "Wednesday", "open": "09:00", "close": "18:00" },
+    { "day": "Thursday", "open": "10:00", "close": "20:00" },
+    { "day": "Friday", "open": "09:00", "close": "19:00" },
+    { "day": "Saturday", "open": "09:00", "close": "17:00" },
+    { "day": "Sunday", "closed": true }
   ],
   "booking": {
     "provider": "fresha",
@@ -54,18 +28,591 @@
     "label": "Book an appointment"
   },
   "socials": [
-    {
-      "label": "Instagram",
-      "url": "https://www.instagram.com/"
-    },
-    {
-      "label": "Pinterest",
-      "url": "https://www.pinterest.com/"
-    }
+    { "label": "Instagram", "url": "https://www.instagram.com/" },
+    { "label": "Pinterest", "url": "https://www.pinterest.com/" }
   ],
+  "hero": {
+    "image": {
+      "src": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250",
+      "alt": "The Colour Room's styling floor: black chairs facing round mirrors, with a wall of hair products to one side",
+      "position": "35% center"
+    },
+    "secondary": {
+      "label": "Free colour consultation",
+      "href": "/colour#consultation"
+    }
+  },
+  "pageHeaders": {
+    "services": {
+      "eyebrow": "Cut, style, treat",
+      "title": "Services & prices",
+      "intro": "Precision cuts, blow-dries and treatments that keep coloured hair strong. Prices depend on your stylist's level."
+    },
+    "colour": {
+      "eyebrow": "Our speciality",
+      "title": "Colour, done carefully",
+      "intro": "From a subtle gloss to a full correction, every new colour starts with a free consultation, a patch test and an honest plan."
+    },
+    "team": {
+      "eyebrow": "Our people",
+      "title": "Colourists first, stylists always",
+      "intro": "Four specialists who keep learning, so your hair is in experienced hands whoever you book with."
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "title": "Colour, cut and the room itself",
+      "intro": "Recent work from the chair, and a look around the salon."
+    },
+    "book": {
+      "eyebrow": "Book",
+      "title": "Book, gift or get in touch",
+      "intro": "We're appointments only, so every client gets their stylist's full attention. Book online any time, or send us a message."
+    }
+  },
+  "offer": {
+    "eyebrow": "New here?",
+    "title": "20% off your first colour",
+    "body": "Start with a free 15-minute consultation and patch test, then take 20% off your first colour appointment with any of our stylists.",
+    "link": {
+      "label": "Book your free consultation",
+      "href": "/colour#consultation"
+    },
+    "terms": "New colour clients only. Book your colour within 30 days of your consultation. Can't be used with other offers or gift vouchers."
+  },
+  "highlights": {
+    "title": "What we do",
+    "intro": "Colour is our speciality, but every visit gets the same care, from a fringe trim to a full correction.",
+    "items": [
+      {
+        "title": "Colour",
+        "body": "Balayage, lived-in blondes, glosses, vivids and colour correction, always after a free consultation.",
+        "image": {
+          "src": "https://images.unsplash.com/photo-1707720531504-ce087725861a",
+          "alt": "A colourist folding a foil while placing highlights",
+          "position": "center 35%"
+        },
+        "link": { "label": "Explore colour", "href": "/colour" }
+      },
+      {
+        "title": "Cutting & styling",
+        "body": "Precision cuts, curly cuts and blow-dries, plus bridal and event hair in the salon or on location.",
+        "image": {
+          "src": "https://images.unsplash.com/photo-1672788694268-ecc234591d31",
+          "alt": "A stylist finishing a braided copper updo with hairspray",
+          "position": "60% center"
+        },
+        "link": { "label": "See cuts and prices", "href": "/services" }
+      },
+      {
+        "title": "Treatments",
+        "body": "Bond repair and deep conditioning to keep coloured hair strong and glossy between visits.",
+        "image": {
+          "src": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0",
+          "alt": "A client relaxing at the basin while her hair is rinsed",
+          "position": "45% center"
+        },
+        "link": { "label": "See treatments", "href": "/services#prices" }
+      }
+    ]
+  },
+  "notice": {
+    "title": "Patch test first, every time",
+    "body": "If you're new to us, or it's been more than six months since your last colour here, we'll need a quick patch test at least 48 hours before your appointment. It's free, takes five minutes, and keeps you safe.",
+    "link": {
+      "label": "Book a free consultation and patch test",
+      "href": "/colour#consultation"
+    }
+  },
+  "bookingCta": {
+    "title": "Ready when you are",
+    "body": "Book online any time. Planning a new colour? Start with a free consultation and we'll build the plan together.",
+    "secondary": {
+      "label": "Free consultation",
+      "href": "/colour#consultation"
+    }
+  },
+  "services": {
+    "title": "Prices",
+    "intro": "Every stylist is fully trained; the difference between levels is experience. Prices are for shoulder-length hair.",
+    "levels": [
+      {
+        "id": "stylist",
+        "name": "Stylist",
+        "description": "Fully trained, with at least two years on the salon floor."
+      },
+      {
+        "id": "senior",
+        "name": "Senior stylist",
+        "description": "Five years or more, with advanced colour and cutting training."
+      },
+      {
+        "id": "director",
+        "name": "Creative director",
+        "description": "Our most experienced colourists, for corrections and big changes."
+      }
+    ],
+    "categories": [
+      {
+        "name": "Colour",
+        "description": "New colour clients start with a free consultation and a patch test at least 48 hours before.",
+        "items": [
+          {
+            "name": "Colour consultation & patch test",
+            "description": "Fifteen minutes to talk through your hair and plan the change.",
+            "price": 0,
+            "duration": 15
+          },
+          {
+            "name": "Root colour",
+            "description": "Regrowth up to 2cm, with a blow-dry.",
+            "prices": { "stylist": 65, "senior": 75, "director": 88 },
+            "duration": 90
+          },
+          {
+            "name": "Full head colour",
+            "description": "One shade, root to tip.",
+            "prices": { "stylist": 85, "senior": 98, "director": 115 },
+            "from": true,
+            "duration": 120,
+            "consultation": true
+          },
+          {
+            "name": "Gloss & toner",
+            "description": "Refreshes tone and shine between colours.",
+            "prices": { "stylist": 45, "senior": 52, "director": 60 },
+            "duration": 45,
+            "popular": true
+          },
+          {
+            "name": "Grey blending",
+            "description": "Softens grey into your natural colour for a gentle grow-out.",
+            "prices": { "stylist": 75, "senior": 85, "director": 98 },
+            "duration": 105,
+            "consultation": true
+          }
+        ]
+      },
+      {
+        "name": "Lightening",
+        "description": "Balayage, highlights and blonding. Includes toner and a blow-dry.",
+        "items": [
+          {
+            "name": "Balayage",
+            "description": "Hand-painted for a soft, low-maintenance grow-out.",
+            "prices": { "stylist": 165, "senior": 190, "director": 220 },
+            "from": true,
+            "duration": 210,
+            "popular": true,
+            "consultation": true
+          },
+          {
+            "name": "Full head highlights",
+            "prices": { "stylist": 140, "senior": 160, "director": 185 },
+            "from": true,
+            "duration": 180,
+            "consultation": true
+          },
+          {
+            "name": "Half head highlights",
+            "prices": { "stylist": 105, "senior": 120, "director": 140 },
+            "from": true,
+            "duration": 150
+          },
+          {
+            "name": "Face-framing highlights",
+            "description": "Brightness around the face only.",
+            "prices": { "stylist": 65, "senior": 75, "director": 88 },
+            "duration": 75
+          }
+        ]
+      },
+      {
+        "name": "Correction & vivids",
+        "description": "Big changes, priced at your consultation. Colour correction is with our senior and director colourists only.",
+        "items": [
+          {
+            "name": "Colour correction, per hour",
+            "description": "Removing box dye, fixing banding or going from dark to light. Most corrections take two visits.",
+            "prices": { "senior": 80, "director": 95 },
+            "duration": 60,
+            "consultation": true
+          },
+          {
+            "name": "Vivid & pastel colour",
+            "description": "Pinks, lilacs, blues and coppers, with pre-lightening where needed.",
+            "prices": { "stylist": 120, "senior": 135, "director": 155 },
+            "from": true,
+            "duration": 180,
+            "consultation": true
+          }
+        ]
+      },
+      {
+        "name": "Cutting & styling",
+        "items": [
+          {
+            "name": "Cut & finish",
+            "description": "Wash, cut and blow-dry.",
+            "prices": { "stylist": 58, "senior": 68, "director": 80 },
+            "duration": 60,
+            "popular": true
+          },
+          {
+            "name": "Restyle",
+            "description": "A big change in shape, with time to talk it through.",
+            "prices": { "stylist": 70, "senior": 82, "director": 95 },
+            "duration": 75
+          },
+          {
+            "name": "Curly cut",
+            "description": "Cut dry, curl by curl, then styled to show your pattern.",
+            "prices": { "stylist": 65, "senior": 75, "director": 88 },
+            "duration": 75
+          },
+          {
+            "name": "Blow-dry",
+            "prices": { "stylist": 35, "senior": 40, "director": 48 },
+            "duration": 45
+          },
+          {
+            "name": "Hair up",
+            "description": "Pinned styles for events. Bridal hair is quoted separately.",
+            "prices": { "stylist": 55, "senior": 65, "director": 75 },
+            "duration": 60
+          },
+          {
+            "name": "Fringe trim",
+            "description": "Free between cuts for existing clients.",
+            "price": 12,
+            "duration": 15
+          }
+        ]
+      },
+      {
+        "name": "Treatments",
+        "description": "Add to any appointment.",
+        "items": [
+          {
+            "name": "Olaplex bond repair",
+            "description": "Rebuilds broken bonds during or after lightening.",
+            "price": 30,
+            "duration": 20,
+            "popular": true
+          },
+          {
+            "name": "K18 treatment",
+            "description": "A leave-in repair mask for damaged or over-processed hair.",
+            "price": 35,
+            "duration": 20
+          },
+          {
+            "name": "Deep-conditioning mask",
+            "price": 20,
+            "duration": 15
+          }
+        ]
+      }
+    ],
+    "note": "Longer or thicker hair may cost more; we'll always confirm before we start. We take card and Apple Pay. Colour appointments over £100 need a £20 deposit."
+  },
+  "team": {
+    "title": "Meet the team",
+    "intro": "Book with someone you know, or tell us what you'd like and we'll match you with the right stylist.",
+    "members": [
+      {
+        "name": "Isla Moreno",
+        "role": "Founder & creative director",
+        "level": "director",
+        "bio": "Isla opened The Colour Room in 2016 after ten years colouring in London. She's known for the corrections other salons turn away, and for always telling you what's realistic.",
+        "specialities": [
+          "Colour correction",
+          "Blonde transformations",
+          "Balayage"
+        ]
+      },
+      {
+        "name": "Priya Shah",
+        "role": "Senior colourist",
+        "level": "senior",
+        "bio": "Priya's lived-in blondes and soft brunettes grow out beautifully, so you can go longer between visits. She also leads the salon's grey-blending appointments.",
+        "specialities": ["Lived-in blonde", "Grey blending", "Gloss & toner"]
+      },
+      {
+        "name": "Tom Achebe",
+        "role": "Senior stylist",
+        "level": "senior",
+        "bio": "Tom trained in curly cutting in New York and cuts every curl type dry. He's the person to see for a bold new shape or a precise, swingy bob.",
+        "specialities": ["Curly cuts", "Precision bobs", "Restyles"]
+      },
+      {
+        "name": "Ellie Hart",
+        "role": "Stylist",
+        "level": "stylist",
+        "bio": "Ellie loves pastels and vivids, and the planning that keeps them looking good as they fade. She also styles most of our bridal parties.",
+        "specialities": ["Vivid colour", "Pastels", "Bridal hair"]
+      }
+    ]
+  },
+  "transformations": {
+    "title": "Before & after",
+    "intro": "Drag the slider to see the change. Every transformation starts with a consultation and a strand test.",
+    "items": [
+      {
+        "title": "Faded blue to lilac-kissed blonde",
+        "description": "Two gentle sessions of colour removal and lightening lifted out months of faded blue. We finished with a soft blonde base, hand-painted lilac panels and a textured shag.",
+        "stylist": "Isla Moreno",
+        "services": ["Colour correction", "Vivid & pastel colour", "Restyle"],
+        "duration": 330,
+        "before": {
+          "src": "https://images.unsplash.com/photo-1571291903893-c6152b2efc22",
+          "alt": "Shoulder-length hair in faded turquoise and blue, seen from behind",
+          "position": "64% center"
+        },
+        "after": {
+          "src": "https://images.unsplash.com/photo-1648157963892-fa90a04e278b",
+          "alt": "Side profile of a textured blonde shag cut with lilac panels",
+          "position": "42% center"
+        }
+      }
+    ]
+  },
+  "reviews": {
+    "title": "Kind words",
+    "intro": "What clients say after their first visit, and their tenth.",
+    "rating": { "average": 4.9, "count": 186 },
+    "source": { "name": "Google", "url": "https://www.google.com/maps" },
+    "items": [
+      {
+        "author": "Hannah W.",
+        "rating": 5,
+        "date": "2026-09-02",
+        "text": "Isla fixed three years of box dye in two sessions and my hair feels healthier than before. She explained every step and never rushed.",
+        "service": "Colour correction"
+      },
+      {
+        "author": "Sophie L.",
+        "rating": 5,
+        "date": "2026-08-21",
+        "text": "The consultation alone was worth it. Priya talked me out of going too light too fast, and the balayage is exactly what I'd pictured.",
+        "service": "Balayage"
+      },
+      {
+        "author": "Grace O.",
+        "rating": 5,
+        "date": "2026-08-09",
+        "text": "Tom is the first person who's cut my curls dry and properly. I walked out with the best shape I've had in years.",
+        "service": "Curly cut"
+      },
+      {
+        "author": "Megan R.",
+        "rating": 5,
+        "date": "2026-07-27",
+        "text": "Ellie did my pastel pink and it's faded beautifully. Calm salon, great coffee, and they actually remember you.",
+        "service": "Vivid & pastel colour"
+      },
+      {
+        "author": "Amira K.",
+        "rating": 4,
+        "date": "2026-07-12",
+        "text": "Gorgeous gloss and blow-dry. They were running ten minutes behind on a Saturday but texted me before I set off.",
+        "service": "Gloss & toner"
+      },
+      {
+        "author": "Rachel D.",
+        "rating": 5,
+        "date": "2026-06-30",
+        "text": "Trial and wedding-day hair for six of us. Calm, organised, and everyone's hair lasted all night.",
+        "service": "Bridal hair"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Recent work",
+    "intro": "New work goes up on Instagram every week.",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1648157963892-fa90a04e278b",
+        "alt": "Side profile of a textured blonde shag cut with lilac panels",
+        "position": "42% center",
+        "caption": "Lilac panels on a textured blonde shag"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1672788694268-ecc234591d31",
+        "alt": "A stylist finishing a braided copper updo with hairspray",
+        "position": "55% center",
+        "caption": "Braided copper updo for a wedding guest"
+      },
+      {
+        "src": "https://images.pexels.com/photos/4981476/pexels-photo-4981476.jpeg",
+        "alt": "A gloved colourist brushing rose-pink tint through blonde hair",
+        "caption": "Rose-pink tint, root to tip"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1571291903893-c6152b2efc22",
+        "alt": "Shoulder-length hair in turquoise and ocean blue, seen from behind",
+        "position": "64% center",
+        "caption": "Ocean blue, before a refresh"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1707720531504-ce087725861a",
+        "alt": "A colourist folding a foil while placing highlights",
+        "caption": "Foiling for a lived-in blonde"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250",
+        "alt": "The styling floor: black chairs facing round mirrors",
+        "position": "35% center",
+        "caption": "The styling floor on Boyces Avenue"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0",
+        "alt": "A client relaxing at the basin while her hair is rinsed",
+        "caption": "Basin time: gloss and bond repair"
+      }
+    ]
+  },
+  "vouchers": {
+    "title": "Gift vouchers",
+    "intro": "Treat someone to a colour, a cut or a blow-dry. Vouchers arrive by email straight away, or by post in a gift card.",
+    "amounts": [50, 100, 150],
+    "custom": "Any amount from £25",
+    "url": "https://www.fresha.com/",
+    "label": "Buy a gift voucher",
+    "terms": [
+      "Valid for 12 months on any service or product.",
+      "Can't be exchanged for cash or used with the new-client offer."
+    ]
+  },
+  "faqs": {
+    "title": "Good to know",
+    "intro": "Anything else, just ask. We reply within one working day.",
+    "items": [
+      {
+        "question": "Do you take walk-ins?",
+        "answer": "No, we're appointments only, so every client gets their stylist's full attention. Book online any time, or call and we'll find you a slot."
+      },
+      {
+        "question": "Why do I need a patch test?",
+        "answer": "Colour can cause a reaction even if you've used it before. We test a tiny amount behind your ear at least 48 hours before your appointment. It's free and takes five minutes."
+      },
+      {
+        "question": "How long does a colour appointment take?",
+        "answer": "Most take two to four hours. Balayage and corrections can take longer, and we'll give you a time at your consultation."
+      },
+      {
+        "question": "What's the difference between stylist levels?",
+        "answer": "Experience. Every stylist is fully trained; senior stylists and creative directors have more years behind the chair and advanced colour training, which is reflected in the price."
+      },
+      {
+        "question": "Can I bring reference photos?",
+        "answer": "Please do. Photos help us understand the tone and depth you love, and anything you definitely don't want."
+      },
+      {
+        "question": "Do you do bridal hair?",
+        "answer": "Yes, in the salon or on location within 15 miles, with a trial beforehand. Fill in the weddings and events form and we'll send a quote."
+      },
+      {
+        "question": "Is the salon accessible?",
+        "answer": "The styling floor and basins are on the ground floor, with step-free access from Boyces Avenue and an accessible loo. Let us know if you need anything else."
+      }
+    ]
+  },
+  "policies": {
+    "title": "Booking policies",
+    "intro": "Fair for you and for our stylists.",
+    "items": [
+      {
+        "title": "Deposits",
+        "body": "Colour appointments over £100 need a £20 deposit, taken when you book and taken off your bill."
+      },
+      {
+        "title": "Cancelling or moving",
+        "body": "Give us 48 hours' notice and we'll move your appointment or refund your deposit. With less notice, the deposit covers your stylist's time."
+      },
+      {
+        "title": "Running late",
+        "body": "We'll always try to fit you in. If you're more than 15 minutes late we may need to shorten or rebook your appointment."
+      },
+      {
+        "title": "Colour guarantee",
+        "body": "Not quite right? Tell us within 7 days and we'll adjust your colour free of charge."
+      }
+    ]
+  },
+  "visit": {
+    "title": "Find us",
+    "intro": "On Boyces Avenue, a minute from Clifton Village's shops and cafés.",
+    "notes": [
+      {
+        "title": "By bus",
+        "body": "The 8 stops on Queens Road, a five-minute walk away."
+      },
+      {
+        "title": "Parking",
+        "body": "Pay-and-display bays on Princess Victoria Street, free after 6pm. Clifton Village car park is three minutes' walk."
+      },
+      {
+        "title": "Accessibility",
+        "body": "Step-free entrance, ground-floor basins and an accessible loo."
+      }
+    ]
+  },
+  "enquiries": {
+    "consultation": {
+      "title": "Book a free colour consultation",
+      "intro": "Fifteen minutes with a colourist to talk about your hair, plan the change and do your patch test. No cost and no pressure.",
+      "points": [
+        "Free, and takes about 15 minutes",
+        "Your patch test is done at the same visit",
+        "20% off your first colour afterwards",
+        "We reply within one working day"
+      ],
+      "image": {
+        "src": "https://images.pexels.com/photos/4981476/pexels-photo-4981476.jpeg",
+        "alt": "A gloved colourist brushing rose-pink tint through blonde hair"
+      },
+      "submit": "Request my consultation",
+      "success": {
+        "title": "Request received",
+        "description": "We'll be in touch within one working day to find a time. A copy of your answers is on its way to your inbox."
+      },
+      "email": {
+        "subject": "Your colour consultation request",
+        "preview": "We'll be in touch within one working day to find a time.",
+        "heading": "Thank you, we've got your request",
+        "body": "A colourist will read your answers and get in touch within one working day to book your free consultation and patch test. Here's a copy of what you told us."
+      }
+    },
+    "events": {
+      "title": "Weddings & events",
+      "intro": "Bridal parties, proms and photoshoots, in the salon or on location. Tell us about your day and we'll send a tailored quote.",
+      "points": [
+        "A trial session before the day",
+        "We travel within 15 miles of Clifton",
+        "Groups of up to 12",
+        "Your quote within two working days"
+      ],
+      "image": {
+        "src": "https://images.unsplash.com/photo-1672788694268-ecc234591d31",
+        "alt": "A stylist finishing a braided copper updo with hairspray",
+        "position": "55% center"
+      },
+      "submit": "Request a quote",
+      "success": {
+        "title": "Thank you",
+        "description": "We'll check the diary and send your quote within two working days."
+      },
+      "email": {
+        "subject": "Your events enquiry",
+        "preview": "Your quote is on its way within two working days.",
+        "heading": "Thank you for thinking of us",
+        "body": "We love being part of a big day. We'll check the diary and send a tailored quote within two working days. Here's what you sent us."
+      }
+    }
+  },
   "seo": {
     "title": "The Colour Room · Colour specialist salon in Clifton, Bristol",
-    "description": "Balayage, blonding, colour correction and cutting in Clifton. Book a colour consultation with our senior and director stylists."
+    "description": "Balayage, blonding, colour correction and cutting in Clifton. Book a free colour consultation with our senior and director stylists."
   },
   "forms": {
     "contact": {
