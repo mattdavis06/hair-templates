@@ -36,8 +36,12 @@
       "href": "/#team"
     },
     {
-      "label": "Gallery",
-      "href": "/#gallery"
+      "label": "Reviews",
+      "href": "/#reviews"
+    },
+    {
+      "label": "FAQs",
+      "href": "/#faqs"
     },
     {
       "label": "Visit us",
@@ -71,6 +75,21 @@
           "type": "gallery",
           "variant": "grid",
           "id": "gallery"
+        },
+        {
+          "type": "reviews",
+          "variant": "grid",
+          "id": "reviews"
+        },
+        {
+          "type": "faqs",
+          "variant": "accordion",
+          "id": "faqs"
+        },
+        {
+          "type": "policies",
+          "variant": "list",
+          "id": "policies"
         },
         {
           "type": "contact",

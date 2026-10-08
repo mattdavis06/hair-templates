@@ -1,3 +1,4 @@
+import type { Content } from "@/content/schema"
 import type { Brand } from "@/lib/brands"
 import { absoluteUrl, brandUrl } from "@/lib/site"
 
@@ -64,6 +65,38 @@ export function businessJsonLd({ id, content }: Brand) {
         })),
       },
     }),
+    ...(content.reviews && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: content.reviews.rating.average,
+        reviewCount: content.reviews.rating.count,
+        bestRating: 5,
+      },
+      review: content.reviews.items.map((review) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: review.author },
+        datePublished: review.date,
+        reviewBody: review.text,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: 5,
+        },
+      })),
+    }),
     sameAs: content.socials.map((social) => social.url),
+  }
+}
+
+/** schema.org FAQPage for a brand's FAQs section. */
+export function faqJsonLd(faqs: NonNullable<Content["faqs"]>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   }
 }

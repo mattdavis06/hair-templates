@@ -267,6 +267,122 @@
       }
     ]
   },
+  "reviews": {
+    "title": "What people say",
+    "intro": "Real talk from the chair. Most of our regulars started as walk-ins.",
+    "rating": {
+      "average": 4.9,
+      "count": 214
+    },
+    "source": {
+      "name": "Google",
+      "url": "https://www.google.com/maps"
+    },
+    "items": [
+      {
+        "author": "Danny M.",
+        "rating": 5,
+        "date": "2026-09-21",
+        "service": "Skin fade",
+        "text": "Best fade I've had in Leeds. Jay takes his time and actually listens. Walked in on a Tuesday and was in the chair in ten minutes."
+      },
+      {
+        "author": "Chris O.",
+        "rating": 5,
+        "date": "2026-09-02",
+        "service": "Hot towel shave",
+        "text": "Treated myself to Sam's hot towel shave before a wedding. Closest shave of my life and properly relaxing."
+      },
+      {
+        "author": "Priya K.",
+        "rating": 5,
+        "date": "2026-08-17",
+        "service": "Kids cut",
+        "text": "Brought my son for his first proper haircut. Lewis was brilliant with him, really patient. He's asking when he can go back."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 4,
+        "date": "2026-08-03",
+        "service": "Cut & beard",
+        "text": "Great cut and beard tidy. It was busy on a Saturday morning so expect a wait, or book ahead like I should have."
+      },
+      {
+        "author": "Marcus D.",
+        "rating": 5,
+        "date": "2026-07-26",
+        "service": "Restyle",
+        "text": "Went from long hair to a short textured crop. Lewis talked me through it and nailed it. Fair price too."
+      },
+      {
+        "author": "Gary W.",
+        "rating": 5,
+        "date": "2026-07-09",
+        "service": "Seniors cut",
+        "text": "Been coming every three weeks since they opened. Friendly lads, good chat, never a bad cut."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Questions",
+    "intro": "Anything else? Give us a ring or pop in.",
+    "items": [
+      {
+        "question": "Do I need to book?",
+        "answer": "No. Walk-ins are welcome all day and we'll get you in as soon as a chair's free. If you'd rather not wait, especially on Saturday mornings, book online and your slot's held."
+      },
+      {
+        "question": "How long is the wait for a walk-in?",
+        "answer": "Usually around 15 minutes. Saturday mornings and Thursday and Friday evenings are busiest, when it can be 30 to 40 minutes. The strip at the top of the page shows the typical wait right now."
+      },
+      {
+        "question": "Can I book with a specific barber?",
+        "answer": "Yes. Choose your barber when you book online, or ask for them when you walk in and we'll let you know how long they'll be."
+      },
+      {
+        "question": "Do you cut kids' hair?",
+        "answer": "Absolutely. Kids under 12 are £15, and we're happy to take things slowly for a first cut. Weekday afternoons are the quietest time to bring little ones."
+      },
+      {
+        "question": "Can I pay by card?",
+        "answer": "Yes, we take card, contactless and cash."
+      },
+      {
+        "question": "Is there parking nearby?",
+        "answer": "There's on-street parking on the side roads off Otley Road and a pay-and-display car park two minutes' walk away. We're also on the main bus routes into town."
+      }
+    ]
+  },
+  "policies": {
+    "title": "House rules",
+    "intro": "A few things that keep the chairs moving and fair for everyone.",
+    "items": [
+      {
+        "title": "Cancellations",
+        "body": "Can't make it? Cancel or move your booking at least 4 hours before, so someone else can have the slot."
+      },
+      {
+        "title": "Running late",
+        "body": "We'll hold your slot for 10 minutes. After that we may need to shorten your service or move you to the next free chair."
+      },
+      {
+        "title": "No-shows",
+        "body": "Two missed bookings without notice and we'll ask for a deposit next time you book online."
+      },
+      {
+        "title": "Kids",
+        "body": "Under-16s need a parent or guardian with them for the whole cut."
+      },
+      {
+        "title": "Prices",
+        "body": "Prices are a guide. Very long or thick hair may cost a little more; we'll always tell you before we start."
+      },
+      {
+        "title": "Feeling unwell?",
+        "body": "Please rebook if you're poorly. There's no charge for moving a booking for illness."
+      }
+    ]
+  },
   "seo": {
     "title": "Northside Barbers · Headingley, Leeds",
     "description": "Walk-in and bookable barbers in Headingley. Fades, classic cuts, beard trims and hot towel shaves. Open seven days."
