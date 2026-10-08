@@ -93,6 +93,8 @@
   }
   html {
     @apply font-sans;
+    /* Keeps #section targets clear of the sticky header (h-16). */
+    scroll-padding-top: 5rem;
   }
   h1,
   h2,

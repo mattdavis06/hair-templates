@@ -139,51 +139,75 @@ export const FONTS = [
   "yellowtail",
 ] as const
 
-export const siteSchema = z.object({
-  name: z.string(),
-  /** One line shown in the brand switcher. */
-  summary: z.string(),
-  fonts: z.object({
-    heading: z.enum(FONTS),
-    /** Match a weight the heading font ships; others get faked by the browser. */
-    headingWeight: z.number().int().min(100).max(900),
-    headingUppercase: z.boolean(),
-    body: z.enum(FONTS),
-    /** Short flourishes only: straplines and signoffs, never body copy. */
-    accent: z.enum(FONTS),
-  }),
-  /** Dark brands also switch on shadcn's `dark:` styles and native dark controls. */
-  scheme: z.enum(["light", "dark"]),
-  /** Corner radius in px; becomes `--radius` on the site and in emails. */
-  radius: z.number().int().min(0).max(24),
-  palette: paletteSchema,
-  monogram: z.string().min(1).max(3),
-  pages: z
-    .array(
+export const siteSchema = z
+  .object({
+    name: z.string(),
+    /** One line shown in the brand switcher. */
+    summary: z.string(),
+    fonts: z.object({
+      heading: z.enum(FONTS),
+      /** Match a weight the heading font ships; others get faked by the browser. */
+      headingWeight: z.number().int().min(100).max(900),
+      headingUppercase: z.boolean(),
+      body: z.enum(FONTS),
+      /** Short flourishes only: straplines and signoffs, never body copy. */
+      accent: z.enum(FONTS),
+    }),
+    /** Dark brands also switch on shadcn's `dark:` styles and native dark controls. */
+    scheme: z.enum(["light", "dark"]),
+    /** Corner radius in px; becomes `--radius` on the site and in emails. */
+    radius: z.number().int().min(0).max(24),
+    palette: paletteSchema,
+    monogram: z.string().min(1).max(3),
+    /** Header and footer links: a page (`/book`) or a section on one (`/#contact`). */
+    nav: z.array(
       z.object({
-        /** URL path segment; empty for the home page. */
-        slug: z.string().regex(/^[a-z0-9-]*$/),
-        title: z.string(),
-        seo: z
-          .object({ title: z.string(), description: z.string() })
-          .optional(),
-        sections: z
-          .array(sectionSchema)
-          .min(1)
-          .refine(
-            (sections) =>
-              new Set(sections.map(sectionKey)).size === sections.length,
-            "Give repeated section types on a page their own id"
-          ),
+        label: z.string(),
+        href: z.string().regex(/^\/[a-z0-9-]*(#[a-z0-9-]+)?$/),
       })
-    )
-    .min(1)
-    .refine((pages) => pages.some((p) => p.slug === ""), "Add a home page")
-    .refine(
-      (pages) => new Set(pages.map((p) => p.slug)).size === pages.length,
-      "Page slugs must be unique"
     ),
-})
+    pages: z
+      .array(
+        z.object({
+          /** URL path segment; empty for the home page. */
+          slug: z.string().regex(/^[a-z0-9-]*$/),
+          title: z.string(),
+          seo: z
+            .object({ title: z.string(), description: z.string() })
+            .optional(),
+          sections: z
+            .array(sectionSchema)
+            .min(1)
+            .refine(
+              (sections) =>
+                new Set(sections.map(sectionKey)).size === sections.length,
+              "Give repeated section types on a page their own id"
+            ),
+        })
+      )
+      .min(1)
+      .refine((pages) => pages.some((p) => p.slug === ""), "Add a home page")
+      .refine(
+        (pages) => new Set(pages.map((p) => p.slug)).size === pages.length,
+        "Page slugs must be unique"
+      ),
+  })
+  .superRefine((site, ctx) => {
+    site.nav.forEach((link, index) => {
+      const [path, hash] = link.href.split("#")
+      const page = site.pages.find((p) => `/${p.slug}` === path)
+      const found = hash
+        ? page?.sections.some((section) => section.id === hash)
+        : Boolean(page)
+      if (!found) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["nav", index, "href"],
+          message: `"${link.href}" doesn't match a page or section id`,
+        })
+      }
+    })
+  })
 
 export type DayHours = z.infer<typeof dayHoursSchema>
 export type Content = z.infer<typeof contentSchema>

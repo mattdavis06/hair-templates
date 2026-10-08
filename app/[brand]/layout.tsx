@@ -6,6 +6,8 @@ import {
   BrandSwitcher,
   type BrandOption,
 } from "@/components/site/brand-switcher"
+import { SiteFooter } from "@/components/site/site-footer"
+import { SiteHeader } from "@/components/site/site-header"
 import { BRAND_IDS, brandList, getBrand, pagePath } from "@/lib/brands"
 import { brandFontProps } from "@/lib/fonts"
 import { brandStyle } from "@/lib/palette"
@@ -79,7 +81,17 @@ export default async function BrandLayout({
     >
       <body className="flex min-h-svh flex-col">
         <JsonLd data={businessJsonLd(brand)} />
-        <main className="flex flex-1 flex-col">{children}</main>
+        <a
+          href="#main"
+          className="sr-only z-50 bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+        >
+          Skip to content
+        </a>
+        <SiteHeader brand={brand} />
+        <main id="main" className="flex flex-1 flex-col">
+          {children}
+        </main>
+        <SiteFooter brand={brand} />
         <BrandSwitcher brands={brandOptions} current={brand.id} />
         <Analytics />
         <SpeedInsights />

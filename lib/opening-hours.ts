@@ -65,6 +65,26 @@ function nextOpening(hours: DayHours[], dayIndex: number): string {
   return ""
 }
 
+const shortDay = (day: string) => day.slice(0, 3)
+
+/** Collapses runs of identical hours: "Mon–Wed 9am – 6pm". */
+export function groupOpeningHours(
+  days: DayHours[]
+): { days: string; hours: string }[] {
+  const groups: { first: string; last: string; hours: string }[] = []
+  for (const day of days) {
+    const hours = formatDayHours(day)
+    const previous = groups.at(-1)
+    if (previous?.hours === hours) previous.last = day.day
+    else groups.push({ first: day.day, last: day.day, hours })
+  }
+  return groups.map(({ first, last, hours }) => ({
+    days:
+      first === last ? shortDay(first) : `${shortDay(first)}–${shortDay(last)}`,
+    hours,
+  }))
+}
+
 export function getOpeningStatus(hours: DayHours[], now: Date): OpeningStatus {
   const { dayIndex, minutes } = shopClock(now)
   const today = hoursFor(hours, dayIndex)
