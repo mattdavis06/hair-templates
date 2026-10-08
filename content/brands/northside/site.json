@@ -45,7 +45,7 @@
     },
     {
       "label": "Visit us",
-      "href": "/#contact"
+      "href": "/#visit"
     }
   ],
   "pages": [
@@ -82,6 +82,16 @@
           "id": "reviews"
         },
         {
+          "type": "products",
+          "variant": "grid",
+          "id": "products"
+        },
+        {
+          "type": "loyalty",
+          "variant": "card",
+          "id": "loyalty"
+        },
+        {
           "type": "faqs",
           "variant": "accordion",
           "id": "faqs"
@@ -92,8 +102,13 @@
           "id": "policies"
         },
         {
+          "type": "visit",
+          "variant": "map",
+          "id": "visit"
+        },
+        {
           "type": "contact",
-          "variant": "split",
+          "variant": "form",
           "id": "contact"
         },
         {

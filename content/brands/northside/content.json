@@ -383,6 +383,70 @@
       }
     ]
   },
+  "products": {
+    "title": "Take it home",
+    "intro": "The products we use in the chair, so you can get the same finish at home. Ask your barber what suits your hair.",
+    "items": [
+      {
+        "name": "Matte Clay",
+        "brand": "Northside",
+        "size": "100ml",
+        "description": "Strong hold, no shine. Our most-used finish for textured crops.",
+        "price": 16
+      },
+      {
+        "name": "Sea Salt Spray",
+        "brand": "Northside",
+        "size": "200ml",
+        "description": "Adds grip and volume before blow-drying. Great for fine hair.",
+        "price": 14
+      },
+      {
+        "name": "Water-based Pomade",
+        "brand": "Northside",
+        "size": "100ml",
+        "description": "Medium hold with a clean shine that washes straight out.",
+        "price": 16
+      },
+      {
+        "name": "Beard Oil",
+        "brand": "Cedar & bergamot",
+        "size": "30ml",
+        "description": "Softens the beard and stops the itch. A few drops a day.",
+        "price": 15
+      }
+    ],
+    "note": "In store only. Card, contactless or cash."
+  },
+  "loyalty": {
+    "title": "Loyalty card",
+    "description": "Get a stamp every time you're in the chair. Fill the card and your next cut is on us.",
+    "stamps": 10,
+    "reward": "Free cut",
+    "terms": "One stamp per visit for any cut over £14. Pick up a card at the counter."
+  },
+  "visit": {
+    "title": "Find us",
+    "intro": "On Otley Road, five minutes from the middle of Headingley.",
+    "notes": [
+      {
+        "title": "By bus",
+        "body": "Most buses along Otley Road stop within a two-minute walk of the shop."
+      },
+      {
+        "title": "Parking",
+        "body": "On-street parking on the side roads, plus a pay-and-display car park two minutes away."
+      },
+      {
+        "title": "Access",
+        "body": "Step-free entrance and one chair that lowers fully. Let us know if you need anything else."
+      },
+      {
+        "title": "Walk-ins",
+        "body": "Last walk-in is 30 minutes before closing, so we can give everyone a proper cut."
+      }
+    ]
+  },
   "seo": {
     "title": "Northside Barbers · Headingley, Leeds",
     "description": "Walk-in and bookable barbers in Headingley. Fades, classic cuts, beard trims and hot towel shaves. Open seven days."
