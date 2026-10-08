@@ -1,21 +1,12 @@
 "use client"
 
-import { useMemo, useSyncExternalStore } from "react"
+import { useMemo } from "react"
+import { useCurrentMinute } from "@/components/blocks/opening-hours/use-current-minute"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { DayHours } from "@/content/schema"
 import { getOpeningStatus } from "@/lib/opening-hours"
 import { cn } from "@/lib/utils"
-
-const MINUTE = 60_000
-
-function subscribe(onChange: () => void) {
-  const id = setInterval(onChange, MINUTE / 2)
-  return () => clearInterval(id)
-}
-
-const currentMinute = () => Math.floor(Date.now() / MINUTE)
-const noMinuteOnServer = () => null
 
 /** Depends on the visitor's clock, so it renders a placeholder until hydrated. */
 export function OpenStatus({
@@ -25,17 +16,10 @@ export function OpenStatus({
   hours: DayHours[]
   className?: string
 }) {
-  const minute = useSyncExternalStore(
-    subscribe,
-    currentMinute,
-    noMinuteOnServer
-  )
+  const now = useCurrentMinute()
   const status = useMemo(
-    () =>
-      minute === null
-        ? null
-        : getOpeningStatus(hours, new Date(minute * MINUTE)),
-    [hours, minute]
+    () => (now === null ? null : getOpeningStatus(hours, new Date(now))),
+    [hours, now]
   )
 
   return (

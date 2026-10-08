@@ -65,6 +65,143 @@
       "url": "https://www.tiktok.com/"
     }
   ],
+  "services": {
+    "title": "Services & prices",
+    "intro": "Straightforward prices, no surprises. Every cut finishes with a hot towel and a styling product of your choice.",
+    "categories": [
+      {
+        "name": "Cuts",
+        "items": [
+          {
+            "name": "Classic cut",
+            "description": "Scissors and clippers, tidied neckline.",
+            "price": 22,
+            "duration": 30
+          },
+          {
+            "name": "Skin fade",
+            "description": "Taken down to the skin, blended by hand.",
+            "price": 25,
+            "duration": 45,
+            "popular": true
+          },
+          {
+            "name": "Scissor cut",
+            "description": "All-scissor work for longer styles.",
+            "price": 26,
+            "duration": 45
+          },
+          {
+            "name": "Buzz cut",
+            "description": "One length all over.",
+            "price": 14,
+            "duration": 15
+          },
+          {
+            "name": "Restyle",
+            "description": "Long to short, or a whole new look.",
+            "price": 30,
+            "from": true,
+            "duration": 60
+          }
+        ]
+      },
+      {
+        "name": "Beard & shave",
+        "items": [
+          {
+            "name": "Beard trim & shape",
+            "description": "Shaped with clippers, lined with a razor.",
+            "price": 14,
+            "duration": 20
+          },
+          {
+            "name": "Hot towel shave",
+            "description": "Pre-shave oil, two hot towels, straight razor.",
+            "price": 28,
+            "duration": 40,
+            "popular": true
+          },
+          {
+            "name": "Cut & beard",
+            "description": "Any cut plus a full beard trim.",
+            "price": 34,
+            "duration": 60,
+            "popular": true
+          },
+          {
+            "name": "Beard line-up",
+            "price": 8,
+            "duration": 10
+          }
+        ]
+      },
+      {
+        "name": "Kids & seniors",
+        "description": "Kids under 12. Seniors 65+, Monday to Thursday.",
+        "items": [
+          {
+            "name": "Kids cut",
+            "price": 15,
+            "duration": 30
+          },
+          {
+            "name": "Kids skin fade",
+            "price": 18,
+            "duration": 30
+          },
+          {
+            "name": "Seniors cut",
+            "price": 16,
+            "duration": 30
+          }
+        ]
+      },
+      {
+        "name": "Extras",
+        "description": "Add to any cut.",
+        "items": [
+          {
+            "name": "Hair design",
+            "description": "Lines and parts, freehand.",
+            "price": 5,
+            "from": true,
+            "duration": 10
+          },
+          {
+            "name": "Eyebrow tidy",
+            "price": 5,
+            "duration": 10
+          },
+          {
+            "name": "Wash & hot towel",
+            "price": 6,
+            "duration": 10
+          }
+        ]
+      }
+    ],
+    "note": "Card and cash welcome. Very long or thick hair may cost a little more; we'll always tell you before we start."
+  },
+  "walkIns": {
+    "title": "Walk-ins welcome",
+    "description": "No appointment needed. Grab a seat and we'll get you in the chair. Prefer a set time? Book ahead.",
+    "usualWait": 15,
+    "busyTimes": [
+      {
+        "days": ["Saturday"],
+        "from": "08:00",
+        "to": "13:00",
+        "wait": 40
+      },
+      {
+        "days": ["Thursday", "Friday"],
+        "from": "16:00",
+        "to": "19:00",
+        "wait": 30
+      }
+    ]
+  },
   "seo": {
     "title": "Northside Barbers · Headingley, Leeds",
     "description": "Walk-in and bookable barbers in Headingley. Fades, classic cuts, beard trims and hot towel shaves. Open seven days."

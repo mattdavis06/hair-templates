@@ -28,6 +28,10 @@
   "monogram": "N",
   "nav": [
     {
+      "label": "Services",
+      "href": "/#services"
+    },
+    {
       "label": "Visit us",
       "href": "/#contact"
     },
@@ -44,6 +48,15 @@
         {
           "type": "hero",
           "variant": "centered"
+        },
+        {
+          "type": "walk-ins",
+          "variant": "strip"
+        },
+        {
+          "type": "services",
+          "variant": "list",
+          "id": "services"
         },
         {
           "type": "contact",

@@ -35,6 +35,35 @@ export function businessJsonLd({ id, content }: Brand) {
             },
           ]
     ),
+    ...(content.services && {
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: content.services.title,
+        itemListElement: content.services.categories.map((category) => ({
+          "@type": "OfferCatalog",
+          name: category.name,
+          itemListElement: category.items.map((service) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.name,
+              ...(service.description && {
+                description: service.description,
+              }),
+            },
+            ...(service.from
+              ? {
+                  priceSpecification: {
+                    "@type": "PriceSpecification",
+                    minPrice: service.price,
+                    priceCurrency: "GBP",
+                  },
+                }
+              : { price: service.price, priceCurrency: "GBP" }),
+          })),
+        })),
+      },
+    }),
     sameAs: content.socials.map((social) => social.url),
   }
 }
