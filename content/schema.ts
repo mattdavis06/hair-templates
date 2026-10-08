@@ -109,6 +109,55 @@ const policiesSchema = z.object({
   items: z.array(z.object({ title: z.string(), body: z.string() })).min(1),
 })
 
+const productsSchema = z.object({
+  title: z.string(),
+  intro: z.string(),
+  items: z
+    .array(
+      z.object({
+        name: z.string(),
+        /** Maker or range, shown above the name. */
+        brand: z.string().optional(),
+        /** e.g. "100ml". */
+        size: z.string().optional(),
+        description: z.string().optional(),
+        price: z.number().nonnegative(),
+        image: imageSchema.optional(),
+      })
+    )
+    .min(1),
+  /** e.g. "In store only". */
+  note: z.string().optional(),
+})
+
+const loyaltySchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  /** Boxes on the card; the last one is the reward. */
+  stamps: z.number().int().min(4).max(12),
+  /** Label on the last box, e.g. "Free cut". */
+  reward: z.string(),
+  terms: z.string().optional(),
+})
+
+const visitSchema = z.object({
+  title: z.string(),
+  intro: z.string().optional(),
+  /** Getting-here notes: buses, parking, accessibility… */
+  notes: z.array(z.object({ title: z.string(), body: z.string() })),
+  /**
+   * Google Maps → Share → Embed a map → copy the `src`. Without it the map is
+   * built from the address.
+   */
+  mapEmbedUrl: z
+    .url()
+    .refine(
+      (url) => url.startsWith("https://www.google.com/maps/embed"),
+      "Use the src from Google Maps' 'Embed a map' code"
+    )
+    .optional(),
+})
+
 const serviceSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
@@ -203,6 +252,12 @@ export const contentSchema = z.object({
   faqs: faqsSchema.optional(),
   /** Required by the `policies` section. */
   policies: policiesSchema.optional(),
+  /** Required by the `products` section. */
+  products: productsSchema.optional(),
+  /** Required by the `loyalty` section. */
+  loyalty: loyaltySchema.optional(),
+  /** Required by the `visit` section. */
+  visit: visitSchema.optional(),
   seo: z.object({ title: z.string(), description: z.string() }),
   forms: z.object({
     contact: z.object({
@@ -235,7 +290,10 @@ export const SECTION_VARIANTS = {
   reviews: ["grid"],
   faqs: ["accordion"],
   policies: ["list"],
-  contact: ["split"],
+  products: ["grid"],
+  loyalty: ["card"],
+  visit: ["map"],
+  contact: ["split", "form"],
   newsletter: ["banner"],
 } as const
 
@@ -250,6 +308,9 @@ const SECTION_CONTENT = {
   reviews: "reviews",
   faqs: "faqs",
   policies: "policies",
+  products: "products",
+  loyalty: "loyalty",
+  visit: "visit",
 } as const satisfies Partial<Record<SectionType, keyof Content>>
 
 function section<T extends SectionType>(type: T) {
@@ -269,6 +330,9 @@ const sectionSchema = z.discriminatedUnion("type", [
   section("reviews"),
   section("faqs"),
   section("policies"),
+  section("products"),
+  section("loyalty"),
+  section("visit"),
   section("contact"),
   section("newsletter"),
 ])
