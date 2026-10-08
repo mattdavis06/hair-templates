@@ -1,0 +1,50 @@
+{
+  "name": "Northside Barbers",
+  "summary": "Neighbourhood barbers · Headingley",
+  "fonts": {
+    "heading": "bebas-neue",
+    "headingWeight": 400,
+    "headingUppercase": false,
+    "body": "barlow",
+    "accent": "yellowtail"
+  },
+  "scheme": "dark",
+  "radius": 0,
+  "palette": {
+    "background": "#1a1312",
+    "foreground": "#f3e9df",
+    "card": "#241a18",
+    "primary": "#c43a45",
+    "primaryForeground": "#fff4f0",
+    "secondary": "#3d2a22",
+    "secondaryForeground": "#f3e9df",
+    "muted": "#2a1f1c",
+    "mutedForeground": "#b5a294",
+    "accent": "#d8b27a",
+    "accentForeground": "#1a1312",
+    "border": "#3a2c28",
+    "destructive": "#f07a62"
+  },
+  "monogram": "N",
+  "pages": [
+    {
+      "slug": "",
+      "title": "Home",
+      "sections": [
+        {
+          "type": "hero",
+          "variant": "centered"
+        },
+        {
+          "type": "contact",
+          "variant": "split",
+          "id": "contact"
+        },
+        {
+          "type": "newsletter",
+          "variant": "banner"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "The Colour Room",
+  "summary": "Colour specialist salon · Clifton",
+  "fonts": {
+    "heading": "dm-serif-display",
+    "headingWeight": 400,
+    "headingUppercase": false,
+    "body": "dm-sans",
+    "accent": "parisienne"
+  },
+  "scheme": "light",
+  "radius": 14,
+  "palette": {
+    "background": "#faf6ff",
+    "foreground": "#261b3a",
+    "card": "#ffffff",
+    "primary": "#7a3ee0",
+    "primaryForeground": "#ffffff",
+    "secondary": "#ffc2dd",
+    "secondaryForeground": "#3a1630",
+    "muted": "#efe7fb",
+    "mutedForeground": "#655781",
+    "accent": "#7ee0e4",
+    "accentForeground": "#10363a",
+    "border": "#e3d7f7",
+    "destructive": "#b42318"
+  },
+  "monogram": "CR",
+  "pages": [
+    {
+      "slug": "",
+      "title": "Home",
+      "sections": [
+        {
+          "type": "hero",
+          "variant": "centered"
+        },
+        {
+          "type": "newsletter",
+          "variant": "banner"
+        }
+      ]
+    },
+    {
+      "slug": "book",
+      "title": "Book",
+      "seo": {
+        "title": "Book",
+        "description": "Book an appointment or send The Colour Room a message about colour, cutting or a consultation."
+      },
+      "sections": [
+        {
+          "type": "contact",
+          "variant": "split"
+        }
+      ]
+    }
+  ]
+}

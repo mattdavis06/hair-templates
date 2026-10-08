@@ -1,0 +1,109 @@
+{
+  "name": "The Colour Room",
+  "tagline": "Considered colour, from first consultation to final gloss.",
+  "strapline": "Colour specialists",
+  "description": "A colour-led salon in Clifton. Balayage, lived-in blondes, colour correction and precision cutting, with a consultation before every new colour.",
+  "businessType": "HairSalon",
+  "priceRange": "£££",
+  "phone": "0117 496 0456",
+  "email": "studio@thecolourroom.example",
+  "address": {
+    "street": "7 Boyces Avenue",
+    "city": "Bristol",
+    "postcode": "BS8 4AA",
+    "country": "GB"
+  },
+  "openingHours": [
+    {
+      "day": "Monday",
+      "closed": true
+    },
+    {
+      "day": "Tuesday",
+      "open": "09:00",
+      "close": "18:00"
+    },
+    {
+      "day": "Wednesday",
+      "open": "09:00",
+      "close": "18:00"
+    },
+    {
+      "day": "Thursday",
+      "open": "10:00",
+      "close": "20:00"
+    },
+    {
+      "day": "Friday",
+      "open": "09:00",
+      "close": "19:00"
+    },
+    {
+      "day": "Saturday",
+      "open": "09:00",
+      "close": "17:00"
+    },
+    {
+      "day": "Sunday",
+      "closed": true
+    }
+  ],
+  "booking": {
+    "provider": "fresha",
+    "url": "https://www.fresha.com/",
+    "label": "Book an appointment"
+  },
+  "socials": [
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/"
+    },
+    {
+      "label": "Pinterest",
+      "url": "https://www.pinterest.com/"
+    }
+  ],
+  "seo": {
+    "title": "The Colour Room · Colour specialist salon in Clifton, Bristol",
+    "description": "Balayage, blonding, colour correction and cutting in Clifton. Book a colour consultation with our senior and director stylists."
+  },
+  "forms": {
+    "contact": {
+      "title": "Send us a message",
+      "intro": "Not sure which service you need? Tell us a little about your hair and we'll point you in the right direction.",
+      "submit": "Send message",
+      "success": {
+        "title": "Thank you",
+        "description": "Your message is with the studio. We reply within one working day."
+      }
+    },
+    "newsletter": {
+      "title": "Colour notes",
+      "intro": "Seasonal colour trends, aftercare tips and first access to new-client offers.",
+      "submit": "Subscribe",
+      "success": {
+        "title": "Welcome to Colour notes",
+        "description": "Look out for our next edition in your inbox."
+      }
+    },
+    "failed": {
+      "title": "Your message didn't send",
+      "description": "Something went wrong on our side. Please try again in a moment. Nothing you typed has been lost."
+    }
+  },
+  "emails": {
+    "signoff": "The Colour Room studio",
+    "contact": {
+      "subject": "We've received your message",
+      "preview": "Your message is with the studio. Here's a copy for your records.",
+      "heading": "Thank you for writing to us",
+      "body": "Thank you for getting in touch. A member of the studio team will reply within one working day. If you're thinking about a new colour, we'll suggest a consultation and patch test first."
+    },
+    "newsletter": {
+      "subject": "Welcome to Colour notes",
+      "preview": "Seasonal colour, aftercare advice and first access to offers.",
+      "heading": "Welcome to Colour notes",
+      "body": "Thank you for subscribing. Expect seasonal colour inspiration, aftercare advice and first access to new-client offers."
+    }
+  }
+}
