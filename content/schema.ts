@@ -22,6 +22,49 @@ export const dayHoursSchema = z.union([
 
 const copySchema = z.object({ title: z.string(), description: z.string() })
 
+const serviceSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  /** Whole pounds or pence as decimals, e.g. 24 or 24.5. */
+  price: z.number().nonnegative(),
+  /** Shows "from £x" when the final price depends on hair length or extras. */
+  from: z.boolean().optional(),
+  /** Minutes; shown to customers and used for booking expectations. */
+  duration: z.number().int().positive(),
+  popular: z.boolean().optional(),
+})
+
+const servicesSchema = z.object({
+  title: z.string(),
+  intro: z.string(),
+  categories: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string().optional(),
+        items: z.array(serviceSchema).min(1),
+      })
+    )
+    .min(1),
+  /** Small print under the list, e.g. payment methods. */
+  note: z.string().optional(),
+})
+
+const walkInsSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  /** Typical wait in minutes outside the busy times. */
+  usualWait: z.number().int().nonnegative(),
+  busyTimes: z.array(
+    z.object({
+      days: z.array(z.enum(DAYS)).min(1),
+      from: time,
+      to: time,
+      wait: z.number().int().nonnegative(),
+    })
+  ),
+})
+
 const emailCopySchema = z.object({
   subject: z.string(),
   /** Inbox preview text shown after the subject line. */
@@ -59,6 +102,10 @@ export const contentSchema = z.object({
     label: z.string(),
   }),
   socials: z.array(z.object({ label: z.string(), url: z.url() })),
+  /** Required by the `services` section. */
+  services: servicesSchema.optional(),
+  /** Required by the `walk-ins` section. */
+  walkIns: walkInsSchema.optional(),
   seo: z.object({ title: z.string(), description: z.string() }),
   forms: z.object({
     contact: z.object({
@@ -84,28 +131,34 @@ export const contentSchema = z.object({
 
 export const SECTION_VARIANTS = {
   hero: ["centered"],
+  "walk-ins": ["strip"],
+  services: ["list"],
   contact: ["split"],
   newsletter: ["banner"],
 } as const
 
 export type SectionType = keyof typeof SECTION_VARIANTS
 
+/** Sections that render optional content; the brand must provide it to use them. */
+const SECTION_CONTENT = {
+  "walk-ins": "walkIns",
+  services: "services",
+} as const satisfies Partial<Record<SectionType, keyof Content>>
+
+function section<T extends SectionType>(type: T) {
+  return z.object({
+    type: z.literal(type),
+    variant: z.enum(SECTION_VARIANTS[type]),
+    id: z.string().optional(),
+  })
+}
+
 const sectionSchema = z.discriminatedUnion("type", [
-  z.object({
-    type: z.literal("hero"),
-    variant: z.enum(SECTION_VARIANTS.hero),
-    id: z.string().optional(),
-  }),
-  z.object({
-    type: z.literal("contact"),
-    variant: z.enum(SECTION_VARIANTS.contact),
-    id: z.string().optional(),
-  }),
-  z.object({
-    type: z.literal("newsletter"),
-    variant: z.enum(SECTION_VARIANTS.newsletter),
-    id: z.string().optional(),
-  }),
+  section("hero"),
+  section("walk-ins"),
+  section("services"),
+  section("contact"),
+  section("newsletter"),
 ])
 
 /** Identifies a section within its page; unique per page. */
@@ -209,7 +262,25 @@ export const siteSchema = z
     })
   })
 
+/** Lists sections a brand uses without supplying the content they render. */
+export function missingSectionContent(content: Content, site: Site): string[] {
+  return site.pages.flatMap((page) =>
+    page.sections.flatMap((s) => {
+      const key =
+        s.type in SECTION_CONTENT
+          ? SECTION_CONTENT[s.type as keyof typeof SECTION_CONTENT]
+          : null
+      return key && !content[key]
+        ? [`"${s.type}" on page "/${page.slug}" needs "${key}" in content.json`]
+        : []
+    })
+  )
+}
+
 export type DayHours = z.infer<typeof dayHoursSchema>
+export type Service = z.infer<typeof serviceSchema>
+export type Services = z.infer<typeof servicesSchema>
+export type WalkIns = z.infer<typeof walkInsSchema>
 export type Content = z.infer<typeof contentSchema>
 export type Site = z.infer<typeof siteSchema>
 export type Page = Site["pages"][number]

@@ -1,4 +1,4 @@
-import { DAYS, type DayHours } from "@/content/schema"
+import { DAYS, type DayHours, type WalkIns } from "@/content/schema"
 
 export type OpeningStatus = {
   isOpen: boolean
@@ -83,6 +83,48 @@ export function groupOpeningHours(
       first === last ? shortDay(first) : `${shortDay(first)}–${shortDay(last)}`,
     hours,
   }))
+}
+
+/** "Sat", "Thu–Fri" or "Mon, Wed"; days are listed in week order. */
+export function formatDays(days: Day[]): string {
+  const sorted = [...days].sort((a, b) => DAYS.indexOf(a) - DAYS.indexOf(b))
+  const consecutive = sorted.every(
+    (day, i) => i === 0 || DAYS.indexOf(day) === DAYS.indexOf(sorted[i - 1]) + 1
+  )
+  if (sorted.length > 1 && consecutive) {
+    return `${shortDay(sorted[0])}–${shortDay(sorted[sorted.length - 1])}`
+  }
+  return sorted.map(shortDay).join(", ")
+}
+
+export type WalkInStatus =
+  | { isOpen: true; wait: number; busy: boolean; detail: string }
+  | { isOpen: false; label: string; detail: string }
+
+/** Typical walk-in wait for the shop's current time: a guide from the busy times, not a live queue. */
+export function getWalkInStatus(
+  walkIns: WalkIns,
+  hours: DayHours[],
+  now: Date
+): WalkInStatus {
+  const status = getOpeningStatus(hours, now)
+  if (!status.isOpen) {
+    return { isOpen: false, label: status.label, detail: status.detail }
+  }
+
+  const { dayIndex, minutes } = shopClock(now)
+  const busy = walkIns.busyTimes.find(
+    (band) =>
+      band.days.includes(DAYS[dayIndex]) &&
+      minutes >= toMinutes(band.from) &&
+      minutes < toMinutes(band.to)
+  )
+  return {
+    isOpen: true,
+    wait: busy?.wait ?? walkIns.usualWait,
+    busy: Boolean(busy),
+    detail: status.detail,
+  }
 }
 
 export function getOpeningStatus(hours: DayHours[], now: Date): OpeningStatus {

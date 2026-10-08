@@ -5,6 +5,7 @@ import northsideContent from "@/content/brands/northside/content.json"
 import northsideSite from "@/content/brands/northside/site.json"
 import {
   contentSchema,
+  missingSectionContent,
   siteSchema,
   type Content,
   type Page,
@@ -17,8 +18,9 @@ export * from "./ids"
 export type Brand = { id: BrandId; content: Content; site: Site }
 
 function parseBrand(id: BrandId, content: unknown, site: unknown): Brand {
+  let brand: Brand
   try {
-    return {
+    brand = {
       id,
       content: contentSchema.parse(content),
       site: siteSchema.parse(site),
@@ -26,6 +28,12 @@ function parseBrand(id: BrandId, content: unknown, site: unknown): Brand {
   } catch (error) {
     throw new Error(`Invalid content for brand "${id}"`, { cause: error })
   }
+
+  const missing = missingSectionContent(brand.content, brand.site)
+  if (missing.length > 0) {
+    throw new Error(`Brand "${id}": ${missing.join("; ")}`)
+  }
+  return brand
 }
 
 const brands: Record<BrandId, Brand> = {
