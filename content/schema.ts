@@ -66,6 +66,49 @@ const gallerySchema = z.object({
     .min(1),
 })
 
+const starRating = z.number().min(1).max(5)
+
+const reviewsSchema = z
+  .object({
+    title: z.string(),
+    intro: z.string(),
+    /** The overall score shown in the summary; should match the source. */
+    rating: z.object({
+      average: starRating,
+      count: z.number().int().positive(),
+    }),
+    /** Where the reviews come from, e.g. Google; links to all reviews. */
+    source: z.object({ name: z.string(), url: z.url() }),
+    items: z
+      .array(
+        z.object({
+          author: z.string(),
+          rating: starRating.int(),
+          date: z.iso.date(),
+          text: z.string(),
+          /** The service they had, e.g. "Skin fade". */
+          service: z.string().optional(),
+        })
+      )
+      .min(1),
+  })
+  .refine(
+    (reviews) => reviews.items.length <= reviews.rating.count,
+    "rating.count can't be lower than the number of reviews listed"
+  )
+
+const faqsSchema = z.object({
+  title: z.string(),
+  intro: z.string().optional(),
+  items: z.array(z.object({ question: z.string(), answer: z.string() })).min(1),
+})
+
+const policiesSchema = z.object({
+  title: z.string(),
+  intro: z.string().optional(),
+  items: z.array(z.object({ title: z.string(), body: z.string() })).min(1),
+})
+
 const serviceSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
@@ -154,6 +197,12 @@ export const contentSchema = z.object({
   team: teamSchema.optional(),
   /** Required by the `gallery` section. */
   gallery: gallerySchema.optional(),
+  /** Required by the `reviews` section; also feeds the star rating in structured data. */
+  reviews: reviewsSchema.optional(),
+  /** Required by the `faqs` section. */
+  faqs: faqsSchema.optional(),
+  /** Required by the `policies` section. */
+  policies: policiesSchema.optional(),
   seo: z.object({ title: z.string(), description: z.string() }),
   forms: z.object({
     contact: z.object({
@@ -183,6 +232,9 @@ export const SECTION_VARIANTS = {
   services: ["list"],
   team: ["grid"],
   gallery: ["grid"],
+  reviews: ["grid"],
+  faqs: ["accordion"],
+  policies: ["list"],
   contact: ["split"],
   newsletter: ["banner"],
 } as const
@@ -195,6 +247,9 @@ const SECTION_CONTENT = {
   services: "services",
   team: "team",
   gallery: "gallery",
+  reviews: "reviews",
+  faqs: "faqs",
+  policies: "policies",
 } as const satisfies Partial<Record<SectionType, keyof Content>>
 
 function section<T extends SectionType>(type: T) {
@@ -211,6 +266,9 @@ const sectionSchema = z.discriminatedUnion("type", [
   section("services"),
   section("team"),
   section("gallery"),
+  section("reviews"),
+  section("faqs"),
+  section("policies"),
   section("contact"),
   section("newsletter"),
 ])

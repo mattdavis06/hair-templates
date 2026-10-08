@@ -16,6 +16,17 @@ export function formatPrice(price: number, from = false): string {
   return from ? `from ${amount}` : amount
 }
 
+const monthYear = new Intl.DateTimeFormat("en-GB", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
+/** "2026-09-14" → "September 2026". */
+export function formatMonthYear(isoDate: string): string {
+  return monthYear.format(new Date(`${isoDate}T00:00:00Z`))
+}
+
 /** "45 min", "1 hr", "1 hr 15 min". */
 export function formatDuration(minutes: number): string {
   const hours = Math.floor(minutes / 60)

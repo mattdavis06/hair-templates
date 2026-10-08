@@ -15,7 +15,7 @@ export function SiteHeader({ brand }: { brand: Brand }) {
           <BrandMark name={name} monogram={brand.site.monogram} />
         </Link>
 
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-6 text-sm font-medium">
             {links.map((link) => (
               <li key={link.href}>
