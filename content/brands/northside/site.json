@@ -32,12 +32,16 @@
       "href": "/#services"
     },
     {
-      "label": "Visit us",
-      "href": "/#contact"
+      "label": "Team",
+      "href": "/#team"
     },
     {
-      "label": "Newsletter",
-      "href": "/#newsletter"
+      "label": "Gallery",
+      "href": "/#gallery"
+    },
+    {
+      "label": "Visit us",
+      "href": "/#contact"
     }
   ],
   "pages": [
@@ -57,6 +61,16 @@
           "type": "services",
           "variant": "list",
           "id": "services"
+        },
+        {
+          "type": "team",
+          "variant": "grid",
+          "id": "team"
+        },
+        {
+          "type": "gallery",
+          "variant": "grid",
+          "id": "gallery"
         },
         {
           "type": "contact",
