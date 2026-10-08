@@ -22,6 +22,50 @@ export const dayHoursSchema = z.union([
 
 const copySchema = z.object({ title: z.string(), description: z.string() })
 
+/** Hosts `lib/image-loader.ts` knows how to resize; anything else must live in `public/`. */
+export const IMAGE_HOSTS = ["images.unsplash.com", "images.pexels.com"] as const
+
+const imageSchema = z.object({
+  src: z
+    .string()
+    .refine(
+      (src) =>
+        src.startsWith("/") ||
+        IMAGE_HOSTS.some((host) => src.startsWith(`https://${host}/`)),
+      `Use a /public path or an image from ${IMAGE_HOSTS.join(" or ")}`
+    ),
+  /** Describe what's in the photo for screen readers; never "image of…". */
+  alt: z.string().min(1),
+  /** CSS object-position for cropping, e.g. "center 30%". */
+  position: z.string().optional(),
+})
+
+const teamSchema = z.object({
+  title: z.string(),
+  intro: z.string(),
+  members: z
+    .array(
+      z.object({
+        name: z.string(),
+        role: z.string(),
+        bio: z.string().optional(),
+        specialities: z.array(z.string()),
+        image: imageSchema,
+        /** Booking link for this person; falls back to the shop's booking link. */
+        bookingUrl: z.url().optional(),
+      })
+    )
+    .min(1),
+})
+
+const gallerySchema = z.object({
+  title: z.string(),
+  intro: z.string(),
+  images: z
+    .array(imageSchema.extend({ caption: z.string().optional() }))
+    .min(1),
+})
+
 const serviceSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
@@ -106,6 +150,10 @@ export const contentSchema = z.object({
   services: servicesSchema.optional(),
   /** Required by the `walk-ins` section. */
   walkIns: walkInsSchema.optional(),
+  /** Required by the `team` section. */
+  team: teamSchema.optional(),
+  /** Required by the `gallery` section. */
+  gallery: gallerySchema.optional(),
   seo: z.object({ title: z.string(), description: z.string() }),
   forms: z.object({
     contact: z.object({
@@ -133,6 +181,8 @@ export const SECTION_VARIANTS = {
   hero: ["centered"],
   "walk-ins": ["strip"],
   services: ["list"],
+  team: ["grid"],
+  gallery: ["grid"],
   contact: ["split"],
   newsletter: ["banner"],
 } as const
@@ -143,6 +193,8 @@ export type SectionType = keyof typeof SECTION_VARIANTS
 const SECTION_CONTENT = {
   "walk-ins": "walkIns",
   services: "services",
+  team: "team",
+  gallery: "gallery",
 } as const satisfies Partial<Record<SectionType, keyof Content>>
 
 function section<T extends SectionType>(type: T) {
@@ -157,6 +209,8 @@ const sectionSchema = z.discriminatedUnion("type", [
   section("hero"),
   section("walk-ins"),
   section("services"),
+  section("team"),
+  section("gallery"),
   section("contact"),
   section("newsletter"),
 ])
@@ -281,6 +335,7 @@ export type DayHours = z.infer<typeof dayHoursSchema>
 export type Service = z.infer<typeof serviceSchema>
 export type Services = z.infer<typeof servicesSchema>
 export type WalkIns = z.infer<typeof walkInsSchema>
+export type ContentImage = z.infer<typeof imageSchema>
 export type Content = z.infer<typeof contentSchema>
 export type Site = z.infer<typeof siteSchema>
 export type Page = Site["pages"][number]
