@@ -67,7 +67,7 @@ export function BrandLayout({
         >
           <Section
             style={{
-              backgroundColor: theme.subtle,
+              backgroundColor: brand.logo.background,
               borderBottom: `1px solid ${theme.border}`,
               padding: "28px 24px",
               textAlign: "center",
@@ -75,14 +75,14 @@ export function BrandLayout({
           >
             <Link href={brand.siteUrl}>
               <Img
-                src={brand.logoUrl}
-                width="72"
-                height="72"
+                src={brand.logo.url}
+                width={brand.logo.width}
+                height={brand.logo.height}
                 alt={brand.name}
                 style={{
                   display: "block",
                   margin: "0 auto",
-                  borderRadius: theme.radius,
+                  borderRadius: brand.logo.radius,
                 }}
               />
             </Link>

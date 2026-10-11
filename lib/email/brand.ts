@@ -1,5 +1,6 @@
 import type { Content, FontKey } from "@/content/schema"
 import { brandHref, getBrand, type Brand, type BrandId } from "@/lib/brands"
+import { fitLogo } from "@/lib/logo"
 import { groupOpeningHours } from "@/lib/opening-hours"
 import { mix, mostReadable } from "@/lib/palette"
 import { siteUrl } from "@/lib/site"
@@ -118,7 +119,8 @@ export type EmailBrand = {
   name: string
   tagline: string
   theme: EmailTheme
-  logoUrl: string
+  /** The wordmark when the brand has one, otherwise the monogram icon. */
+  logo: EmailLogo
   siteUrl: string
   booking: { label: string; url: string }
   address: string[]
@@ -143,16 +145,51 @@ function resolveEmailBaseUrl(): string {
 
 const emailBaseUrl = resolveEmailBaseUrl()
 
+export type EmailLogo = {
+  url: string
+  width: number
+  height: number
+  radius: number
+  /** Header colour behind the logo. */
+  background: string
+}
+
+const EMAIL_LOGO_BOX = { width: 220, height: 140 }
+
+/**
+ * Prefers the solid wordmark on the page colour: some mail apps recolour
+ * transparent images in dark mode, which can hide a light logo.
+ */
+function emailLogo({ id, site }: Brand, theme: EmailTheme): EmailLogo {
+  const { logo } = site
+  if (!logo) {
+    return {
+      url: `${emailBaseUrl}/icons/${id}/apple`,
+      width: 72,
+      height: 72,
+      radius: theme.radius,
+      background: theme.subtle,
+    }
+  }
+  return {
+    url: `${emailBaseUrl}${logo.solid ?? logo.src}`,
+    ...fitLogo(logo, EMAIL_LOGO_BOX),
+    radius: 0,
+    background: logo.solid ? theme.page : theme.subtle,
+  }
+}
+
 export function toEmailBrand(brand: Brand): EmailBrand {
   const { content } = brand
   const { street, city, postcode } = content.address
+  const theme = emailTheme(brand)
 
   return {
     id: brand.id,
     name: content.name,
     tagline: content.tagline,
-    theme: emailTheme(brand),
-    logoUrl: `${emailBaseUrl}/icons/${brand.id}/apple`,
+    theme,
+    logo: emailLogo(brand, theme),
     siteUrl: `${emailBaseUrl}${brandHref(brand.id)}`,
     booking: { label: content.booking.label, url: content.booking.url },
     address: [street, `${city} ${postcode}`],

@@ -26,6 +26,14 @@
     "destructive": "#f07a62"
   },
   "monogram": "N",
+  "logo": {
+    "src": "/brands/northside/logo.png",
+    "solid": "/brands/northside/logo-solid.png",
+    "icon": "/brands/northside/icon.png",
+    "width": 600,
+    "height": 216,
+    "sizes": { "header": 56, "footer": 64 }
+  },
   "nav": [
     {
       "label": "Services",

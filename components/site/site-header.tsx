@@ -10,9 +10,18 @@ export function SiteHeader({ brand }: { brand: Brand }) {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/75">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-6">
-        <Link href={brandHref(brand.id)} aria-label={`${name} home`}>
-          <BrandMark name={name} monogram={brand.site.monogram} />
+      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6 md:h-(--header-height)">
+        <Link
+          href={brandHref(brand.id)}
+          aria-label={`${name} home`}
+          className="min-w-0"
+        >
+          <BrandMark
+            name={name}
+            monogram={brand.site.monogram}
+            logo={brand.site.logo}
+            logoClassName="h-auto max-h-[min(var(--logo-header),4rem)] max-w-full md:max-h-(--logo-header)"
+          />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
@@ -30,13 +39,14 @@ export function SiteHeader({ brand }: { brand: Brand }) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <a href={booking.url} className={buttonVariants()}>
             {booking.label}
           </a>
           <MobileNav
             name={name}
             monogram={brand.site.monogram}
+            logo={brand.site.logo}
             links={links}
             phone={phone}
           />

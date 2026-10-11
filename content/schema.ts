@@ -43,6 +43,9 @@ const imageSchema = z.object({
 /** Matches what `siteSchema` accepts as a page or section path, e.g. `/book#vouchers`. */
 const SITE_PATH = /^\/[a-z0-9-]*(#[a-z0-9-]+)?$/
 
+/** A PNG or SVG in `public/`, e.g. `/brands/northside/logo.png`. */
+const PUBLIC_IMAGE = /^(\/[a-z0-9-]+)+\.(png|svg)$/
+
 /** A button or text link: a page or section on this site, a web address, phone or email. */
 const linkSchema = z.object({
   label: z.string(),
@@ -595,7 +598,32 @@ export const siteSchema = z
     /** Corner radius in px; becomes `--radius` on the site and in emails. */
     radius: z.number().int().min(0).max(24),
     palette: paletteSchema,
+    /** Stands in for the logo where there isn't one, and is the favicon. */
     monogram: z.string().min(1).max(3),
+    /** Wordmark files in `public/`. Without one, the monogram and name are shown. */
+    logo: z
+      .object({
+        /** Transparent version for the header, footer and menu. */
+        src: z.string().regex(PUBLIC_IMAGE),
+        /** Version on the site's background colour, for emails and the share image. */
+        solid: z.string().regex(PUBLIC_IMAGE).optional(),
+        /** Square mark for the favicon and Apple icon; without one they use the monogram. */
+        icon: z.string().regex(PUBLIC_IMAGE).optional(),
+        /** Any width and height with the logo's aspect ratio, e.g. its pixel size. */
+        width: z.number().int().positive(),
+        height: z.number().int().positive(),
+        /**
+         * Logo height in px. It shrinks if it doesn't fit the width, and the
+         * header grows to fit it. Phones cap the header logo at 64px.
+         */
+        sizes: z
+          .object({
+            header: z.number().int().min(24).max(120).default(56),
+            footer: z.number().int().min(24).max(160).default(64),
+          })
+          .prefault({}),
+      })
+      .optional(),
     /** Header and footer links: a page (`/book`) or a section on one (`/#contact`). */
     nav: z.array(
       z.object({ label: z.string(), href: z.string().regex(SITE_PATH) })

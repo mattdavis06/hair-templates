@@ -10,6 +10,7 @@ import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import { BRAND_IDS, brandList, getBrand, pagePath } from "@/lib/brands"
 import { brandFontProps } from "@/lib/fonts"
+import { logoStyle } from "@/lib/logo"
 import { brandStyle } from "@/lib/palette"
 import { businessJsonLd } from "@/lib/seo/structured-data"
 import { allowIndexing, shareImage, siteUrl } from "@/lib/site"
@@ -77,7 +78,11 @@ export default async function BrandLayout({
         brand.site.scheme === "dark" && "dark",
         fonts.className
       )}
-      style={{ ...brandStyle(brand.site), ...fonts.style }}
+      style={{
+        ...brandStyle(brand.site),
+        ...logoStyle(brand.site),
+        ...fonts.style,
+      }}
     >
       <body className="flex min-h-svh flex-col">
         <JsonLd data={businessJsonLd(brand)} />

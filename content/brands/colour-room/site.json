@@ -26,6 +26,14 @@
     "destructive": "#b42318"
   },
   "monogram": "CR",
+  "logo": {
+    "src": "/brands/colour-room/logo.png",
+    "solid": "/brands/colour-room/logo-solid.png",
+    "icon": "/brands/colour-room/icon.png",
+    "width": 800,
+    "height": 650,
+    "sizes": { "header": 96, "footer": 96 }
+  },
   "nav": [
     { "label": "Services", "href": "/services" },
     { "label": "Colour", "href": "/colour" },

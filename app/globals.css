@@ -93,8 +93,8 @@
   }
   html {
     @apply font-sans;
-    /* Keeps #section targets clear of the sticky header (h-16). */
-    scroll-padding-top: 5rem;
+    /* Keeps #section targets clear of the sticky header; its height comes from the brand's logo. */
+    scroll-padding-top: calc(var(--header-height, 5rem) + 1rem);
   }
   h1,
   h2,

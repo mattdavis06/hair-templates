@@ -1,11 +1,27 @@
-import { ImageResponse } from "next/og"
 import type { Brand } from "@/lib/brands"
+import { fitLogo } from "@/lib/logo"
 import { mostReadable } from "@/lib/palette"
+import { ImageResponse } from "next/og"
+import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 
 export const shareImageSize = { width: 1200, height: 630 }
 
-export function renderShareImage({ content, site }: Brand) {
+/** Reads an image from `public/` as a data URL; the renderer can't fetch site paths. */
+async function publicImage(path: string): Promise<string> {
+  const data = await readFile(join(process.cwd(), "public", path), "base64")
+  const type = path.endsWith(".svg") ? "image/svg+xml" : "image/png"
+  return `data:${type};base64,${data}`
+}
+
+const SHARE_LOGO_BOX = { width: 560, height: 260 }
+
+export async function renderShareImage({ content, site }: Brand) {
   const { background, foreground, primary, accent } = site.palette
+  const logo = site.logo && {
+    src: await publicImage(site.logo.solid ?? site.logo.src),
+    ...fitLogo(site.logo, SHARE_LOGO_BOX),
+  }
 
   return new ImageResponse(
     <div
@@ -21,9 +37,19 @@ export function renderShareImage({ content, site }: Brand) {
         borderLeft: `32px solid ${primary}`,
       }}
     >
-      <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1 }}>
-        {content.name}
-      </div>
+      {logo ? (
+        // eslint-disable-next-line @next/next/no-img-element -- rendered to a PNG, not the page
+        <img
+          src={logo.src}
+          width={logo.width}
+          height={logo.height}
+          alt={content.name}
+        />
+      ) : (
+        <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1 }}>
+          {content.name}
+        </div>
+      )}
       <div
         style={{ marginTop: 28, maxWidth: 860, fontSize: 38, lineHeight: 1.3 }}
       >
@@ -51,10 +77,31 @@ type IconOptions = {
   square?: boolean
 }
 
-export function renderBrandIcon(
+export async function renderBrandIcon(
   { site }: Brand,
   { size, square }: IconOptions
 ) {
+  const icon = site.logo?.icon
+  if (icon) {
+    const mark = Math.round(size * (square ? 0.72 : 1))
+    return new ImageResponse(
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: square ? site.palette.background : "transparent",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- rendered to a PNG, not the page */}
+        <img src={await publicImage(icon)} width={mark} height={mark} alt="" />
+      </div>,
+      { width: size, height: size }
+    )
+  }
+
   return new ImageResponse(
     <div
       style={{

@@ -13,16 +13,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import type { Site } from "@/content/schema"
 import type { NavLink } from "@/lib/brands"
 
 export function MobileNav({
   name,
   monogram,
+  logo,
   links,
   phone,
 }: {
   name: string
   monogram: string
+  logo?: Site["logo"]
   links: NavLink[]
   phone: string
 }) {
@@ -39,7 +42,12 @@ export function MobileNav({
       <SheetContent side="right">
         <SheetHeader className="border-b p-6">
           <SheetTitle>
-            <BrandMark name={name} monogram={monogram} />
+            <BrandMark
+              name={name}
+              monogram={monogram}
+              logo={logo}
+              logoClassName="h-12"
+            />
           </SheetTitle>
         </SheetHeader>
         <nav aria-label="Main" className="px-6">
