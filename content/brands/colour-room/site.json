@@ -10,6 +10,7 @@
   },
   "scheme": "light",
   "radius": 14,
+  "backdrop": "gradient",
   "palette": {
     "background": "#faf6ff",
     "foreground": "#261b3a",
@@ -52,7 +53,12 @@
         { "type": "before-after", "variant": "slider", "id": "before-after" },
         { "type": "reviews", "variant": "carousel", "id": "reviews" },
         { "type": "booking", "variant": "cta" },
-        { "type": "newsletter", "variant": "banner", "id": "newsletter" }
+        { "type": "newsletter", "variant": "banner", "id": "newsletter" },
+        {
+          "type": "contact",
+          "variant": "split",
+          "id": "contact"
+        }
       ]
     },
     {

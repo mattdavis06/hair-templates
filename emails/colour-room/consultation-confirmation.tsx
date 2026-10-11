@@ -1,9 +1,9 @@
-import { EnquiryConfirmation } from "@/lib/email/templates/enquiry-confirmation"
-import { sampleEnquiry } from "../_preview/samples"
+import { EnquiryConfirmation } from '@/lib/email/templates/enquiry-confirmation'
+import { sampleEnquiry } from '../_preview/samples'
 
 const { brand, form, copy, name, rows } = sampleEnquiry(
-  "colour-room",
-  "consultation"
+  'colour-room',
+  'consultation'
 )
 
 export default function ColourRoomConsultationConfirmation() {

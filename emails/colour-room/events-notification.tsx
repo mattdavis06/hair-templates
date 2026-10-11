@@ -1,9 +1,9 @@
-import { EnquiryNotification } from "@/lib/email/templates/enquiry-notification"
-import { sampleEnquiry } from "../_preview/samples"
+import { EnquiryNotification } from '@/lib/email/templates/enquiry-notification'
+import { sampleEnquiry } from '../_preview/samples'
 
 const { brand, form, name, email, rows } = sampleEnquiry(
-  "colour-room",
-  "events"
+  'colour-room',
+  'events'
 )
 
 export default function ColourRoomEventsNotification() {

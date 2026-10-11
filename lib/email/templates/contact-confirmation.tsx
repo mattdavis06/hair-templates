@@ -1,4 +1,4 @@
-import { firstName, type EmailBrand } from "@/lib/email/brand"
+import { firstName, type EmailBrand } from '@/lib/email/brand'
 import {
   BrandLayout,
   EmailButton,
@@ -7,7 +7,7 @@ import {
   Eyebrow,
   MessageQuote,
   Signoff,
-} from "./layout"
+} from './layout'
 
 export type ContactConfirmationProps = {
   brand: EmailBrand
@@ -33,7 +33,7 @@ export function ContactConfirmation({
       <EmailHeading theme={theme}>{copy.heading}</EmailHeading>
       <EmailText theme={theme}>Hi {firstName(name)},</EmailText>
       <EmailText theme={theme}>{copy.body}</EmailText>
-      <MessageQuote theme={theme} label="What you sent">
+      <MessageQuote theme={theme} label='What you sent'>
         {message}
       </MessageQuote>
       <EmailButton theme={theme} href={brand.booking.url}>

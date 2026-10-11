@@ -1,11 +1,11 @@
-import type { Service, Services } from "@/content/schema"
-import { formatPrice } from "@/lib/format"
+import type { Service, Services } from '@/content/schema'
+import { formatPrice } from '@/lib/format'
 
 /** The categories a services section shows: the ones it names, in its order, or all. */
 export function pickCategories(
   services: Services,
   names: string[] | undefined
-): Services["categories"] {
+): Services['categories'] {
   if (!names) return services.categories
   return names.flatMap((name) =>
     services.categories.filter((category) => category.name === name)

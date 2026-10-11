@@ -1,13 +1,13 @@
-import type { Content, FontKey } from "@/content/schema"
-import { brandHref, getBrand, type Brand, type BrandId } from "@/lib/brands"
-import { fitLogo } from "@/lib/logo"
-import { groupOpeningHours } from "@/lib/opening-hours"
-import { mix, mostReadable } from "@/lib/palette"
-import { siteUrl } from "@/lib/site"
+import type { Content, FontKey } from '@/content/schema'
+import { brandHref, getBrand, type Brand, type BrandId } from '@/lib/brands'
+import { fitLogo } from '@/lib/logo'
+import { groupOpeningHours } from '@/lib/opening-hours'
+import { mix, mostReadable } from '@/lib/palette'
+import { siteUrl } from '@/lib/site'
 
 /** Email clients can't read CSS variables, so every colour is a plain hex value. */
 export type EmailTheme = {
-  scheme: "light" | "dark"
+  scheme: 'light' | 'dark'
   page: string
   card: string
   text: string
@@ -24,7 +24,7 @@ export type EmailTheme = {
   footerRule: string
   headingFont: string
   headingWeight: number
-  headingCase: "uppercase" | "none"
+  headingCase: 'uppercase' | 'none'
   bodyFont: string
   accentFont: string
   fontsHref: string
@@ -37,33 +37,33 @@ const EMAIL_FONTS: Record<
   { family: string; weights: string; fallback: string }
 > = {
   barlow: {
-    family: "Barlow",
-    weights: "400;600",
+    family: 'Barlow',
+    weights: '400;600',
     fallback: "'Helvetica Neue', Arial, sans-serif",
   },
-  "bebas-neue": {
-    family: "Bebas Neue",
-    weights: "400",
+  'bebas-neue': {
+    family: 'Bebas Neue',
+    weights: '400',
     fallback: "Impact, 'Arial Narrow', sans-serif",
   },
-  "dm-sans": {
-    family: "DM Sans",
-    weights: "400;600",
+  'dm-sans': {
+    family: 'DM Sans',
+    weights: '400;600',
     fallback: "'Helvetica Neue', Helvetica, Arial, sans-serif",
   },
-  "dm-serif-display": {
-    family: "DM Serif Display",
-    weights: "400",
+  'dm-serif-display': {
+    family: 'DM Serif Display',
+    weights: '400',
     fallback: "Georgia, 'Times New Roman', serif",
   },
   parisienne: {
-    family: "Parisienne",
-    weights: "400",
+    family: 'Parisienne',
+    weights: '400',
     fallback: "'Brush Script MT', cursive",
   },
   yellowtail: {
-    family: "Yellowtail",
-    weights: "400",
+    family: 'Yellowtail',
+    weights: '400',
     fallback: "'Brush Script MT', cursive",
   },
 }
@@ -74,14 +74,14 @@ const fontStack = (key: FontKey) =>
 function fontsHref(keys: FontKey[]): string {
   const families = [...new Set(keys)].map((key) => {
     const { family, weights } = EMAIL_FONTS[key]
-    return `family=${family.replaceAll(" ", "+")}:wght@${weights}`
+    return `family=${family.replaceAll(' ', '+')}:wght@${weights}`
   })
-  return `https://fonts.googleapis.com/css2?${families.join("&")}&display=swap`
+  return `https://fonts.googleapis.com/css2?${families.join('&')}&display=swap`
 }
 
 function emailTheme({ site }: Brand): EmailTheme {
   const p = site.palette
-  const dark = site.scheme === "dark"
+  const dark = site.scheme === 'dark'
   const footer = dark ? p.muted : p.foreground
   const onFooter = dark ? p.foreground : p.background
   return {
@@ -101,7 +101,7 @@ function emailTheme({ site }: Brand): EmailTheme {
     footerRule: mix(footer, onFooter, 0.18),
     headingFont: fontStack(site.fonts.heading),
     headingWeight: site.fonts.headingWeight,
-    headingCase: site.fonts.headingUppercase ? "uppercase" : "none",
+    headingCase: site.fonts.headingUppercase ? 'uppercase' : 'none',
     bodyFont: fontStack(site.fonts.body),
     accentFont: fontStack(site.fonts.accent),
     fontsHref: fontsHref([
@@ -128,7 +128,7 @@ export type EmailBrand = {
   email: string
   hours: { days: string; hours: string }[]
   socials: { label: string; url: string }[]
-  copy: Content["emails"]
+  copy: Content['emails']
 }
 
 /**
@@ -138,7 +138,7 @@ export type EmailBrand = {
 function resolveEmailBaseUrl(): string {
   const explicit =
     process.env.EMAIL_ASSET_URL || process.env.NEXT_PUBLIC_SITE_URL
-  if (explicit) return explicit.replace(/\/$/, "")
+  if (explicit) return explicit.replace(/\/$/, '')
   const production = process.env.VERCEL_PROJECT_PRODUCTION_URL
   return production ? `https://${production}` : siteUrl
 }

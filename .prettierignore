@@ -4,6 +4,7 @@ node_modules/
 .turbo/
 coverage/
 pnpm-lock.yaml
-.pnpm-store/notes/
+.pnpm-store/
+notes/
 components/ui/
 next-env.d.ts

@@ -1,16 +1,16 @@
-import type { Brand } from "@/lib/brands"
-import { fitLogo } from "@/lib/logo"
-import { mostReadable } from "@/lib/palette"
-import { ImageResponse } from "next/og"
-import { readFile } from "node:fs/promises"
-import { join } from "node:path"
+import type { Brand } from '@/lib/brands'
+import { fitLogo } from '@/lib/logo'
+import { mostReadable } from '@/lib/palette'
+import { ImageResponse } from 'next/og'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
 export const shareImageSize = { width: 1200, height: 630 }
 
 /** Reads an image from `public/` as a data URL; the renderer can't fetch site paths. */
 async function publicImage(path: string): Promise<string> {
-  const data = await readFile(join(process.cwd(), "public", path), "base64")
-  const type = path.endsWith(".svg") ? "image/svg+xml" : "image/png"
+  const data = await readFile(join(process.cwd(), 'public', path), 'base64')
+  const type = path.endsWith('.svg') ? 'image/svg+xml' : 'image/png'
   return `data:${type};base64,${data}`
 }
 
@@ -26,12 +26,12 @@ export async function renderShareImage({ content, site }: Brand) {
   return new ImageResponse(
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: "0 96px",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '0 96px',
         background,
         color: foreground,
         borderLeft: `32px solid ${primary}`,
@@ -60,7 +60,7 @@ export async function renderShareImage({ content, site }: Brand) {
           marginTop: 44,
           fontSize: 26,
           letterSpacing: 3,
-          textTransform: "uppercase",
+          textTransform: 'uppercase',
           color: mostReadable(background, [primary, accent]),
         }}
       >
@@ -87,16 +87,16 @@ export async function renderBrandIcon(
     return new ImageResponse(
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: square ? site.palette.background : "transparent",
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: square ? site.palette.background : 'transparent',
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- rendered to a PNG, not the page */}
-        <img src={await publicImage(icon)} width={mark} height={mark} alt="" />
+        <img src={await publicImage(icon)} width={mark} height={mark} alt='' />
       </div>,
       { width: size, height: size }
     )
@@ -105,14 +105,14 @@ export async function renderBrandIcon(
   return new ImageResponse(
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         background: site.palette.primary,
         color: site.palette.primaryForeground,
-        borderRadius: square ? 0 : "22%",
+        borderRadius: square ? 0 : '22%',
         borderBottom: `${Math.round(size / 10)}px solid ${site.palette.accent}`,
         fontSize: Math.round(size / (site.monogram.length > 1 ? 2.4 : 1.7)),
         fontWeight: 700,

@@ -1,5 +1,5 @@
-import type { Section, SectionType } from "@/content/schema"
-import type { Brand } from "@/lib/brands"
+import type { Section, SectionType } from '@/content/schema'
+import type { Brand } from '@/lib/brands'
 
 export type SectionProps = {
   brand: Brand
