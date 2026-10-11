@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import {
   startTransition,
@@ -7,22 +7,22 @@ import {
   useRef,
   useState,
   type FormEvent,
-} from "react"
-import type * as z from "zod/mini"
+} from 'react'
+import type * as z from 'zod/mini'
 import {
   ELAPSED_FIELD,
   readFields,
   validate,
   type FieldErrors,
   type FormState,
-} from "@/lib/forms/schemas"
+} from '@/lib/forms/schemas'
 
 type FormAction<F extends string> = (
   prev: FormState<F>,
   formData: FormData
 ) => Promise<FormState<F>>
 
-const IDLE = { status: "idle" } as const
+const IDLE = { status: 'idle' } as const
 
 /**
  * Validates on the client for instant feedback, then submits to the server
@@ -52,7 +52,7 @@ export function useFormSubmission<F extends string, T>({
 
   const state: FormState<F> = serverState === dismissed ? IDLE : serverState
   const fieldErrors: FieldErrors<F> =
-    clientErrors ?? (state.status === "invalid" ? state.fieldErrors : {})
+    clientErrors ?? (state.status === 'invalid' ? state.fieldErrors : {})
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -78,7 +78,7 @@ export function useFormSubmission<F extends string, T>({
 
   function clearErrors() {
     if (clientErrors) setClientErrors(null)
-    if (serverState.status !== "idle") setDismissed(serverState)
+    if (serverState.status !== 'idle') setDismissed(serverState)
   }
 
   function reset() {
@@ -93,8 +93,8 @@ export function useFormSubmission<F extends string, T>({
     clearErrors,
     reset,
     isPending,
-    isSuccess: state.status === "success",
-    isFailed: state.status === "failed",
+    isSuccess: state.status === 'success',
+    isFailed: state.status === 'failed',
     fieldErrors,
   }
 }

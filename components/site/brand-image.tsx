@@ -1,6 +1,6 @@
-import Image from "next/image"
-import type { ContentImage } from "@/content/schema"
-import { cn } from "@/lib/utils"
+import Image from 'next/image'
+import type { ContentImage } from '@/content/schema'
+import { cn } from '@/lib/utils'
 
 /**
  * A content photo that fills its parent. The parent sets the shape (e.g.
@@ -26,7 +26,7 @@ export function BrandImage({
       fill
       sizes={sizes}
       preload={preload}
-      className={cn("object-cover", className)}
+      className={cn('object-cover', className)}
       style={image.position ? { objectPosition: image.position } : undefined}
     />
   )

@@ -1,18 +1,18 @@
-import type { Content, Service } from "@/content/schema"
-import type { Brand } from "@/lib/brands"
-import { priceBounds } from "@/lib/services"
-import { absoluteUrl, brandUrl } from "@/lib/site"
+import type { Content, Service } from '@/content/schema'
+import type { Brand } from '@/lib/brands'
+import { priceBounds } from '@/lib/services'
+import { absoluteUrl, brandUrl } from '@/lib/site'
 
 /** A fixed price, or a range when it starts "from" or varies by stylist level. */
 function serviceOfferPrice(service: Service) {
   const { min, max } = priceBounds(service)
-  if (!service.from && min === max) return { price: min, priceCurrency: "GBP" }
+  if (!service.from && min === max) return { price: min, priceCurrency: 'GBP' }
   return {
     priceSpecification: {
-      "@type": "PriceSpecification",
+      '@type': 'PriceSpecification',
       minPrice: min,
       ...(max > min && { maxPrice: max }),
-      priceCurrency: "GBP",
+      priceCurrency: 'GBP',
     },
   }
 }
@@ -22,9 +22,9 @@ export function businessJsonLd({ id, content }: Brand) {
   const { address } = content
 
   return {
-    "@context": "https://schema.org",
-    "@type": content.businessType,
-    "@id": brandUrl(id, "/#business"),
+    '@context': 'https://schema.org',
+    '@type': content.businessType,
+    '@id': brandUrl(id, '/#business'),
     name: content.name,
     description: content.description,
     url: brandUrl(id),
@@ -33,18 +33,18 @@ export function businessJsonLd({ id, content }: Brand) {
     email: content.email,
     ...(content.priceRange && { priceRange: content.priceRange }),
     address: {
-      "@type": "PostalAddress",
+      '@type': 'PostalAddress',
       streetAddress: address.street,
       addressLocality: address.city,
       postalCode: address.postcode,
       addressCountry: address.country,
     },
     openingHoursSpecification: content.openingHours.flatMap((day) =>
-      "closed" in day
+      'closed' in day
         ? []
         : [
             {
-              "@type": "OpeningHoursSpecification",
+              '@type': 'OpeningHoursSpecification',
               dayOfWeek: `https://schema.org/${day.day}`,
               opens: day.open,
               closes: day.close,
@@ -53,15 +53,15 @@ export function businessJsonLd({ id, content }: Brand) {
     ),
     ...(content.services && {
       hasOfferCatalog: {
-        "@type": "OfferCatalog",
+        '@type': 'OfferCatalog',
         name: content.services.title,
         itemListElement: content.services.categories.map((category) => ({
-          "@type": "OfferCatalog",
+          '@type': 'OfferCatalog',
           name: category.name,
           itemListElement: category.items.map((service) => ({
-            "@type": "Offer",
+            '@type': 'Offer',
             itemOffered: {
-              "@type": "Service",
+              '@type': 'Service',
               name: service.name,
               ...(service.description && {
                 description: service.description,
@@ -74,18 +74,18 @@ export function businessJsonLd({ id, content }: Brand) {
     }),
     ...(content.reviews && {
       aggregateRating: {
-        "@type": "AggregateRating",
+        '@type': 'AggregateRating',
         ratingValue: content.reviews.rating.average,
         reviewCount: content.reviews.rating.count,
         bestRating: 5,
       },
       review: content.reviews.items.map((review) => ({
-        "@type": "Review",
-        author: { "@type": "Person", name: review.author },
+        '@type': 'Review',
+        author: { '@type': 'Person', name: review.author },
         datePublished: review.date,
         reviewBody: review.text,
         reviewRating: {
-          "@type": "Rating",
+          '@type': 'Rating',
           ratingValue: review.rating,
           bestRating: 5,
         },
@@ -96,14 +96,14 @@ export function businessJsonLd({ id, content }: Brand) {
 }
 
 /** schema.org FAQPage for a brand's FAQs section. */
-export function faqJsonLd(faqs: NonNullable<Content["faqs"]>) {
+export function faqJsonLd(faqs: NonNullable<Content['faqs']>) {
   return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
     mainEntity: faqs.items.map((item) => ({
-      "@type": "Question",
+      '@type': 'Question',
       name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   }
 }

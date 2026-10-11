@@ -1,7 +1,7 @@
-import { Column, Row, Section } from "react-email"
-import type { EmailTheme } from "@/lib/email/brand"
-import type { EnquiryRow } from "@/lib/forms/enquiries"
-import { MessageQuote } from "./layout"
+import { Column, Row, Section } from 'react-email'
+import type { EmailTheme } from '@/lib/email/brand'
+import type { EnquiryRow } from '@/lib/forms/enquiries'
+import { MessageQuote } from './layout'
 
 /** Short answers as a label/value table, then long answers as quotes. */
 export function EnquiryDetails({
@@ -13,16 +13,16 @@ export function EnquiryDetails({
 }) {
   const label = {
     width: 120,
-    padding: "6px 12px 6px 0",
+    padding: '6px 12px 6px 0',
     fontSize: 13,
-    lineHeight: "20px",
+    lineHeight: '20px',
     color: theme.muted,
-    verticalAlign: "top",
+    verticalAlign: 'top',
   } as const
   const value = {
-    padding: "6px 0",
+    padding: '6px 0',
     fontSize: 15,
-    lineHeight: "20px",
+    lineHeight: '20px',
     color: theme.text,
   } as const
 
@@ -32,7 +32,7 @@ export function EnquiryDetails({
   return (
     <>
       {short.length > 0 ? (
-        <Section style={{ margin: "0 0 16px" }}>
+        <Section style={{ margin: '0 0 16px' }}>
           {short.map((row) => (
             <Row key={row.name}>
               <Column style={label}>{row.label}</Column>

@@ -1,12 +1,12 @@
-import { Column, Link, Row, Section } from "react-email"
-import { firstName, type EmailBrand } from "@/lib/email/brand"
+import { Column, Link, Row, Section } from 'react-email'
+import { firstName, type EmailBrand } from '@/lib/email/brand'
 import {
   BrandLayout,
   EmailButton,
   EmailHeading,
   Eyebrow,
   MessageQuote,
-} from "./layout"
+} from './layout'
 
 export type ContactNotificationProps = {
   brand: EmailBrand
@@ -27,16 +27,16 @@ export function ContactNotification({
   const replyHref = `mailto:${email}?subject=${encodeURIComponent(`Re: your message to ${brand.name}`)}`
   const label = {
     width: 72,
-    padding: "6px 0",
+    padding: '6px 0',
     fontSize: 13,
-    lineHeight: "20px",
+    lineHeight: '20px',
     color: theme.muted,
-    verticalAlign: "top",
+    verticalAlign: 'top',
   } as const
   const value = {
-    padding: "6px 0",
+    padding: '6px 0',
     fontSize: 15,
-    lineHeight: "20px",
+    lineHeight: '20px',
     color: theme.text,
   } as const
 
@@ -44,13 +44,13 @@ export function ContactNotification({
     <BrandLayout
       brand={brand}
       preview={`${name}: ${message.slice(0, 90)}`}
-      footer="minimal"
+      footer='minimal'
       footnote={`Sent from the contact form on the ${brand.name} website. Replying to this email goes straight to ${first}.`}
     >
       <Eyebrow theme={theme}>Website enquiry</Eyebrow>
       <EmailHeading theme={theme}>New message from {first}</EmailHeading>
 
-      <Section style={{ margin: "0 0 16px" }}>
+      <Section style={{ margin: '0 0 16px' }}>
         <Row>
           <Column style={label}>Name</Column>
           <Column style={value}>{name}</Column>
@@ -65,7 +65,7 @@ export function ContactNotification({
         </Row>
       </Section>
 
-      <MessageQuote theme={theme} label="Message">
+      <MessageQuote theme={theme} label='Message'>
         {message}
       </MessageQuote>
       <EmailButton theme={theme} href={replyHref}>

@@ -1,20 +1,20 @@
-import type { ReactElement } from "react"
-import { render } from "react-email"
-import { Resend } from "resend"
-import type { EnquiryKind } from "@/content/schema"
-import type { Brand } from "@/lib/brands"
-import { toEmailBrand } from "@/lib/email/brand"
-import { ContactConfirmation } from "@/lib/email/templates/contact-confirmation"
-import { ContactNotification } from "@/lib/email/templates/contact-notification"
-import { EnquiryConfirmation } from "@/lib/email/templates/enquiry-confirmation"
-import { EnquiryNotification } from "@/lib/email/templates/enquiry-notification"
-import { NewsletterWelcome } from "@/lib/email/templates/newsletter-welcome"
+import type { ReactElement } from 'react'
+import { render } from 'react-email'
+import { Resend } from 'resend'
+import type { EnquiryKind } from '@/content/schema'
+import type { Brand } from '@/lib/brands'
+import { toEmailBrand } from '@/lib/email/brand'
+import { ContactConfirmation } from '@/lib/email/templates/contact-confirmation'
+import { ContactNotification } from '@/lib/email/templates/contact-notification'
+import { EnquiryConfirmation } from '@/lib/email/templates/enquiry-confirmation'
+import { EnquiryNotification } from '@/lib/email/templates/enquiry-notification'
+import { NewsletterWelcome } from '@/lib/email/templates/newsletter-welcome'
 import {
   enquiryRows,
   type EnquiryField,
   type EnquiryValues,
-} from "@/lib/forms/enquiries"
-import type { ContactInput, NewsletterInput } from "@/lib/forms/schemas"
+} from '@/lib/forms/enquiries'
+import type { ContactInput, NewsletterInput } from '@/lib/forms/schemas'
 
 /**
  * Sending needs an API key and a domain verified in Resend. Without both, forms
@@ -38,10 +38,10 @@ type Config = NonNullable<typeof config>
 
 type Message = {
   kind:
-    | "contact-confirmation"
-    | "contact-notification"
-    | "newsletter-welcome"
-    | `${EnquiryKind}-${"confirmation" | "notification"}`
+    | 'contact-confirmation'
+    | 'contact-notification'
+    | 'newsletter-welcome'
+    | `${EnquiryKind}-${'confirmation' | 'notification'}`
   to: string
   subject: string
   replyTo?: string
@@ -65,8 +65,8 @@ async function send(
     html,
     text,
     tags: [
-      { name: "brand", value: brand.id.replaceAll("-", "_") },
-      { name: "type", value: message.kind.replaceAll("-", "_") },
+      { name: 'brand', value: brand.id.replaceAll('-', '_') },
+      { name: 'type', value: message.kind.replaceAll('-', '_') },
     ],
   })
   // The SDK returns API errors instead of throwing them.
@@ -74,7 +74,7 @@ async function send(
 }
 
 function logDemo(summary: string) {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     console.info(
       `[forms:demo] ${summary} (set RESEND_API_KEY and EMAIL_FROM_DOMAIN to send)`
     )
@@ -82,14 +82,14 @@ function logDemo(summary: string) {
 }
 
 /** Keeps visitor-typed names on one line in subject headers. */
-const singleLine = (value: string) => value.replace(/\s+/g, " ").trim()
+const singleLine = (value: string) => value.replace(/\s+/g, ' ').trim()
 
 export async function deliverContact(brand: Brand, input: ContactInput) {
   if (!config) return logDemo(`${brand.id} contact from ${input.email}`)
 
   const emailBrand = toEmailBrand(brand)
   const confirmation = send(config, brand, {
-    kind: "contact-confirmation",
+    kind: 'contact-confirmation',
     to: input.email,
     subject: emailBrand.copy.contact.subject,
     replyTo: config.inbox,
@@ -97,7 +97,7 @@ export async function deliverContact(brand: Brand, input: ContactInput) {
   })
   const notification = config.inbox
     ? send(config, brand, {
-        kind: "contact-notification",
+        kind: 'contact-notification',
         to: config.inbox,
         subject: `New enquiry from ${singleLine(input.name)} · ${emailBrand.name}`,
         replyTo: input.email,
@@ -110,10 +110,10 @@ export async function deliverContact(brand: Brand, input: ContactInput) {
     notification,
   ])
   // The visitor's own receipt decides success; a missed shop copy is only logged.
-  if (notified.status === "rejected") {
-    console.error("[forms] contact notification failed", notified.reason)
+  if (notified.status === 'rejected') {
+    console.error('[forms] contact notification failed', notified.reason)
   }
-  if (confirmed.status === "rejected") throw confirmed.reason
+  if (confirmed.status === 'rejected') throw confirmed.reason
 }
 
 export async function deliverEnquiry(
@@ -122,8 +122,8 @@ export async function deliverEnquiry(
   fields: EnquiryField[],
   values: EnquiryValues
 ) {
-  const name = values.name ?? ""
-  const email = values.email ?? ""
+  const name = values.name ?? ''
+  const email = values.email ?? ''
   if (!config) return logDemo(`${brand.id} ${kind} enquiry from ${email}`)
 
   const copy = brand.content.enquiries?.[kind]
@@ -168,10 +168,10 @@ export async function deliverEnquiry(
     confirmation,
     notification,
   ])
-  if (notified.status === "rejected") {
+  if (notified.status === 'rejected') {
     console.error(`[forms] ${kind} notification failed`, notified.reason)
   }
-  if (confirmed.status === "rejected") throw confirmed.reason
+  if (confirmed.status === 'rejected') throw confirmed.reason
 }
 
 export async function deliverNewsletter(brand: Brand, input: NewsletterInput) {
@@ -179,7 +179,7 @@ export async function deliverNewsletter(brand: Brand, input: NewsletterInput) {
 
   const emailBrand = toEmailBrand(brand)
   await send(config, brand, {
-    kind: "newsletter-welcome",
+    kind: 'newsletter-welcome',
     to: input.email,
     subject: emailBrand.copy.newsletter.subject,
     replyTo: config.inbox,

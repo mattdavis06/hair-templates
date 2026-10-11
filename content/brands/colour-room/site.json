@@ -10,6 +10,7 @@
   },
   "scheme": "light",
   "radius": 14,
+  "backdrop": "gradient",
   "palette": {
     "background": "#faf6ff",
     "foreground": "#261b3a",
@@ -26,6 +27,14 @@
     "destructive": "#b42318"
   },
   "monogram": "CR",
+  "logo": {
+    "src": "/brands/colour-room/logo.png",
+    "solid": "/brands/colour-room/logo-solid.png",
+    "icon": "/brands/colour-room/icon.png",
+    "width": 800,
+    "height": 650,
+    "sizes": { "header": 96, "footer": 96 }
+  },
   "nav": [
     { "label": "Services", "href": "/services" },
     { "label": "Colour", "href": "/colour" },
@@ -44,7 +53,12 @@
         { "type": "before-after", "variant": "slider", "id": "before-after" },
         { "type": "reviews", "variant": "carousel", "id": "reviews" },
         { "type": "booking", "variant": "cta" },
-        { "type": "newsletter", "variant": "banner", "id": "newsletter" }
+        { "type": "newsletter", "variant": "banner", "id": "newsletter" },
+        {
+          "type": "contact",
+          "variant": "split",
+          "id": "contact"
+        }
       ]
     },
     {

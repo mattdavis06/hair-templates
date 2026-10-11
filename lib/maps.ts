@@ -1,4 +1,4 @@
-import type { Content } from "@/content/schema"
+import type { Content } from '@/content/schema'
 
 function addressQuery({ address }: Content): string {
   return `${address.street}, ${address.city} ${address.postcode}`
@@ -11,7 +11,7 @@ export function directionsUrl(content: Content): string {
 
 /** The brand's own "Embed a map" link, or a keyless map built from the address. */
 export function mapEmbedUrl(content: Content): string {
-  const query = encodeURIComponent(addressQuery(content)).replace(/%20/g, "+")
+  const query = encodeURIComponent(addressQuery(content)).replace(/%20/g, '+')
   return (
     content.visit?.mapEmbedUrl ??
     `https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1s${query}`

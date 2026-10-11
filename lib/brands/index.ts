@@ -1,8 +1,8 @@
-import { notFound } from "next/navigation"
-import colourRoomContent from "@/content/brands/colour-room/content.json"
-import colourRoomSite from "@/content/brands/colour-room/site.json"
-import northsideContent from "@/content/brands/northside/content.json"
-import northsideSite from "@/content/brands/northside/site.json"
+import { notFound } from 'next/navigation'
+import colourRoomContent from '@/content/brands/colour-room/content.json'
+import colourRoomSite from '@/content/brands/colour-room/site.json'
+import northsideContent from '@/content/brands/northside/content.json'
+import northsideSite from '@/content/brands/northside/site.json'
 import {
   brandProblems,
   contentSchema,
@@ -10,10 +10,10 @@ import {
   type Content,
   type Page,
   type Site,
-} from "@/content/schema"
-import { BRAND_IDS, brandHref, isBrandId, type BrandId } from "./ids"
+} from '@/content/schema'
+import { BRAND_IDS, brandHref, isBrandId, type BrandId } from './ids'
 
-export * from "./ids"
+export * from './ids'
 
 export type Brand = { id: BrandId; content: Content; site: Site }
 
@@ -31,14 +31,14 @@ function parseBrand(id: BrandId, content: unknown, site: unknown): Brand {
 
   const problems = brandProblems(brand.content, brand.site)
   if (problems.length > 0) {
-    throw new Error(`Brand "${id}": ${problems.join("; ")}`)
+    throw new Error(`Brand "${id}": ${problems.join('; ')}`)
   }
   return brand
 }
 
 const brands: Record<BrandId, Brand> = {
-  northside: parseBrand("northside", northsideContent, northsideSite),
-  "colour-room": parseBrand("colour-room", colourRoomContent, colourRoomSite),
+  northside: parseBrand('northside', northsideContent, northsideSite),
+  'colour-room': parseBrand('colour-room', colourRoomContent, colourRoomSite),
 }
 
 export const brandList: Brand[] = BRAND_IDS.map((id) => brands[id])
@@ -59,12 +59,12 @@ export function getPage(brand: Brand, slug: string): Page {
 }
 
 export function pagePath(page: Page): string {
-  return page.slug ? `/${page.slug}` : "/"
+  return page.slug ? `/${page.slug}` : '/'
 }
 
 /** Content links to site paths keep the brand; outside, tel: and mailto: links pass through. */
 export function contentHref(brand: Brand, href: string): string {
-  return href.startsWith("/") ? brandHref(brand.id, href) : href
+  return href.startsWith('/') ? brandHref(brand.id, href) : href
 }
 
 export type NavLink = { label: string; href: string }

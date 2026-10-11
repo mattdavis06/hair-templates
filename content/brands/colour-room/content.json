@@ -28,8 +28,16 @@
     "label": "Book an appointment"
   },
   "socials": [
-    { "label": "Instagram", "url": "https://www.instagram.com/" },
-    { "label": "Pinterest", "url": "https://www.pinterest.com/" }
+    {
+      "label": "Instagram",
+      "icon": "instagram",
+      "url": "https://www.instagram.com/"
+    },
+    {
+      "label": "Pinterest",
+      "icon": "pinterest",
+      "url": "https://www.pinterest.com/"
+    }
   ],
   "hero": {
     "image": {

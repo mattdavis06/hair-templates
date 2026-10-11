@@ -1,18 +1,18 @@
-import { z } from "zod"
+import { z } from 'zod'
 
-const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Use 24-hour HH:MM")
+const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use 24-hour HH:MM')
 const hexColour = z
   .string()
-  .regex(/^#[0-9a-f]{6}$/i, "Use a 6-digit hex colour")
+  .regex(/^#[0-9a-f]{6}$/i, 'Use a 6-digit hex colour')
 
 export const DAYS = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
 ] as const
 
 export const dayHoursSchema = z.union([
@@ -23,16 +23,16 @@ export const dayHoursSchema = z.union([
 const copySchema = z.object({ title: z.string(), description: z.string() })
 
 /** Hosts `lib/image-loader.ts` knows how to resize; anything else must live in `public/`. */
-export const IMAGE_HOSTS = ["images.unsplash.com", "images.pexels.com"] as const
+export const IMAGE_HOSTS = ['images.unsplash.com', 'images.pexels.com'] as const
 
 const imageSchema = z.object({
   src: z
     .string()
     .refine(
       (src) =>
-        src.startsWith("/") ||
+        src.startsWith('/') ||
         IMAGE_HOSTS.some((host) => src.startsWith(`https://${host}/`)),
-      `Use a /public path or an image from ${IMAGE_HOSTS.join(" or ")}`
+      `Use a /public path or an image from ${IMAGE_HOSTS.join(' or ')}`
     ),
   /** Describe what's in the photo for screen readers; never "image of…". */
   alt: z.string().min(1),
@@ -43,6 +43,9 @@ const imageSchema = z.object({
 /** Matches what `siteSchema` accepts as a page or section path, e.g. `/book#vouchers`. */
 const SITE_PATH = /^\/[a-z0-9-]*(#[a-z0-9-]+)?$/
 
+/** A PNG or SVG in `public/`, e.g. `/brands/northside/logo.png`. */
+const PUBLIC_IMAGE = /^(\/[a-z0-9-]+)+\.(png|svg)$/
+
 /** A button or text link: a page or section on this site, a web address, phone or email. */
 const linkSchema = z.object({
   label: z.string(),
@@ -51,7 +54,7 @@ const linkSchema = z.object({
     .refine(
       (href) =>
         SITE_PATH.test(href) || /^(https:\/\/|tel:|mailto:)\S+$/.test(href),
-      "Use a site path like /colour#consultation, an https:// URL, tel: or mailto:"
+      'Use a site path like /colour#consultation, an https:// URL, tel: or mailto:'
     ),
 })
 
@@ -170,7 +173,7 @@ const visitSchema = z.object({
   mapEmbedUrl: z
     .url()
     .refine(
-      (url) => url.startsWith("https://www.google.com/maps/embed"),
+      (url) => url.startsWith('https://www.google.com/maps/embed'),
       "Use the src from Google Maps' 'Embed a map' code"
     )
     .optional(),
@@ -197,7 +200,7 @@ const serviceSchema = z
   .refine(
     (service) =>
       (service.price === undefined) !== (service.prices === undefined),
-    "Give either price or prices, not both"
+    'Give either price or prices, not both'
   )
 
 const servicesSchema = z
@@ -233,8 +236,8 @@ const servicesSchema = z
         for (const level of Object.keys(service.prices ?? {})) {
           if (levels.has(level)) continue
           ctx.addIssue({
-            code: "custom",
-            path: ["categories", c, "items", i, "prices", level],
+            code: 'custom',
+            path: ['categories', c, 'items', i, 'prices', level],
             message: `"${level}" isn't one of services.levels`,
           })
         }
@@ -331,7 +334,7 @@ const pageHeadersSchema = z.record(
 )
 
 /** Enquiry forms a brand can offer; the fields for each live in `lib/forms/enquiries.ts`. */
-export const ENQUIRY_KINDS = ["consultation", "events"] as const
+export const ENQUIRY_KINDS = ['consultation', 'events'] as const
 export type EnquiryKind = (typeof ENQUIRY_KINDS)[number]
 
 const walkInsSchema = z.object({
@@ -377,7 +380,7 @@ export const contentSchema = z.object({
   /** A few words set in the accent font above the name, e.g. "Walk-ins welcome". */
   strapline: z.string(),
   description: z.string(),
-  businessType: z.enum(["HairSalon", "BeautySalon"]),
+  businessType: z.enum(['HairSalon', 'BeautySalon']),
   priceRange: z.string().optional(),
   phone: z.string(),
   email: z.email(),
@@ -392,14 +395,29 @@ export const contentSchema = z.object({
     .length(7)
     .refine(
       (days) => new Set(days.map((d) => d.day)).size === 7,
-      "List each day once"
+      'List each day once'
     ),
   booking: z.object({
-    provider: z.enum(["fresha", "booksy", "other"]),
+    provider: z.enum(['fresha', 'booksy', 'other']),
     url: z.url(),
     label: z.string(),
   }),
-  socials: z.array(z.object({ label: z.string(), url: z.url() })),
+  socials: z.array(
+    z.object({
+      label: z.string(),
+      /** Which logo the footer shows (`components/site/social-icon.tsx`). */
+      icon: z.enum([
+        'instagram',
+        'tiktok',
+        'pinterest',
+        'facebook',
+        'x',
+        'youtube',
+        'threads',
+      ]),
+      url: z.url(),
+    })
+  ),
   /** Required by the `services` section. */
   services: servicesSchema.optional(),
   /** Required by the `walk-ins` section. */
@@ -462,51 +480,51 @@ export const contentSchema = z.object({
 })
 
 export const SECTION_VARIANTS = {
-  hero: ["centered", "split"],
-  "walk-ins": ["strip"],
-  services: ["list", "matrix"],
-  team: ["grid", "profiles"],
-  gallery: ["grid", "masonry"],
-  reviews: ["grid", "carousel"],
-  faqs: ["accordion"],
-  policies: ["list"],
-  products: ["grid"],
-  loyalty: ["card"],
-  visit: ["map"],
-  contact: ["split", "form"],
-  newsletter: ["banner"],
-  highlights: ["cards"],
-  offer: ["banner"],
-  notice: ["banner"],
-  booking: ["cta"],
-  vouchers: ["cards"],
-  "before-after": ["slider"],
-  enquiry: ["split"],
-  "page-header": ["simple"],
+  hero: ['centered', 'split'],
+  'walk-ins': ['strip'],
+  services: ['list', 'matrix'],
+  team: ['grid', 'profiles'],
+  gallery: ['grid', 'masonry'],
+  reviews: ['grid', 'carousel'],
+  faqs: ['accordion'],
+  policies: ['list'],
+  products: ['grid'],
+  loyalty: ['card'],
+  visit: ['map'],
+  contact: ['split', 'form'],
+  newsletter: ['banner'],
+  highlights: ['cards'],
+  offer: ['banner'],
+  notice: ['banner'],
+  booking: ['cta'],
+  vouchers: ['cards'],
+  'before-after': ['slider'],
+  enquiry: ['split'],
+  'page-header': ['simple'],
 } as const
 
 export type SectionType = keyof typeof SECTION_VARIANTS
 
 /** Sections that render optional content; the brand must provide it to use them. */
 const SECTION_CONTENT = {
-  "walk-ins": "walkIns",
-  services: "services",
-  team: "team",
-  gallery: "gallery",
-  reviews: "reviews",
-  faqs: "faqs",
-  policies: "policies",
-  products: "products",
-  loyalty: "loyalty",
-  visit: "visit",
-  highlights: "highlights",
-  offer: "offer",
-  notice: "notice",
-  booking: "bookingCta",
-  vouchers: "vouchers",
-  "before-after": "transformations",
-  enquiry: "enquiries",
-  "page-header": "pageHeaders",
+  'walk-ins': 'walkIns',
+  services: 'services',
+  team: 'team',
+  gallery: 'gallery',
+  reviews: 'reviews',
+  faqs: 'faqs',
+  policies: 'policies',
+  products: 'products',
+  loyalty: 'loyalty',
+  visit: 'visit',
+  highlights: 'highlights',
+  offer: 'offer',
+  notice: 'notice',
+  booking: 'bookingCta',
+  vouchers: 'vouchers',
+  'before-after': 'transformations',
+  enquiry: 'enquiries',
+  'page-header': 'pageHeaders',
 } as const satisfies Partial<Record<SectionType, keyof Content>>
 
 function section<T extends SectionType>(type: T) {
@@ -517,32 +535,32 @@ function section<T extends SectionType>(type: T) {
   })
 }
 
-const sectionSchema = z.discriminatedUnion("type", [
-  section("hero"),
-  section("walk-ins"),
-  section("services").extend({
+const sectionSchema = z.discriminatedUnion('type', [
+  section('hero'),
+  section('walk-ins'),
+  section('services').extend({
     /** Show only these categories (by name), e.g. colour on its own page. */
     categories: z.array(z.string()).min(1).optional(),
   }),
-  section("team"),
-  section("gallery"),
-  section("reviews"),
-  section("faqs"),
-  section("policies"),
-  section("products"),
-  section("loyalty"),
-  section("visit"),
-  section("contact"),
-  section("newsletter"),
-  section("highlights"),
-  section("offer"),
-  section("notice"),
-  section("booking"),
-  section("vouchers"),
-  section("before-after"),
-  section("enquiry").extend({ form: z.enum(ENQUIRY_KINDS) }),
+  section('team'),
+  section('gallery'),
+  section('reviews'),
+  section('faqs'),
+  section('policies'),
+  section('products'),
+  section('loyalty'),
+  section('visit'),
+  section('contact'),
+  section('newsletter'),
+  section('highlights'),
+  section('offer'),
+  section('notice'),
+  section('booking'),
+  section('vouchers'),
+  section('before-after'),
+  section('enquiry').extend({ form: z.enum(ENQUIRY_KINDS) }),
   /** `name` picks the entry in content.json's `pageHeaders`. */
-  section("page-header").extend({ name: z.string() }),
+  section('page-header').extend({ name: z.string() }),
 ])
 
 /** Identifies a section within its page; unique per page. */
@@ -568,12 +586,12 @@ const paletteSchema = z.object({
 })
 
 export const FONTS = [
-  "barlow",
-  "bebas-neue",
-  "dm-sans",
-  "dm-serif-display",
-  "parisienne",
-  "yellowtail",
+  'barlow',
+  'bebas-neue',
+  'dm-sans',
+  'dm-serif-display',
+  'parisienne',
+  'yellowtail',
 ] as const
 
 export const siteSchema = z
@@ -591,11 +609,38 @@ export const siteSchema = z
       accent: z.enum(FONTS),
     }),
     /** Dark brands also switch on shadcn's `dark:` styles and native dark controls. */
-    scheme: z.enum(["light", "dark"]),
+    scheme: z.enum(['light', 'dark']),
     /** Corner radius in px; becomes `--radius` on the site and in emails. */
     radius: z.number().int().min(0).max(24),
+    /** Decoration fixed behind every page. `gradient`: faint drifting blobs in the brand colours. */
+    backdrop: z.enum(['none', 'gradient']).default('none'),
     palette: paletteSchema,
+    /** Stands in for the logo where there isn't one, and is the favicon. */
     monogram: z.string().min(1).max(3),
+    /** Wordmark files in `public/`. Without one, the monogram and name are shown. */
+    logo: z
+      .object({
+        /** Transparent version for the header, footer and menu. */
+        src: z.string().regex(PUBLIC_IMAGE),
+        /** Version on the site's background colour, for emails and the share image. */
+        solid: z.string().regex(PUBLIC_IMAGE).optional(),
+        /** Square mark for the favicon and Apple icon; without one they use the monogram. */
+        icon: z.string().regex(PUBLIC_IMAGE).optional(),
+        /** Any width and height with the logo's aspect ratio, e.g. its pixel size. */
+        width: z.number().int().positive(),
+        height: z.number().int().positive(),
+        /**
+         * Logo height in px. It shrinks if it doesn't fit the width, and the
+         * header grows to fit it. Phones cap the header logo at 64px.
+         */
+        sizes: z
+          .object({
+            header: z.number().int().min(24).max(120).default(56),
+            footer: z.number().int().min(24).max(160).default(64),
+          })
+          .prefault({}),
+      })
+      .optional(),
     /** Header and footer links: a page (`/book`) or a section on one (`/#contact`). */
     nav: z.array(
       z.object({ label: z.string(), href: z.string().regex(SITE_PATH) })
@@ -615,23 +660,23 @@ export const siteSchema = z
             .refine(
               (sections) =>
                 new Set(sections.map(sectionKey)).size === sections.length,
-              "Give repeated section types on a page their own id"
+              'Give repeated section types on a page their own id'
             ),
         })
       )
       .min(1)
-      .refine((pages) => pages.some((p) => p.slug === ""), "Add a home page")
+      .refine((pages) => pages.some((p) => p.slug === ''), 'Add a home page')
       .refine(
         (pages) => new Set(pages.map((p) => p.slug)).size === pages.length,
-        "Page slugs must be unique"
+        'Page slugs must be unique'
       ),
   })
   .superRefine((site, ctx) => {
     site.nav.forEach((link, index) => {
       if (!linkExists(site, link.href)) {
         ctx.addIssue({
-          code: "custom",
-          path: ["nav", index, "href"],
+          code: 'custom',
+          path: ['nav', index, 'href'],
           message: `"${link.href}" doesn't match a page or section id`,
         })
       }
@@ -639,9 +684,9 @@ export const siteSchema = z
   })
 
 /** True for outside links, and for site paths that point at a real page or section id. */
-function linkExists(site: Pick<Site, "pages">, href: string): boolean {
-  if (!href.startsWith("/")) return true
-  const [path, hash] = href.split("#")
+function linkExists(site: Pick<Site, 'pages'>, href: string): boolean {
+  if (!href.startsWith('/')) return true
+  const [path, hash] = href.split('#')
   const page = site.pages.find((p) => `/${p.slug}` === path)
   return hash
     ? Boolean(page?.sections.some((section) => section.id === hash))
@@ -666,21 +711,21 @@ export function brandProblems(content: Content, site: Site): string[] {
         problems.push(`"${s.type}" ${where} needs "${key}" in content.json`)
         continue
       }
-      if (s.type === "hero" && s.variant === "split" && !content.hero) {
+      if (s.type === 'hero' && s.variant === 'split' && !content.hero) {
         problems.push(`The split hero ${where} needs "hero" in content.json`)
       }
-      if (s.type === "services" && s.categories) {
+      if (s.type === 'services' && s.categories) {
         const names = new Set(content.services?.categories.map((c) => c.name))
         for (const name of s.categories.filter((n) => !names.has(n))) {
           problems.push(`Services ${where} lists unknown category "${name}"`)
         }
       }
-      if (s.type === "enquiry" && !content.enquiries?.[s.form]) {
+      if (s.type === 'enquiry' && !content.enquiries?.[s.form]) {
         problems.push(
           `Enquiry ${where} needs "enquiries.${s.form}" in content.json`
         )
       }
-      if (s.type === "page-header" && !content.pageHeaders?.[s.name]) {
+      if (s.type === 'page-header' && !content.pageHeaders?.[s.name]) {
         problems.push(
           `Page header ${where} needs "pageHeaders.${s.name}" in content.json`
         )
@@ -715,14 +760,14 @@ export type DayHours = z.infer<typeof dayHoursSchema>
 export type Service = z.infer<typeof serviceSchema>
 export type Services = z.infer<typeof servicesSchema>
 export type WalkIns = z.infer<typeof walkInsSchema>
-export type ServiceLevel = NonNullable<Services["levels"]>[number]
-export type TeamMember = z.infer<typeof teamSchema>["members"][number]
+export type ServiceLevel = NonNullable<Services['levels']>[number]
+export type TeamMember = z.infer<typeof teamSchema>['members'][number]
 export type ContentLink = z.infer<typeof linkSchema>
 export type EnquiryCopy = z.infer<typeof enquirySchema>
 export type ContentImage = z.infer<typeof imageSchema>
 export type Content = z.infer<typeof contentSchema>
 export type Site = z.infer<typeof siteSchema>
-export type Page = Site["pages"][number]
-export type Section = Page["sections"][number]
-export type Palette = Site["palette"]
+export type Page = Site['pages'][number]
+export type Section = Page['sections'][number]
+export type Palette = Site['palette']
 export type FontKey = (typeof FONTS)[number]

@@ -1,7 +1,6 @@
-"use client"
+'use client'
 
-import { PanelsTopLeftIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +9,9 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { brandHref, type BrandId } from "@/lib/brands/ids"
+} from '@/components/ui/dropdown-menu'
+import { brandHref, type BrandId } from '@/lib/brands/ids'
+import { PanelsTopLeftIcon } from 'lucide-react'
 
 export type BrandOption = {
   id: BrandId
@@ -35,22 +35,26 @@ export function BrandSwitcher({
     if (!target || value === current) return
     const { pathname } = window.location
     // Brands have different pages, so fall back to home when this one is missing.
-    const path = target.paths.includes(pathname) ? pathname : "/"
+    const path = target.paths.includes(pathname) ? pathname : '/'
     window.location.assign(brandHref(value, path))
   }
 
   return (
-    <div className="fixed right-4 bottom-4 z-50">
+    <div className='fixed right-4 bottom-4 z-50'>
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="secondary" size="lg" className="shadow-lg" />
+            <Button
+              variant='secondary'
+              size='lg'
+              className='h-12 cursor-pointer px-4 shadow-lg'
+            />
           }
         >
-          <PanelsTopLeftIcon data-icon="inline-start" />
-          {currentBrand?.name ?? "Switch brand"}
+          <PanelsTopLeftIcon data-icon='inline-start' className='size-6' />
+          {currentBrand?.name ?? 'Switch brand'}
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="top" align="end" className="w-64">
+        <DropdownMenuContent side='top' align='end' className='w-64'>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Demo brand</DropdownMenuLabel>
             <DropdownMenuRadioGroup
@@ -59,9 +63,9 @@ export function BrandSwitcher({
             >
               {brands.map((brand) => (
                 <DropdownMenuRadioItem key={brand.id} value={brand.id}>
-                  <span className="flex flex-col">
-                    <span className="font-medium">{brand.name}</span>
-                    <span className="text-xs text-muted-foreground">
+                  <span className='flex flex-col'>
+                    <span className='font-medium'>{brand.name}</span>
+                    <span className='text-xs text-muted-foreground'>
                       {brand.summary}
                     </span>
                   </span>

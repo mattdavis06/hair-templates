@@ -1,26 +1,26 @@
-const wholePounds = new Intl.NumberFormat("en-GB", {
-  style: "currency",
-  currency: "GBP",
+const wholePounds = new Intl.NumberFormat('en-GB', {
+  style: 'currency',
+  currency: 'GBP',
   maximumFractionDigits: 0,
 })
-const poundsAndPence = new Intl.NumberFormat("en-GB", {
-  style: "currency",
-  currency: "GBP",
+const poundsAndPence = new Intl.NumberFormat('en-GB', {
+  style: 'currency',
+  currency: 'GBP',
 })
 
 /** "£24", "£24.50", "from £30", or "Free". */
 export function formatPrice(price: number, from = false): string {
-  if (price === 0 && !from) return "Free"
+  if (price === 0 && !from) return 'Free'
   const amount = (
     Number.isInteger(price) ? wholePounds : poundsAndPence
   ).format(price)
   return from ? `from ${amount}` : amount
 }
 
-const monthYear = new Intl.DateTimeFormat("en-GB", {
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
+const monthYear = new Intl.DateTimeFormat('en-GB', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
 })
 
 /** "2026-09-14" → "September 2026". */

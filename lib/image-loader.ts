@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import type { ImageLoaderProps } from "next/image"
+import type { ImageLoaderProps } from 'next/image'
 
 /**
  * Asks the photo's own CDN for the exact width next/image needs, so we never
@@ -13,20 +13,20 @@ export default function imageLoader({
 }: ImageLoaderProps): string {
   const q = String(quality ?? 75)
 
-  if (src.startsWith("https://images.unsplash.com/")) {
+  if (src.startsWith('https://images.unsplash.com/')) {
     const url = new URL(src)
-    url.searchParams.set("w", String(width))
-    url.searchParams.set("q", q)
-    url.searchParams.set("auto", "format")
-    url.searchParams.set("fit", "max")
+    url.searchParams.set('w', String(width))
+    url.searchParams.set('q', q)
+    url.searchParams.set('auto', 'format')
+    url.searchParams.set('fit', 'max')
     return url.href
   }
 
-  if (src.startsWith("https://images.pexels.com/")) {
+  if (src.startsWith('https://images.pexels.com/')) {
     const url = new URL(src)
-    url.searchParams.set("w", String(width))
-    url.searchParams.set("auto", "compress")
-    url.searchParams.set("cs", "tinysrgb")
+    url.searchParams.set('w', String(width))
+    url.searchParams.set('auto', 'compress')
+    url.searchParams.set('cs', 'tinysrgb')
     return url.href
   }
 

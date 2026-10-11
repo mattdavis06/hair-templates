@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react"
+import type { CSSProperties, ReactNode } from 'react'
 import {
   Body,
   Button,
@@ -14,8 +14,8 @@ import {
   Row,
   Section,
   Text,
-} from "react-email"
-import type { EmailBrand, EmailTheme } from "@/lib/email/brand"
+} from 'react-email'
+import type { EmailBrand, EmailTheme } from '@/lib/email/brand'
 
 type BrandLayoutProps = {
   brand: EmailBrand
@@ -23,7 +23,7 @@ type BrandLayoutProps = {
   /** Small print at the very bottom: why this email was sent. */
   footnote: string
   /** Internal emails skip the visitor-facing address, hours and socials. */
-  footer?: "full" | "minimal"
+  footer?: 'full' | 'minimal'
   children: ReactNode
 }
 
@@ -31,24 +31,24 @@ export function BrandLayout({
   brand,
   preview,
   footnote,
-  footer = "full",
+  footer = 'full',
   children,
 }: BrandLayoutProps) {
   const { theme } = brand
 
   return (
-    <Html lang="en-GB" dir="ltr">
+    <Html lang='en-GB' dir='ltr'>
       <Head>
-        <meta name="color-scheme" content={theme.scheme} />
-        <meta name="supported-color-schemes" content={theme.scheme} />
+        <meta name='color-scheme' content={theme.scheme} />
+        <meta name='supported-color-schemes' content={theme.scheme} />
         {/* Clients that block web fonts fall back to the stacks in EmailTheme. */}
         {/* react-doctor-disable-next-line react-doctor/nextjs-no-css-link -- an email, not a Next page */}
-        <link rel="stylesheet" href={theme.fontsHref} />
+        <link rel='stylesheet' href={theme.fontsHref} />
       </Head>
       <Body
         style={{
           margin: 0,
-          padding: "32px 12px",
+          padding: '32px 12px',
           backgroundColor: theme.page,
           color: theme.text,
           fontFamily: theme.bodyFont,
@@ -57,44 +57,44 @@ export function BrandLayout({
         <Preview>{preview}</Preview>
         <Container
           style={{
-            width: "100%",
+            width: '100%',
             maxWidth: 600,
             backgroundColor: theme.card,
             border: `1px solid ${theme.border}`,
             borderRadius: theme.radius,
-            overflow: "hidden",
+            overflow: 'hidden',
           }}
         >
           <Section
             style={{
-              backgroundColor: theme.subtle,
+              backgroundColor: brand.logo.background,
               borderBottom: `1px solid ${theme.border}`,
-              padding: "28px 24px",
-              textAlign: "center",
+              padding: '28px 24px',
+              textAlign: 'center',
             }}
           >
             <Link href={brand.siteUrl}>
               <Img
-                src={brand.logoUrl}
-                width="72"
-                height="72"
+                src={brand.logo.url}
+                width={brand.logo.width}
+                height={brand.logo.height}
                 alt={brand.name}
                 style={{
-                  display: "block",
-                  margin: "0 auto",
-                  borderRadius: theme.radius,
+                  display: 'block',
+                  margin: '0 auto',
+                  borderRadius: brand.logo.radius,
                 }}
               />
             </Link>
           </Section>
 
-          <Section style={{ padding: "40px 40px 36px" }}>{children}</Section>
+          <Section style={{ padding: '40px 40px 36px' }}>{children}</Section>
 
           <Section
             style={{
               backgroundColor: theme.footer,
               color: theme.onFooter,
-              padding: "32px 40px",
+              padding: '32px 40px',
             }}
           >
             <Text
@@ -102,7 +102,7 @@ export function BrandLayout({
                 margin: 0,
                 fontFamily: theme.headingFont,
                 fontSize: 26,
-                lineHeight: "30px",
+                lineHeight: '30px',
                 fontWeight: theme.headingWeight,
                 textTransform: theme.headingCase,
                 color: theme.onFooter,
@@ -112,21 +112,21 @@ export function BrandLayout({
             </Text>
             <Text
               style={{
-                margin: "4px 0 0",
+                margin: '4px 0 0',
                 fontSize: 14,
-                lineHeight: "20px",
+                lineHeight: '20px',
                 color: theme.footerMuted,
               }}
             >
               {brand.tagline}
             </Text>
 
-            {footer === "full" ? <FooterDetails brand={brand} /> : null}
+            {footer === 'full' ? <FooterDetails brand={brand} /> : null}
 
             <Hr
               style={{
-                margin: "24px 0 16px",
-                border: "none",
+                margin: '24px 0 16px',
+                border: 'none',
                 borderTop: `1px solid ${theme.footerRule}`,
               }}
             />
@@ -134,7 +134,7 @@ export function BrandLayout({
               style={{
                 margin: 0,
                 fontSize: 12,
-                lineHeight: "18px",
+                lineHeight: '18px',
                 color: theme.footerMuted,
               }}
             >
@@ -150,23 +150,23 @@ export function BrandLayout({
 function FooterDetails({ brand }: { brand: EmailBrand }) {
   const { theme } = brand
   const label: CSSProperties = {
-    margin: "24px 0 6px",
+    margin: '24px 0 6px',
     fontSize: 11,
-    lineHeight: "16px",
+    lineHeight: '16px',
     fontWeight: 600,
-    letterSpacing: "0.12em",
-    textTransform: "uppercase",
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
     color: theme.footerMuted,
   }
   const line: CSSProperties = {
     margin: 0,
     fontSize: 14,
-    lineHeight: "22px",
+    lineHeight: '22px',
     color: theme.onFooter,
   }
   const link: CSSProperties = {
     color: theme.onFooter,
-    textDecoration: "underline",
+    textDecoration: 'underline',
   }
 
   return (
@@ -178,10 +178,10 @@ function FooterDetails({ brand }: { brand: EmailBrand }) {
         </Text>
       ))}
       <Text style={line}>
-        <Link href={`tel:${brand.phone.replace(/\s/g, "")}`} style={link}>
+        <Link href={`tel:${brand.phone.replace(/\s/g, '')}`} style={link}>
           {brand.phone}
         </Link>
-        {" · "}
+        {' · '}
         <Link href={`mailto:${brand.email}`} style={link}>
           {brand.email}
         </Link>
@@ -191,7 +191,7 @@ function FooterDetails({ brand }: { brand: EmailBrand }) {
       <Section>
         {brand.hours.map(({ days, hours }) => (
           <Row key={days}>
-            <Column style={{ ...line, width: 88, verticalAlign: "top" }}>
+            <Column style={{ ...line, width: 88, verticalAlign: 'top' }}>
               {days}
             </Column>
             <Column style={line}>{hours}</Column>
@@ -203,7 +203,7 @@ function FooterDetails({ brand }: { brand: EmailBrand }) {
         <Text style={{ ...line, marginTop: 24 }}>
           {brand.socials.map((social, index) => (
             <span key={social.label}>
-              {index > 0 ? " · " : null}
+              {index > 0 ? ' · ' : null}
               <Link href={social.url} style={link}>
                 {social.label}
               </Link>
@@ -225,12 +225,12 @@ export function Eyebrow({
   return (
     <Text
       style={{
-        margin: "0 0 12px",
+        margin: '0 0 12px',
         fontSize: 12,
-        lineHeight: "16px",
+        lineHeight: '16px',
         fontWeight: 600,
-        letterSpacing: "0.14em",
-        textTransform: "uppercase",
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
         color: theme.highlight,
       }}
     >
@@ -248,12 +248,12 @@ export function EmailHeading({
 }) {
   return (
     <Heading
-      as="h1"
+      as='h1'
       style={{
-        margin: "0 0 20px",
+        margin: '0 0 20px',
         fontFamily: theme.headingFont,
         fontSize: 36,
-        lineHeight: "42px",
+        lineHeight: '42px',
         fontWeight: theme.headingWeight,
         textTransform: theme.headingCase,
         color: theme.text,
@@ -276,9 +276,9 @@ export function EmailText({
   return (
     <Text
       style={{
-        margin: "0 0 20px",
+        margin: '0 0 20px',
         fontSize: muted ? 15 : 16,
-        lineHeight: muted ? "24px" : "26px",
+        lineHeight: muted ? '24px' : '26px',
         color: muted ? theme.muted : theme.text,
       }}
     >
@@ -297,20 +297,20 @@ export function EmailButton({
   children: ReactNode
 }) {
   return (
-    <Section style={{ margin: "8px 0 32px" }}>
+    <Section style={{ margin: '8px 0 32px' }}>
       <Button
         href={href}
         style={{
-          display: "inline-block",
-          boxSizing: "border-box",
-          padding: "14px 28px",
+          display: 'inline-block',
+          boxSizing: 'border-box',
+          padding: '14px 28px',
           borderRadius: theme.radius,
           backgroundColor: theme.button,
           color: theme.onButton,
           fontSize: 15,
-          lineHeight: "20px",
+          lineHeight: '20px',
           fontWeight: 600,
-          textDecoration: "none",
+          textDecoration: 'none',
         }}
       >
         {children}
@@ -332,20 +332,20 @@ export function MessageQuote({
   return (
     <Section
       style={{
-        margin: "4px 0 24px",
-        padding: "16px 20px",
+        margin: '4px 0 24px',
+        padding: '16px 20px',
         backgroundColor: theme.subtle,
         borderLeft: `3px solid ${theme.highlight}`,
       }}
     >
       <Text
         style={{
-          margin: "0 0 6px",
+          margin: '0 0 6px',
           fontSize: 12,
-          lineHeight: "16px",
+          lineHeight: '16px',
           fontWeight: 600,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
           color: theme.muted,
         }}
       >
@@ -355,9 +355,9 @@ export function MessageQuote({
         style={{
           margin: 0,
           fontSize: 15,
-          lineHeight: "24px",
+          lineHeight: '24px',
           color: theme.text,
-          whiteSpace: "pre-wrap",
+          whiteSpace: 'pre-wrap',
         }}
       >
         {children}
@@ -374,7 +374,7 @@ export function Signoff({ brand }: { brand: EmailBrand }) {
         margin: 0,
         fontFamily: theme.accentFont,
         fontSize: 28,
-        lineHeight: "34px",
+        lineHeight: '34px',
         fontWeight: 400,
         color: theme.highlight,
       }}

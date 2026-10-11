@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -84,6 +84,29 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* Slow drift for the `gradient` backdrop (`components/site/brand-backdrop.tsx`). */
+@theme {
+  --animate-drift-a: drift-a 45s ease-in-out infinite alternate;
+  --animate-drift-b: drift-b 60s ease-in-out infinite alternate;
+  --animate-drift-c: drift-c 50s ease-in-out infinite alternate;
+
+  @keyframes drift-a {
+    to {
+      transform: translate(8vw, 6vh) scale(1.1);
+    }
+  }
+  @keyframes drift-b {
+    to {
+      transform: translate(-8vw, 8vh) scale(0.9);
+    }
+  }
+  @keyframes drift-c {
+    to {
+      transform: translate(6vw, -8vh) scale(1.15);
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -93,8 +116,8 @@
   }
   html {
     @apply font-sans;
-    /* Keeps #section targets clear of the sticky header (h-16). */
-    scroll-padding-top: 5rem;
+    /* Keeps #section targets clear of the sticky header; its height comes from the brand's logo. */
+    scroll-padding-top: calc(var(--header-height, 5rem) + 1rem);
   }
   h1,
   h2,

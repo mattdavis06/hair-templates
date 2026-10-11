@@ -1,5 +1,5 @@
-import type { CSSProperties } from "react"
-import type { Site } from "@/content/schema"
+import type { CSSProperties } from 'react'
+import type { Site } from '@/content/schema'
 
 /** The brand's palette as the CSS variables shadcn components read. */
 export function brandStyle({
@@ -9,27 +9,27 @@ export function brandStyle({
 }: Site): CSSProperties {
   return {
     colorScheme: scheme,
-    "--radius": `${radius / 16}rem`,
-    "--background": p.background,
-    "--foreground": p.foreground,
-    "--card": p.card,
-    "--card-foreground": p.foreground,
-    "--popover": p.card,
-    "--popover-foreground": p.foreground,
-    "--primary": p.primary,
-    "--primary-foreground": p.primaryForeground,
-    "--secondary": p.secondary,
-    "--secondary-foreground": p.secondaryForeground,
-    "--muted": p.muted,
-    "--muted-foreground": p.mutedForeground,
-    "--accent": p.accent,
-    "--accent-foreground": p.accentForeground,
-    "--destructive": p.destructive,
-    "--border": p.border,
-    "--input": p.border,
-    "--ring": p.primary,
+    '--radius': `${radius / 16}rem`,
+    '--background': p.background,
+    '--foreground': p.foreground,
+    '--card': p.card,
+    '--card-foreground': p.foreground,
+    '--popover': p.card,
+    '--popover-foreground': p.foreground,
+    '--primary': p.primary,
+    '--primary-foreground': p.primaryForeground,
+    '--secondary': p.secondary,
+    '--secondary-foreground': p.secondaryForeground,
+    '--muted': p.muted,
+    '--muted-foreground': p.mutedForeground,
+    '--accent': p.accent,
+    '--accent-foreground': p.accentForeground,
+    '--destructive': p.destructive,
+    '--border': p.border,
+    '--input': p.border,
+    '--ring': p.primary,
     /** Brand-coloured text (straplines, eyebrows): primary or accent, whichever reads better. */
-    "--highlight": mostReadable(p.background, [p.primary, p.accent]),
+    '--highlight': mostReadable(p.background, [p.primary, p.accent]),
   } as CSSProperties
 }
 
@@ -66,7 +66,7 @@ export function mix(from: string, to: string, amount: number): string {
     .map((value, index) =>
       Math.round(value + (b[index] - value) * amount)
         .toString(16)
-        .padStart(2, "0")
+        .padStart(2, '0')
     )
-    .join("")}`
+    .join('')}`
 }

@@ -1,5 +1,5 @@
-import { BRAND_IDS, getBrand } from "@/lib/brands"
-import { renderBrandIcon } from "@/lib/seo/brand-images"
+import { BRAND_IDS, getBrand } from '@/lib/brands'
+import { renderBrandIcon } from '@/lib/seo/brand-images'
 
 export const dynamicParams = false
 
@@ -9,7 +9,7 @@ export function generateStaticParams() {
 
 export async function GET(
   _request: Request,
-  ctx: RouteContext<"/icons/[theme]/apple">
+  ctx: RouteContext<'/icons/[theme]/apple'>
 ) {
   return renderBrandIcon(getBrand((await ctx.params).theme), {
     size: 180,

@@ -1,7 +1,7 @@
-import type { EnquiryCopy } from "@/content/schema"
-import { firstName, type EmailBrand } from "@/lib/email/brand"
-import type { EnquiryRow } from "@/lib/forms/enquiries"
-import { EnquiryDetails } from "./enquiry-details"
+import type { EnquiryCopy } from '@/content/schema'
+import { firstName, type EmailBrand } from '@/lib/email/brand'
+import type { EnquiryRow } from '@/lib/forms/enquiries'
+import { EnquiryDetails } from './enquiry-details'
 import {
   BrandLayout,
   EmailButton,
@@ -9,13 +9,13 @@ import {
   EmailText,
   Eyebrow,
   Signoff,
-} from "./layout"
+} from './layout'
 
 export type EnquiryConfirmationProps = {
   brand: EmailBrand
   /** The form's title, e.g. "Book a free colour consultation". */
   form: string
-  copy: EnquiryCopy["email"]
+  copy: EnquiryCopy['email']
   name: string
   rows: EnquiryRow[]
 }
@@ -41,7 +41,7 @@ export function EnquiryConfirmation({
       <EmailText theme={theme}>{copy.body}</EmailText>
       <EnquiryDetails
         theme={theme}
-        rows={rows.filter((row) => row.name !== "name" && row.name !== "email")}
+        rows={rows.filter((row) => row.name !== 'name' && row.name !== 'email')}
       />
       <EmailButton theme={theme} href={brand.siteUrl}>
         Visit {brand.name}

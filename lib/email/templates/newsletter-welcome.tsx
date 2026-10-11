@@ -1,4 +1,4 @@
-import type { EmailBrand } from "@/lib/email/brand"
+import type { EmailBrand } from '@/lib/email/brand'
 import {
   BrandLayout,
   EmailButton,
@@ -6,7 +6,7 @@ import {
   EmailText,
   Eyebrow,
   Signoff,
-} from "./layout"
+} from './layout'
 
 export type NewsletterWelcomeProps = { brand: EmailBrand }
 

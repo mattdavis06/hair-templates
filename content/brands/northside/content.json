@@ -53,15 +53,17 @@
   "booking": {
     "provider": "booksy",
     "url": "https://booksy.com/en-gb/",
-    "label": "Book a cut"
+    "label": "Book"
   },
   "socials": [
     {
       "label": "Instagram",
+      "icon": "instagram",
       "url": "https://www.instagram.com/"
     },
     {
       "label": "TikTok",
+      "icon": "tiktok",
       "url": "https://www.tiktok.com/"
     }
   ],

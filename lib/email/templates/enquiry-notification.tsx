@@ -1,7 +1,7 @@
-import { firstName, type EmailBrand } from "@/lib/email/brand"
-import type { EnquiryRow } from "@/lib/forms/enquiries"
-import { EnquiryDetails } from "./enquiry-details"
-import { BrandLayout, EmailButton, EmailHeading, Eyebrow } from "./layout"
+import { firstName, type EmailBrand } from '@/lib/email/brand'
+import type { EnquiryRow } from '@/lib/forms/enquiries'
+import { EnquiryDetails } from './enquiry-details'
+import { BrandLayout, EmailButton, EmailHeading, Eyebrow } from './layout'
 
 export type EnquiryNotificationProps = {
   brand: EmailBrand
@@ -28,11 +28,11 @@ export function EnquiryNotification({
     <BrandLayout
       brand={brand}
       preview={`${name} · ${rows
-        .filter((row) => !row.long && row.name !== "name")
+        .filter((row) => !row.long && row.name !== 'name')
         .map((row) => row.value)
         .slice(0, 4)
-        .join(" · ")}`}
-      footer="minimal"
+        .join(' · ')}`}
+      footer='minimal'
       footnote={`Sent from "${form}" on the ${brand.name} website. Replying to this email goes straight to ${first}.`}
     >
       <Eyebrow theme={theme}>{form}</Eyebrow>
