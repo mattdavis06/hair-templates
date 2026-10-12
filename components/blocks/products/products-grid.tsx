@@ -9,8 +9,8 @@ export function ProductsGrid({ brand, id }: SectionProps) {
   if (!products) return null
 
   return (
-    <section id={id} className='border-y bg-card px-6 py-20'>
-      <div className='mx-auto flex w-full max-w-6xl flex-col gap-12'>
+    <section id={id} className='border-y bg-card'>
+      <div className='mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20'>
         <div className='flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
           <div className='flex max-w-2xl flex-col gap-3'>
             <h2 className='text-5xl'>{products.title}</h2>

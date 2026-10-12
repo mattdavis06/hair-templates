@@ -107,6 +107,51 @@
   }
 }
 
+/* Page transitions for brands with `"transition": "fade"` (`components/site/page-transition.tsx`).
+   The old page leaves quickly; the new one waits for it, then fades in while rising. */
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes page-rise {
+  from {
+    translate: 0 1rem;
+  }
+}
+::view-transition-old(.page-out) {
+  animation: 150ms ease-in both page-fade reverse;
+}
+::view-transition-new(.page-in) {
+  animation:
+    250ms ease-out 150ms both page-fade,
+    400ms ease-out 150ms both page-rise;
+}
+/* The header and the rest of the page (footer, backdrop) swap instantly; only the content moves. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header),
+::view-transition-old(root) {
+  display: none;
+}
+::view-transition-new(site-header),
+::view-transition-new(root) {
+  animation: none;
+}
+/* Clicks during the animation reach the new page instead of the overlay. */
+::view-transition {
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

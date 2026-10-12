@@ -1,7 +1,9 @@
+import type { IconType } from '@icons-pack/react-simple-icons'
 import type { Brand } from '@/lib/brands'
 import { fitLogo } from '@/lib/logo'
 import { mostReadable } from '@/lib/palette'
 import { ImageResponse } from 'next/og'
+import type { ReactElement } from 'react'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -68,6 +70,36 @@ export async function renderShareImage({ content, site }: Brand) {
       </div>
     </div>,
     shareImageSize
+  )
+}
+
+type IconSvg = ReactElement<{ children: ReactElement<{ d?: string }>[] }>
+
+/**
+ * The icon's path data. Rendering the component itself would also draw its
+ * `<title>` as text, so only the path is kept.
+ */
+function iconPath(Icon: IconType): string {
+  const { render } = Icon as unknown as {
+    render: (props: object, ref: null) => IconSvg
+  }
+  const path = render({}, null).props.children.find((child) => child.props.d)
+  if (!path?.props.d) throw new Error('Icon has no path')
+  return path.props.d
+}
+
+/** A platform logo as a PNG on a transparent background, for emails. */
+export function renderSocialIcon(
+  Icon: IconType,
+  { color, size }: { color: string; size: number }
+) {
+  return new ImageResponse(
+    <div style={{ width: '100%', height: '100%', display: 'flex' }}>
+      <svg width={size} height={size} viewBox='0 0 24 24' fill={color}>
+        <path d={iconPath(Icon)} />
+      </svg>
+    </div>,
+    { width: size, height: size }
   )
 }
 

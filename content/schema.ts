@@ -621,6 +621,8 @@ export const siteSchema = z
     radius: z.number().int().min(0).max(24),
     /** Decoration fixed behind every page. `gradient`: faint drifting blobs in the brand colours. */
     backdrop: z.enum(['none', 'gradient']).default('none'),
+    /** Animation between pages. `fade`: the old page fades out and the new one rises in. */
+    transition: z.enum(['none', 'fade']).default('none'),
     palette: paletteSchema,
     /** Stands in for the logo where there isn't one, and is the favicon. */
     monogram: z.string().min(1).max(3),

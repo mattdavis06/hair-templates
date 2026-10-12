@@ -1,12 +1,12 @@
 'use client'
 
-import { useMemo } from 'react'
 import { useCurrentMinute } from '@/components/blocks/opening-hours/use-current-minute'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { DayHours } from '@/content/schema'
 import { getOpeningStatus } from '@/lib/opening-hours'
 import { cn } from '@/lib/utils'
+import { useMemo } from 'react'
 
 /** Depends on the visitor's clock, so it renders a placeholder until hydrated. */
 export function OpenStatus({

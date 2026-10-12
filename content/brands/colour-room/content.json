@@ -135,7 +135,7 @@
     "title": "Ready when you are",
     "body": "Book online any time. Planning a new colour? Start with a free consultation and we'll build the plan together.",
     "secondary": {
-      "label": "Free consultation",
+      "label": "Free colour consultation",
       "href": "/colour#consultation"
     }
   },
@@ -336,28 +336,46 @@
           "Colour correction",
           "Blonde transformations",
           "Balayage"
-        ]
+        ],
+        "image": {
+          "src": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+          "alt": "Isla laughing, with loose dark waves and a red roll-neck top",
+          "position": "center 30%"
+        }
       },
       {
         "name": "Priya Shah",
         "role": "Senior colourist",
         "level": "senior",
         "bio": "Priya's lived-in blondes and soft brunettes grow out beautifully, so you can go longer between visits. She also leads the salon's grey-blending appointments.",
-        "specialities": ["Lived-in blonde", "Grey blending", "Gloss & toner"]
+        "specialities": ["Lived-in blonde", "Grey blending", "Gloss & toner"],
+        "image": {
+          "src": "https://images.unsplash.com/photo-1644718847151-fff2271484a1?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+          "alt": "Black-and-white portrait of Priya with long, defined curls, glancing over her shoulder"
+        }
       },
       {
         "name": "Tom Achebe",
         "role": "Senior stylist",
         "level": "senior",
         "bio": "Tom trained in curly cutting in New York and cuts every curl type dry. He's the person to see for a bold new shape or a precise, swingy bob.",
-        "specialities": ["Curly cuts", "Precision bobs", "Restyles"]
+        "specialities": ["Curly cuts", "Precision bobs", "Restyles"],
+        "image": {
+          "src": "https://images.unsplash.com/photo-1630208232589-e42b29428b19?q=80&w=769&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+          "alt": "Black-and-white portrait of Tom in a cap and thick-rimmed glasses, resting his chin on his hand"
+        }
       },
       {
         "name": "Ellie Hart",
         "role": "Stylist",
         "level": "stylist",
         "bio": "Ellie loves pastels and vivids, and the planning that keeps them looking good as they fade. She also styles most of our bridal parties.",
-        "specialities": ["Vivid colour", "Pastels", "Bridal hair"]
+        "specialities": ["Vivid colour", "Pastels", "Bridal hair"],
+        "image": {
+          "src": "https://images.unsplash.com/photo-1627808170609-d65b9b4029ba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+          "alt": "Ellie in round glasses and a white T-shirt, with a long, wavy brunette ponytail",
+          "position": "center 35%"
+        }
       }
     ]
   },
@@ -366,14 +384,14 @@
     "intro": "Drag the slider to see the change. Every transformation starts with a consultation and a strand test.",
     "items": [
       {
-        "title": "Faded blue to lilac-kissed blonde",
-        "description": "Two gentle sessions of colour removal and lightening lifted out months of faded blue. We finished with a soft blonde base, hand-painted lilac panels and a textured shag.",
+        "title": "Brassy highlights to lilac-kissed blonde",
+        "description": "Two sessions of toning and lightening evened out patchy, brassy highlights into a soft, clean blonde base. We finished with hand-painted lilac panels and a textured shag.",
         "stylist": "Isla Moreno",
         "services": ["Colour correction", "Vivid & pastel colour", "Restyle"],
         "duration": 330,
         "before": {
-          "src": "https://images.unsplash.com/photo-1571291903893-c6152b2efc22",
-          "alt": "Shoulder-length hair in faded turquoise and blue, seen from behind",
+          "src": "https://images.unsplash.com/photo-1557353425-6c61136de070?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+          "alt": "Shoulder-length wavy hair with brassy, uneven blonde highlights, seen from behind as she runs a hand through it",
           "position": "64% center"
         },
         "after": {
@@ -439,43 +457,43 @@
     "intro": "New work goes up on Instagram every week.",
     "images": [
       {
-        "src": "https://images.unsplash.com/photo-1648157963892-fa90a04e278b",
-        "alt": "Side profile of a textured blonde shag cut with lilac panels",
-        "position": "42% center",
-        "caption": "Lilac panels on a textured blonde shag"
+        "src": "https://images.unsplash.com/photo-1570015652016-f4d63e51b2c5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Shoulder-length brunette waves with a soft curtain fringe"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1574773004910-1eeaabb62b55?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Sleek, straight smoky lilac hair with darker roots, seen in profile"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1495638671147-2cb03fe8e33e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "A smiling bridesmaid with long blonde balayage waves and a gypsophila crown"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1628292180187-3bac5c5b3cb6?q=80&w=749&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Straight dark brown hair with a heavy fringe and blonde money-piece ends"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1554519515-242161756769?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Wavy purple hair with rainbow panels in pink, yellow and teal, seen from behind"
       },
       {
         "src": "https://images.unsplash.com/photo-1672788694268-ecc234591d31",
         "alt": "A stylist finishing a braided copper updo with hairspray",
-        "position": "55% center",
-        "caption": "Braided copper updo for a wedding guest"
+        "position": "55% center"
       },
       {
-        "src": "https://images.pexels.com/photos/4981476/pexels-photo-4981476.jpeg",
-        "alt": "A gloved colourist brushing rose-pink tint through blonde hair",
-        "caption": "Rose-pink tint, root to tip"
+        "src": "https://images.unsplash.com/photo-1666224064108-7375c15c1789?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "A short, textured blonde crop"
       },
       {
-        "src": "https://images.unsplash.com/photo-1571291903893-c6152b2efc22",
-        "alt": "Shoulder-length hair in turquoise and ocean blue, seen from behind",
-        "position": "64% center",
-        "caption": "Ocean blue, before a refresh"
+        "src": "https://images.unsplash.com/photo-1648157963892-fa90a04e278b",
+        "alt": "Side profile of a textured blonde shag cut with lilac panels",
+        "position": "42% center"
       },
       {
-        "src": "https://images.unsplash.com/photo-1707720531504-ce087725861a",
-        "alt": "A colourist folding a foil while placing highlights",
-        "caption": "Foiling for a lived-in blonde"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250",
-        "alt": "The styling floor: black chairs facing round mirrors",
-        "position": "35% center",
-        "caption": "The styling floor on Boyces Avenue"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0",
-        "alt": "A client relaxing at the basin while her hair is rinsed",
-        "caption": "Basin time: gloss and bond repair"
+        "src": "https://images.unsplash.com/photo-1664343419873-a9f53e79250d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Long, wavy smoky blue-grey hair, seen in profile",
+        "position": "42% center"
       }
     ]
   },
@@ -633,7 +651,7 @@
       }
     },
     "newsletter": {
-      "title": "Colour notes",
+      "title": "Colour notes - join our mailing list",
       "intro": "Seasonal colour trends, aftercare tips and first access to new-client offers.",
       "submit": "Subscribe",
       "success": {

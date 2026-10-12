@@ -9,8 +9,8 @@ export function LoyaltyCard({ brand, id }: SectionProps) {
   const boxes = Array.from({ length: loyalty.stamps }, (_, i) => i + 1)
 
   return (
-    <section id={id} className='border-y bg-card px-6 py-20'>
-      <div className='mx-auto flex w-full max-w-6xl flex-col gap-12'>
+    <section id={id} className='border-y bg-card'>
+      <div className='mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20'>
         <Card className='grid gap-10 bg-background p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12'>
           <div className='flex max-w-md flex-col gap-3'>
             <h2 className='text-5xl'>{loyalty.title}</h2>

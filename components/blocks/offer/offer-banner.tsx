@@ -9,24 +9,30 @@ export function OfferBanner({ brand, id }: SectionProps) {
 
   return (
     <section id={id} className='mx-auto w-full max-w-6xl px-6 py-10'>
-      <div className='rounded-[calc(var(--radius)*2)] bg-secondary px-6 py-10 text-secondary-foreground md:px-12 md:py-14'>
+      <div className='rounded-[calc(var(--radius)*2)] bg-primary px-6 py-10 text-primary-foreground md:px-12 md:py-14'>
         <div className='flex flex-col gap-8 md:flex-row md:items-end md:justify-between'>
           <div className='flex max-w-2xl flex-col gap-3'>
             <p className='font-accent text-3xl'>{offer.eyebrow}</p>
             <h2 className='text-4xl text-balance md:text-5xl'>{offer.title}</h2>
             <p className='text-lg text-pretty'>{offer.body}</p>
             {offer.terms ? (
-              <p className='text-sm text-secondary-foreground/75'>
+              <p className='text-sm text-primary-foreground/75'>
                 {offer.terms}
               </p>
             ) : null}
           </div>
-          <a
-            href={contentHref(brand, offer.link.href)}
-            className={buttonVariants({ size: 'lg', className: 'self-start' })}
-          >
-            {offer.link.label}
-          </a>
+          {offer.link ? (
+            <a
+              href={contentHref(brand, offer.link.href)}
+              className={buttonVariants({
+                variant: 'secondary',
+                size: 'lg',
+                className: 'self-start',
+              })}
+            >
+              {offer.link.label}
+            </a>
+          ) : null}
         </div>
       </div>
     </section>

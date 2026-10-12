@@ -37,7 +37,13 @@ export function MobileNav({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        render={<Button variant='ghost' size='icon' className='lg:hidden' />}
+        render={
+          <Button
+            variant='ghost'
+            size='icon'
+            className='cursor-pointer lg:hidden'
+          />
+        }
       >
         <MenuIcon />
         <span className='sr-only'>Open menu</span>
@@ -49,7 +55,7 @@ export function MobileNav({
               name={name}
               monogram={monogram}
               logo={logo}
-              logoClassName='h-12'
+              logoClassName='h-14'
             />
           </SheetTitle>
           <SheetClose

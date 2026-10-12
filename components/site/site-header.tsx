@@ -9,8 +9,8 @@ export function SiteHeader({ brand }: { brand: Brand }) {
   const links = navLinks(brand)
 
   return (
-    <header className='sticky top-0 z-40 border-b bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/75'>
-      <div className='mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6 md:h-(--header-height)'>
+    <header className='sticky top-0 z-40 border-b bg-background/75 backdrop-blur [view-transition-name:site-header] supports-backdrop-filter:bg-background/75'>
+      <div className='mx-auto flex h-24 w-full max-w-6xl items-center justify-between gap-6 px-6 md:h-(--header-height)'>
         <Link
           href={brandHref(brand.id)}
           aria-label={`${name} home`}

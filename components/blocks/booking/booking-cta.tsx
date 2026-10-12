@@ -1,6 +1,10 @@
 import type { SectionProps } from '@/components/blocks/types'
 import { buttonVariants } from '@/components/ui/button'
 import { contentHref } from '@/lib/brands'
+import { CalendarDaysIcon, PaletteIcon, PhoneIcon } from 'lucide-react'
+
+const OUTLINE_ON_PRIMARY =
+  'border-primary bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/40 hover:text-primary-foreground'
 
 /** A full-width band that ends a page with one clear next step: book. */
 export function BookingCta({ brand, id }: SectionProps) {
@@ -18,33 +22,41 @@ export function BookingCta({ brand, id }: SectionProps) {
             {bookingCta.body}
           </p>
         </div>
-        <div className='flex flex-col items-start gap-4'>
-          <div className='flex flex-wrap gap-3'>
+        <div className='flex w-full shrink-0 flex-col gap-3 sm:w-auto'>
+          <a
+            href={booking.url}
+            className={buttonVariants({
+              variant: 'secondary',
+              size: 'lg',
+              className: 'capitalize',
+            })}
+          >
+            <CalendarDaysIcon data-icon='inline-start' />
+            {booking.label}
+          </a>
+          {bookingCta.secondary ? (
             <a
-              href={booking.url}
-              className={buttonVariants({ variant: 'secondary', size: 'lg' })}
+              href={contentHref(brand, bookingCta.secondary.href)}
+              className={buttonVariants({
+                variant: 'outline',
+                size: 'lg',
+                className: OUTLINE_ON_PRIMARY,
+              })}
             >
-              {booking.label}
+              <PaletteIcon data-icon='inline-start' />
+              {bookingCta.secondary.label}
             </a>
-            {bookingCta.secondary ? (
-              <a
-                href={contentHref(brand, bookingCta.secondary.href)}
-                className={buttonVariants({
-                  variant: 'outline',
-                  size: 'lg',
-                  className:
-                    'border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground',
-                })}
-              >
-                {bookingCta.secondary.label}
-              </a>
-            ) : null}
-          </div>
+          ) : null}
           <a
             href={`tel:${phone.replace(/\s/g, '')}`}
-            className='text-sm text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline'
+            className={buttonVariants({
+              variant: 'outline',
+              size: 'lg',
+              className: OUTLINE_ON_PRIMARY,
+            })}
           >
-            Or call {phone}
+            <PhoneIcon data-icon='inline-start' />
+            Call {phone}
           </a>
         </div>
       </div>

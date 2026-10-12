@@ -62,7 +62,7 @@ export function TeamProfiles({ brand, id }: SectionProps) {
                 ) : null}
                 <a
                   href={member.bookingUrl ?? booking.url}
-                  className={buttonVariants({ variant: 'outline' })}
+                  className={buttonVariants({ variant: 'default' })}
                 >
                   Book with {member.name.split(' ')[0]}
                 </a>
