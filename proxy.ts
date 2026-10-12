@@ -37,7 +37,8 @@ function redirectTo(request: NextRequest, href: string) {
 
 export const config = {
   matcher: [
-    // Skips Next internals, files, image and icon routes, and BotID's own endpoints.
-    '/((?!_next/|og/|icons/|149e9513-01fa-4fb0-aad4-566afd725d1b/|.*\\..*).*)',
+    // Skips Next internals, files, image and icon routes, Vercel Analytics and
+    // Speed Insights (`/_vercel/`), and BotID's own endpoints.
+    '/((?!_next/|_vercel/|og/|icons/|149e9513-01fa-4fb0-aad4-566afd725d1b/|.*\\..*).*)',
   ],
 }
