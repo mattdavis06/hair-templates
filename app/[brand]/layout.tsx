@@ -3,7 +3,6 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
 import { JsonLd } from '@/components/seo/json-ld'
 import { BrandBackdrop } from '@/components/site/brand-backdrop'
-import { DevLabel } from '@/components/site/dev-label'
 import {
   BrandSwitcher,
   type BrandOption,
@@ -75,6 +74,7 @@ export default async function BrandLayout({
     <html
       lang='en-GB'
       data-brand={brand.id}
+      data-scroll-behavior='smooth'
       className={cn(
         'antialiased',
         brand.site.scheme === 'dark' && 'dark',
@@ -96,11 +96,9 @@ export default async function BrandLayout({
           Skip to content
         </a>
         <SiteHeader brand={brand} />
-        <DevLabel>Shared · all brands · site-header, mobile-nav</DevLabel>
         <main id='main' className='flex flex-1 flex-col'>
           {children}
         </main>
-        <DevLabel>Shared · all brands · site-footer</DevLabel>
         <SiteFooter brand={brand} />
         <BrandSwitcher brands={brandOptions} current={brand.id} />
         <Analytics />

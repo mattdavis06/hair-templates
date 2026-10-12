@@ -53,7 +53,14 @@
   "booking": {
     "provider": "booksy",
     "url": "https://booksy.com/en-gb/",
-    "label": "Book"
+    "label": "Book Now"
+  },
+  "hero": {
+    "image": {
+      "src": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70",
+      "alt": "Three black barber chairs in front of a red-brick wall, lit by hanging lamps",
+      "position": "center 60%"
+    }
   },
   "socials": [
     {
@@ -187,7 +194,7 @@
   },
   "walkIns": {
     "title": "Walk-ins welcome",
-    "description": "No appointment needed. Grab a seat and we'll get you in the chair. Prefer a set time? Book ahead.",
+    "description": "No appointment needed. Grab a seat and we'll get you in the chair. Prefer a set time?",
     "usualWait": 15,
     "busyTimes": [
       {
@@ -214,7 +221,7 @@
         "bio": "Opened Northside in 2016 after ten years in Manchester shops. Fades are his thing.",
         "specialities": ["Skin fades", "Hair designs", "Kids cuts"],
         "image": {
-          "src": "https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5",
+          "src": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=689&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
           "alt": "Barber cutting a sharp skin fade with clippers"
         }
       },
@@ -224,7 +231,7 @@
         "bio": "Beard obsessive. Ask Sam about the hot towel shave; you won't regret it.",
         "specialities": ["Hot towel shaves", "Beard shaping", "Line-ups"],
         "image": {
-          "src": "https://images.unsplash.com/photo-1596728325488-58c87691e9af",
+          "src": "https://images.unsplash.com/photo-1545596281-a183a368b1d0?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
           "alt": "Barber in black gloves shaping a client's beard with clippers"
         }
       },
@@ -234,7 +241,7 @@
         "bio": "Scissor work, longer styles and grown-out greys. Patient with first-timers.",
         "specialities": ["Scissor cuts", "Longer styles", "Seniors"],
         "image": {
-          "src": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1",
+          "src": "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=689&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
           "alt": "Barber trimming a grey beard with scissors while the client leans back in the chair"
         }
       }
@@ -245,13 +252,24 @@
     "intro": "A look at recent work and the shop. Follow us on Instagram for the latest cuts.",
     "images": [
       {
+        "src": "https://images.unsplash.com/photo-1619233543640-af09c173763b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Side profile of a client in the chair with a textured crop, high skin fade and full beard, as a tattooed barber works behind him",
+        "caption": "Textured crop and skin fade by Jay"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1",
+        "alt": "Barber trimming a grey beard with scissors while the client leans back in the chair",
+        "caption": "Scissor trim by Lewis"
+      },
+      {
         "src": "https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5",
         "alt": "Barber cutting a sharp skin fade with clippers",
         "caption": "Skin fade by Jay"
       },
       {
-        "src": "https://images.pexels.com/photos/13058812/pexels-photo-13058812.jpeg",
-        "alt": "The shop counter: wooden shelves of products, a vintage radio and barbering tools"
+        "src": "https://images.unsplash.com/photo-1669568921948-f0346e0ee73e?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Close-up of a barber's hands crisping up a client's hairline at the temple with trimmers",
+        "caption": "Sharp line-up by Jay"
       },
       {
         "src": "https://images.unsplash.com/photo-1596728325488-58c87691e9af",
@@ -259,13 +277,14 @@
         "caption": "Beard shape by Sam"
       },
       {
-        "src": "https://images.pexels.com/photos/20471182/pexels-photo-20471182.jpeg",
-        "alt": "Clippers, gold scissors and a straight razor laid out on a barber's mat"
+        "src": "https://images.unsplash.com/photo-1643837832861-ba85d3b046d9?q=80&w=1454&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "Barber in white gloves lining up the cheek line of a client's short beard, his hair in a short crop and fade",
+        "caption": "Beard line-up by Sam"
       },
       {
-        "src": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1",
-        "alt": "Barber trimming a grey beard with scissors while the client leans back in the chair",
-        "caption": "Scissor trim by Lewis"
+        "src": "https://images.unsplash.com/photo-1590410240244-9c28d8c26d3c?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "alt": "A client outdoors showing off a swept-back quiff with a skin fade and a full, shaped beard",
+        "caption": "Quiff, fade and full beard by Lewis"
       }
     ]
   },

@@ -1,6 +1,5 @@
 import type { SectionProps } from '@/components/blocks/types'
 import { WalkInWait } from '@/components/blocks/walk-ins/walk-in-wait'
-import { buttonVariants } from '@/components/ui/button'
 import { formatDays, formatTime } from '@/lib/opening-hours'
 
 export function WalkInsStrip({ brand, id }: SectionProps) {
@@ -13,7 +12,15 @@ export function WalkInsStrip({ brand, id }: SectionProps) {
         <div className='flex max-w-md flex-col gap-2'>
           <h2 className='text-3xl'>{walkIns.title}</h2>
           <p className='text-pretty text-muted-foreground'>
-            {walkIns.description}
+            {walkIns.description}{' '}
+            {booking.url ? (
+              <a
+                href={booking.url}
+                className='capitalize underline transition-colors hover:text-primary-foreground'
+              >
+                {booking.label}
+              </a>
+            ) : null}
           </p>
           {walkIns.busyTimes.length > 0 ? (
             <p className='text-sm text-muted-foreground'>
@@ -29,13 +36,6 @@ export function WalkInsStrip({ brand, id }: SectionProps) {
         </div>
 
         <WalkInWait walkIns={walkIns} hours={openingHours} />
-
-        <a
-          href={booking.url}
-          className={buttonVariants({ variant: 'outline', size: 'lg' })}
-        >
-          Skip the wait: book
-        </a>
       </div>
     </section>
   )

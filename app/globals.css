@@ -115,7 +115,9 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    /* Smooth scroll for #section links, off for "reduce motion". Page-to-page
+       navigation still jumps straight to the top (`data-scroll-behavior` on <html>). */
+    @apply font-sans motion-safe:scroll-smooth;
     /* Keeps #section targets clear of the sticky header; its height comes from the brand's logo. */
     scroll-padding-top: calc(var(--header-height, 5rem) + 1rem);
   }

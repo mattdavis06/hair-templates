@@ -10,7 +10,7 @@ export function HeroSplit({ brand, id }: SectionProps) {
   const { name, tagline, strapline, booking, openingHours, hero, reviews } =
     brand.content
 
-  if (!hero) return null
+  if (!hero?.image) return null
 
   return (
     <section
@@ -24,11 +24,11 @@ export function HeroSplit({ brand, id }: SectionProps) {
             {strapline}
           </p>
           <h1 className='text-6xl text-balance uppercase md:text-7xl lg:text-8xl'>
-            {name}
+            {hero.title ?? name}
           </h1>
         </div>
         <p className='max-w-lg text-lg text-pretty text-muted-foreground md:text-xl'>
-          {tagline}
+          {hero.text ?? tagline}
         </p>
         <div className='flex flex-wrap gap-3'>
           <a href={booking.url} className={buttonVariants({ size: 'lg' })}>

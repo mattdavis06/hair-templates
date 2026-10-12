@@ -2,7 +2,10 @@ import type { SectionProps } from '@/components/blocks/types'
 import { BrandImage } from '@/components/site/brand-image'
 import { cn } from '@/lib/utils'
 
-/** Square photo grid; the first photo is featured at double size on wider screens. */
+/**
+ * Square photo grid. On wider screens the first photo is featured at double
+ * size and the last two run two columns wide.
+ */
 export function GalleryGrid({ brand, id }: SectionProps) {
   const { gallery } = brand.content
   if (!gallery) return null
@@ -22,18 +25,30 @@ export function GalleryGrid({ brand, id }: SectionProps) {
       <ul className='grid grid-flow-dense grid-cols-2 gap-3 md:grid-cols-4'>
         {gallery.images.map((image, index) => {
           const featured = index === 0
+          const wide = index >= gallery.images.length - 2
+
           return (
             <li
               key={image.src}
-              className={cn(featured && 'col-span-2 md:row-span-2')}
+              className={cn(
+                featured && 'col-span-2 md:row-span-2',
+                wide && 'md:col-span-2'
+              )}
             >
-              <figure className='relative aspect-square overflow-hidden rounded-lg bg-muted'>
+              <figure
+                className={cn(
+                  'relative aspect-square overflow-hidden rounded-lg bg-muted',
+                  wide && 'md:aspect-2/1'
+                )}
+              >
                 <BrandImage
                   image={image}
                   sizes={
                     featured
                       ? '(min-width: 768px) 576px, 100vw'
-                      : '(min-width: 768px) 288px, 50vw'
+                      : wide
+                        ? '(min-width: 768px) 576px, 50vw'
+                        : '(min-width: 768px) 288px, 50vw'
                   }
                 />
                 {image.caption ? (

@@ -80,24 +80,25 @@
           "id": "team"
         },
         {
+          "type": "reviews",
+          "variant": "carousel",
+          "id": "reviews"
+        },
+        {
+          "type": "policies",
+          "variant": "list",
+          "id": "policies"
+        },
+        {
           "type": "gallery",
           "variant": "grid",
           "id": "gallery"
         },
-        {
-          "type": "reviews",
-          "variant": "grid",
-          "id": "reviews"
-        },
+
         {
           "type": "products",
           "variant": "grid",
           "id": "products"
-        },
-        {
-          "type": "loyalty",
-          "variant": "card",
-          "id": "loyalty"
         },
         {
           "type": "faqs",
@@ -105,9 +106,9 @@
           "id": "faqs"
         },
         {
-          "type": "policies",
-          "variant": "list",
-          "id": "policies"
+          "type": "loyalty",
+          "variant": "card",
+          "id": "loyalty"
         },
         {
           "type": "visit",
