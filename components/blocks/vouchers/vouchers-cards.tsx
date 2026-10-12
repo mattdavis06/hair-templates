@@ -1,8 +1,8 @@
-import { GiftIcon } from 'lucide-react'
 import { SectionHeading } from '@/components/blocks/section-heading'
 import type { SectionProps } from '@/components/blocks/types'
 import { buttonVariants } from '@/components/ui/button'
 import { formatPrice } from '@/lib/format'
+import { GiftIcon } from 'lucide-react'
 
 /** Voucher values drawn as gift cards, with one link to where they're bought. */
 export function VouchersCards({ brand, id }: SectionProps) {
@@ -21,7 +21,7 @@ export function VouchersCards({ brand, id }: SectionProps) {
         {vouchers.amounts.map((amount) => (
           <li
             key={amount}
-            className='flex aspect-8/5 flex-col justify-between rounded-[calc(var(--radius)*1.5)] bg-primary p-5 text-primary-foreground shadow-sm'
+            className='flex aspect-8/5 flex-col justify-between rounded-[calc(var(--radius)*1.5)] bg-secondary p-5 text-secondary-foreground shadow-sm'
           >
             <div className='flex items-start justify-between'>
               <span
@@ -44,7 +44,10 @@ export function VouchersCards({ brand, id }: SectionProps) {
         ))}
         {vouchers.custom ? (
           <li className='flex aspect-8/5 flex-col items-start justify-between rounded-[calc(var(--radius)*1.5)] border-2 border-dashed border-primary/40 bg-card p-5'>
-            <GiftIcon aria-hidden className='size-6 text-highlight' />
+            <GiftIcon
+              aria-hidden
+              className='size-6 text-secondary-foreground'
+            />
             <span className='font-heading text-2xl text-balance'>
               {vouchers.custom}
             </span>

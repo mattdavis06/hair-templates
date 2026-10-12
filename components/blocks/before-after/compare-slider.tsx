@@ -29,18 +29,18 @@ export function CompareSlider({
         {before}
       </div>
 
-      <span className='absolute top-4 left-4 rounded-full bg-background/85 px-3 py-1 text-xs font-medium backdrop-blur-sm'>
+      <span className='absolute top-4 left-4 rounded-full bg-secondary px-3 py-1 text-xs font-medium backdrop-blur-sm'>
         Before
       </span>
-      <span className='absolute top-4 right-4 rounded-full bg-background/85 px-3 py-1 text-xs font-medium backdrop-blur-sm'>
+      <span className='absolute top-4 right-4 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground backdrop-blur-sm'>
         After
       </span>
 
       <div
         aria-hidden
-        className='pointer-events-none absolute inset-y-0 left-(--split) w-0.5 -translate-x-1/2 bg-background shadow-[0_0_0_1px_rgb(0_0_0/0.08)]'
+        className='pointer-events-none absolute inset-y-0 left-(--split) w-0.5 -translate-x-1/2 bg-secondary shadow-[0_0_0_1px_rgb(0_0_0/0.08)]'
       >
-        <span className='absolute top-1/2 left-1/2 grid size-11 -translate-1/2 place-items-center rounded-full bg-background text-foreground shadow-md'>
+        <span className='absolute top-1/2 left-1/2 grid size-11 -translate-1/2 place-items-center rounded-full bg-secondary text-secondary-foreground shadow-md'>
           <ChevronsLeftRightIcon className='size-5' />
         </span>
       </div>

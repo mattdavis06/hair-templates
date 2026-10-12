@@ -1,9 +1,9 @@
-import { CheckIcon } from 'lucide-react'
 import { EnquiryForm } from '@/components/blocks/enquiry/enquiry-form'
 import type { SectionWithOptions } from '@/components/blocks/types'
 import { BrandImage } from '@/components/site/brand-image'
 import { Card, CardContent } from '@/components/ui/card'
 import { enquiryFields } from '@/lib/forms/enquiries'
+import { CheckIcon } from 'lucide-react'
 
 /** Why to get in touch on one side, the enquiry form named by `form` on the other. */
 export function EnquirySplit({
@@ -30,7 +30,7 @@ export function EnquirySplit({
           <ul className='flex flex-col gap-3'>
             {copy.points.map((point) => (
               <li key={point} className='flex gap-3'>
-                <span className='mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-secondary text-secondary-foreground'>
+                <span className='mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground'>
                   <CheckIcon aria-hidden className='size-3.5' />
                 </span>
                 <span className='text-pretty'>{point}</span>

@@ -200,16 +200,24 @@ function FooterDetails({ brand }: { brand: EmailBrand }) {
       </Section>
 
       {brand.socials.length > 0 ? (
-        <Text style={{ ...line, marginTop: 24 }}>
-          {brand.socials.map((social, index) => (
-            <span key={social.label}>
-              {index > 0 ? ' · ' : null}
-              <Link href={social.url} style={link}>
-                {social.label}
-              </Link>
-            </span>
+        <Section style={{ marginTop: 24 }}>
+          {brand.socials.map((social) => (
+            <Link
+              key={social.label}
+              href={social.url}
+              title={social.label}
+              style={{ marginRight: 16 }}
+            >
+              <Img
+                src={social.icon}
+                width={24}
+                height={24}
+                alt={social.label}
+                style={{ display: 'inline-block', verticalAlign: 'middle' }}
+              />
+            </Link>
           ))}
-        </Text>
+        </Section>
       ) : null}
     </>
   )

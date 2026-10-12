@@ -127,7 +127,8 @@ export type EmailBrand = {
   phone: string
   email: string
   hours: { days: string; hours: string }[]
-  socials: { label: string; url: string }[]
+  /** `icon` is a PNG of the platform logo in the footer colour. */
+  socials: { label: string; url: string; icon: string }[]
   copy: Content['emails']
 }
 
@@ -196,7 +197,11 @@ export function toEmailBrand(brand: Brand): EmailBrand {
     phone: content.phone,
     email: content.email,
     hours: groupOpeningHours(content.openingHours),
-    socials: content.socials,
+    socials: content.socials.map((social) => ({
+      label: social.label,
+      url: social.url,
+      icon: `${emailBaseUrl}/icons/${brand.id}/socials/${social.icon}`,
+    })),
     copy: content.emails,
   }
 }

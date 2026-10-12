@@ -3,7 +3,6 @@ import { StarRating } from '@/components/blocks/reviews/star-rating'
 import type { SectionProps } from '@/components/blocks/types'
 import { BrandImage } from '@/components/site/brand-image'
 import { buttonVariants } from '@/components/ui/button'
-import { contentHref } from '@/lib/brands'
 
 /** Words and buttons on one side, a large photo on the other; stacks on phones. */
 export function HeroSplit({ brand, id }: SectionProps) {
@@ -34,14 +33,6 @@ export function HeroSplit({ brand, id }: SectionProps) {
           <a href={booking.url} className={buttonVariants({ size: 'lg' })}>
             {booking.label}
           </a>
-          {hero.secondary ? (
-            <a
-              href={contentHref(brand, hero.secondary.href)}
-              className={buttonVariants({ variant: 'outline', size: 'lg' })}
-            >
-              {hero.secondary.label}
-            </a>
-          ) : null}
         </div>
         {reviews ? (
           <a
@@ -62,7 +53,7 @@ export function HeroSplit({ brand, id }: SectionProps) {
       <div className='relative'>
         <div
           aria-hidden
-          className='absolute -inset-3 translate-x-4 translate-y-4 rounded-[calc(var(--radius)*2)] bg-secondary md:-inset-4 md:translate-x-6 md:translate-y-6'
+          className='absolute -inset-2 translate-x-2 translate-y-2 rounded-[calc(var(--radius)*2)] bg-secondary md:-inset-4 md:translate-x-6 md:translate-y-6'
         />
         <div className='relative aspect-4/5 overflow-hidden rounded-[calc(var(--radius)*2)] bg-muted sm:aspect-4/3 lg:aspect-4/5'>
           <BrandImage
