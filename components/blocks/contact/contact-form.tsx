@@ -96,6 +96,7 @@ export function ContactForm({ brandId, copy, failed }: ContactFormProps) {
           <Textarea
             id='contact-message'
             name='message'
+            className='resize-none'
             rows={5}
             maxLength={2000}
             required

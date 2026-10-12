@@ -1,12 +1,12 @@
 'use client'
 
-import { useMemo } from 'react'
 import { useCurrentMinute } from '@/components/blocks/opening-hours/use-current-minute'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { DayHours, WalkIns } from '@/content/schema'
 import { formatDuration } from '@/lib/format'
 import { getWalkInStatus } from '@/lib/opening-hours'
+import { useMemo } from 'react'
 
 /** Depends on the visitor's clock, so it renders a placeholder until hydrated. */
 export function WalkInWait({
@@ -33,7 +33,7 @@ export function WalkInWait({
   }
 
   return (
-    <div className='flex flex-col gap-1' aria-live='polite'>
+    <div className='flex flex-col items-end gap-1' aria-live='polite'>
       <p className='text-xs font-medium tracking-wide text-muted-foreground uppercase'>
         {status.isOpen ? 'Typical wait now' : 'Walk-ins'}
       </p>

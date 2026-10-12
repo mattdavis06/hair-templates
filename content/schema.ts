@@ -246,8 +246,15 @@ const servicesSchema = z
   })
 
 const heroSchema = z.object({
-  /** The large photo in the `split` hero. */
-  image: imageSchema,
+  /**
+   * `split`: the large photo beside the words (required).
+   * `centered`: optional full-width background behind the words.
+   */
+  image: imageSchema.optional(),
+  /** Headline in place of the brand name (`centered`: in place of the logo too). */
+  title: z.string().optional(),
+  /** Line under the headline in place of the tagline. */
+  text: z.string().optional(),
   /** Second button beside the booking button. */
   secondary: linkSchema.optional(),
 })
@@ -711,8 +718,10 @@ export function brandProblems(content: Content, site: Site): string[] {
         problems.push(`"${s.type}" ${where} needs "${key}" in content.json`)
         continue
       }
-      if (s.type === 'hero' && s.variant === 'split' && !content.hero) {
-        problems.push(`The split hero ${where} needs "hero" in content.json`)
+      if (s.type === 'hero' && s.variant === 'split' && !content.hero?.image) {
+        problems.push(
+          `The split hero ${where} needs "hero.image" in content.json`
+        )
       }
       if (s.type === 'services' && s.categories) {
         const names = new Set(content.services?.categories.map((c) => c.name))

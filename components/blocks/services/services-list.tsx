@@ -47,7 +47,7 @@ export function ServicesList({
                     <div className='flex flex-wrap items-center gap-2'>
                       <span className='font-medium'>{service.name}</span>
                       {service.popular ? (
-                        <Badge variant='secondary'>Popular</Badge>
+                        <Badge variant='destructive'>Popular</Badge>
                       ) : null}
                     </div>
                     {service.description ? (
@@ -55,7 +55,7 @@ export function ServicesList({
                         {service.description}
                       </p>
                     ) : null}
-                    <p className='text-xs text-muted-foreground'>
+                    <p className='text-xs text-secondary-foreground'>
                       {formatDuration(service.duration)}
                     </p>
                   </div>
